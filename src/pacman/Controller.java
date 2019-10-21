@@ -1,4 +1,4 @@
-package sample;
+package pacman;
 
 public class Controller {
 }
