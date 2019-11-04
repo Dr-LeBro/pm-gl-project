@@ -1,4 +1,6 @@
 package pacman.gameplay.pacman;
 
-public class Pacman {
+import pacman.engine.core.Entity.MovableEntity;
+
+public class Pacman extends MovableEntity {
 }
