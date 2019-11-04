@@ -1,6 +1,6 @@
 package pacman.engine.core.Entity;
 
-public class MovableEntity implements Entity {
+public class MovableEntity extends Entity {
 
     private EntityType type;
     private double x;

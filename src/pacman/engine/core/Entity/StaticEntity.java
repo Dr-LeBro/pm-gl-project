@@ -1,8 +1,7 @@
 package pacman.engine.core.Entity;
 
-public class StaticEntity implements Entity {
+public class StaticEntity extends Entity {
 
-    private EntityType type;
 
     public StaticEntity(EntityType kind)
     {
