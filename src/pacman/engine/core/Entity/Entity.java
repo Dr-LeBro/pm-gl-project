@@ -12,20 +12,36 @@ public abstract class Entity {
     protected double x;
     protected double y;
 
+    protected boolean isVisible;
+
     public Entity(EntityType kind) {
-        type = empty;
+        type = kind;
+        isVisible = false;
+
     }
 
     public Entity(EntityType kind, double x, double y) {
-        type = empty;
+        type = kind;
+        isVisible = false;
+        this.x = x;
+        this.y = y;
     }
 
     public EntityType getType() {
         return type;
     }
 
-    public void spawn(){}
-    public void kill(){}
+    public void spawn(){
+        isVisible = true;
+    }
+
+    public void kill(){
+        isVisible = false;
+    }
+
+    public void delete(){
+        type = empty;
+    }
 
     public void move(){
         System.out.println("This entity can't move");
@@ -41,4 +57,7 @@ public abstract class Entity {
         return x;
     }
 
+    public boolean isVisible() {
+        return isVisible;
+    }
 }

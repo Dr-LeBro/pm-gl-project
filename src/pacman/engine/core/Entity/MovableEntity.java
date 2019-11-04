@@ -16,5 +16,10 @@ public class MovableEntity extends Entity {
         super(kind, x, y);
     }
 
+    /* waiting for spec
+    public void move(Direction dir){
+        Movement.
+    }
 
+     */
 }
