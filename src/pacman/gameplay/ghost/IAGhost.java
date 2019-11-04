@@ -1,4 +1,4 @@
 package pacman.gameplay.ghost;
 
-public class IAGhost {
+public class IAGhost{
 }

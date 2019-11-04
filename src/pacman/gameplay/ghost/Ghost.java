@@ -1,4 +1,27 @@
 package pacman.gameplay.ghost;
 
-public interface Ghost {
+import pacman.engine.core.Entity.MovableEntity;
+
+public class Ghost extends MovableEntity {
+    private boolean invincible;
+    private int behaviour;
+    private int respawnTime;
+
+    public Ghost(boolean invincible, int behaviour, int respawnTime) {
+        this.invincible = invincible;
+        this.behaviour = behaviour;
+        this.respawnTime = respawnTime;
+    }
+
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public int getBehaviour() {
+        return behaviour;
+    }
+
+    public int getRespawnTime() {
+        return respawnTime;
+    }
 }
