@@ -1,29 +1,20 @@
 package pacman.engine.core.Entity;
 
+import pacman.engine.physic.movement.Movement;
+
 public class MovableEntity extends Entity {
 
-    private EntityType type;
-    private double x;
-    private double y;
+    protected Movement move;
+
+    public MovableEntity(EntityType kind)
+    {
+        super(kind);
+    }
 
     public MovableEntity(EntityType kind, double x, double y)
     {
-        this.type = kind;
-        this.x = x;
-        this.y = y;
+        super(kind, x, y);
     }
 
-    public EntityType getType() {
-        return type;
-    }
 
-    public double getY()
-    {
-        return y;
-    }
-
-    public double getX()
-    {
-        return x;
-    }
 }

@@ -5,10 +5,11 @@ public class StaticEntity extends Entity {
 
     public StaticEntity(EntityType kind)
     {
-        this.type = kind;
+        super(kind);
     }
 
-    public EntityType getType() {
-        return type;
+    public StaticEntity(EntityType kind, double x, double y)
+    {
+        super(kind, x, y);
     }
 }
