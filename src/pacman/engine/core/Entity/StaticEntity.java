@@ -1,15 +1,15 @@
 package pacman.engine.core.Entity;
 
-public class StaticEntity implements Entity {
+public class StaticEntity extends Entity {
 
-    private EntityType type;
 
     public StaticEntity(EntityType kind)
     {
-        this.type = kind;
+        super(kind);
     }
 
-    public EntityType getType() {
-        return type;
+    public StaticEntity(EntityType kind, double x, double y)
+    {
+        super(kind, x, y);
     }
 }
