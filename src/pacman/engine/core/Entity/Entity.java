@@ -2,7 +2,7 @@ package pacman.engine.core.Entity;
 
 import pacman.engine.physic.hitBox.HitBox;
 
-import static pacman.engine.core.Entity.EntityType.*;
+import static pacman.engine.core.Entity.EntityType.empty;
 
 public abstract class Entity {
 
