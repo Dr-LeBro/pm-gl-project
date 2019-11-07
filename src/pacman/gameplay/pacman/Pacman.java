@@ -1,5 +1,6 @@
 package pacman.gameplay.pacman;
 
+import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 
 public class Pacman extends MovableEntity {
@@ -8,6 +9,7 @@ public class Pacman extends MovableEntity {
     private int nbPoints;           //points used to get lives
 
     public Pacman(int nbLives) {
+        super(EntityType.pacman);
         this.nbLives = nbLives;
     }
 
@@ -23,11 +25,13 @@ public class Pacman extends MovableEntity {
     {
         if(nbLives > 1) {
             nbLives--;
-            //respawn();
+            kill();
         }
 
-        /*else
-            gameover();*/
+        else {
+            kill();
+            delete();
+        }
     }
 
     /* From 100 to 5.000 points for fruits, and 200-400-800-1600 points for ghosts */
