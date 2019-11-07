@@ -2,7 +2,7 @@ package pacman.engine.core.Entity;
 
 import pacman.engine.physic.hitBox.HitBox;
 
-import static pacman.engine.core.Entity.EntityType.empty;
+import static pacman.engine.core.Entity.EntityType.EMPTY;
 
 public abstract class Entity {
 
@@ -40,7 +40,7 @@ public abstract class Entity {
     }
 
     public void delete(){
-        type = empty;
+        type = EMPTY;
     }
 
     public void move(){

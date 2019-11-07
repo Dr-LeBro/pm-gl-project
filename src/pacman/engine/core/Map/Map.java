@@ -78,7 +78,7 @@ public class Map {
 
         for(int x = 0; x < staticEntityMap.length; x++)
             for(int y = 0; y < staticEntityMap[0].length; y++)
-                if(returnMap[x][y] == EntityType.empty)
+                if(returnMap[x][y] == EntityType.EMPTY)
                     returnMap[x][y] = staticEntityMap[x][y].getType();
 
         return returnMap;
