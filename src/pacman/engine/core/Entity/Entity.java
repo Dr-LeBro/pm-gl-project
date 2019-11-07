@@ -1,5 +1,6 @@
 package pacman.engine.core.Entity;
 
+import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
 
 import static pacman.engine.core.Entity.EntityType.EMPTY;
@@ -7,22 +8,25 @@ import static pacman.engine.core.Entity.EntityType.EMPTY;
 public abstract class Entity {
 
     protected EntityType type;
+    //TODO implement hitbox calls
     protected HitBox hitBox;
 
     protected double x;
     protected double y;
 
-    protected boolean isVisible;
+    protected boolean visible;
+
+    protected Sprite sprite;
 
     public Entity(EntityType kind) {
         type = kind;
-        isVisible = false;
+        visible = false;
 
     }
 
     public Entity(EntityType kind, double x, double y) {
         type = kind;
-        isVisible = false;
+        visible = false;
         this.x = x;
         this.y = y;
     }
@@ -31,12 +35,22 @@ public abstract class Entity {
         return type;
     }
 
-    public void spawn(){
-        isVisible = true;
+    public void loadSprite(Sprite sprite){
+        this.sprite = sprite;
+    }
+
+    //send false if is nothing to show
+    public boolean spawn(){
+        if(sprite == null){
+            visible = false;
+        }else{
+            visible = true;
+        }
+        return visible;
     }
 
     public void kill(){
-        isVisible = false;
+        visible = false;
     }
 
     public void delete(){
@@ -58,6 +72,10 @@ public abstract class Entity {
     }
 
     public boolean isVisible() {
-        return isVisible;
+        return visible;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 }
