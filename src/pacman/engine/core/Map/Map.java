@@ -4,6 +4,7 @@ import pacman.engine.core.Block.Block;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Entity.StaticEntity;
+import pacman.engine.core.Utilis.Matrix;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,16 @@ public class Map {
     public Block[][] getStaticMap()
     {
         return this.staticMap;
+    }
+
+    public Block[][] getSurroundingStaticMap(int x, int y)
+    {
+        return (Block[][])Matrix.extractSubMatrix(this.staticMap, Math.max(0, x-1), Math.min(this.staticMap.length-1, x+1), Math.max(0, y-1), Math.min(this.staticMap[0].length-1, y+1));
+    }
+
+    public StaticEntity[][] getSurroundingStaticEntityMap(int x, int y)
+    {
+        return (StaticEntity[][])Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-1), Math.min(this.staticEntityMap.length-1, x+1), Math.max(0, y-1), Math.min(this.staticEntityMap[0].length-1, y+1));
     }
 
     public EntityType[][] getStaticMapVisual()
@@ -83,5 +94,6 @@ public class Map {
 
         return returnMap;
     }
+
 
 }
