@@ -3,7 +3,6 @@ package pacman.engine.graphism;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
 import java.util.HashMap;
 
 public class ResizableCanvas extends Canvas{
@@ -18,7 +17,7 @@ public class ResizableCanvas extends Canvas{
     private HashMap<String, DrawableObject> drawableObjects;
 
     public ResizableCanvas(){
-        fontColor = new Color(0,0,0,1); //RGBA
+        fontColor = Color.rgb(1,20,50,1.0); //RGBA
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
             clear();
@@ -81,7 +80,6 @@ public class ResizableCanvas extends Canvas{
 
     private void callDrawingElements() {
         GraphicsContext gc = getGraphicsContext2D();
-        gc.clearRect(0, 0, width, height);
         for (String key : drawableObjects.keySet()) {
             if(drawableObjects.get(key).isReadyToDraw()){
                 drawableObjects.get(key).draw(gc);
@@ -99,6 +97,7 @@ public class ResizableCanvas extends Canvas{
     public void clear(){
         GraphicsContext gc = getGraphicsContext2D();
         gc.setFill(fontColor);
+        gc.clearRect(0, 0, width, height);
         gc.fillRect(0,0,width,height);
         gc.setFill(Color.WHITE);
     }

@@ -22,6 +22,7 @@ public class Game {
         canvas.setWidth(800);
         canvas.setHeight(875);
         labyrynth = new Map(100,100);
+        //TODO: make ratio dynamical, and move it to core engine
         ratioX = canvas.getWidth() / 100;
         ratioY = canvas.getHeight() / 100;
         pacman = new Pacman(3);
@@ -32,16 +33,18 @@ public class Game {
     }
 
     public void gameLoop(){
-
-            gameUpdate();
-            graphicalUpdate();
-
+        gameUpdate();
+        graphicalUpdate();
     }
 
     private void gameUpdate(){
+        //TODO make that better
         KeyCode lastKeyPressed = kI.getLastKeyPressed();
-        pacman.setCurrentMove(lastKeyPressed);
+        canvas.removeDrawingElement(pacman.getSprite());
+        pacman.setCurrentDir(lastKeyPressed);
+        canvas.addDrawingElement(pacman.getSprite());
         pacman.move();
+
     }
 
     private void graphicalUpdate(){
