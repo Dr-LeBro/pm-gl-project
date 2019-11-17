@@ -9,6 +9,7 @@ public abstract class Entity {
 
     protected EntityType type;
     //TODO implement hitbox calls
+
     protected HitBox hitBox;
 
     protected double x;
@@ -21,7 +22,6 @@ public abstract class Entity {
     public Entity(EntityType kind) {
         type = kind;
         visible = false;
-
     }
 
     public Entity(EntityType kind, double x, double y) {

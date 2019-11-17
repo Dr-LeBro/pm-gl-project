@@ -37,8 +37,6 @@ public class MovableEntity extends Entity {
     public Sprite getCurrentMovingSprite(){
     }
     */
-
-
     /* waiting for spec
     public void move(Direction dir){
         Movement.
