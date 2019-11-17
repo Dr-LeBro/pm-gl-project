@@ -1,5 +1,6 @@
 package pacman.engine.graphism;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface DrawableObject {
@@ -16,4 +17,14 @@ public interface DrawableObject {
     void setHeight(double height);
 
     boolean isReadyToDraw();
+
+    Point2D getPoint();
+
+    void setPoint(double x, double y);
+
+    String getName();
+
+    void setKey(String key);
+
+    String getKey();
 }

@@ -10,7 +10,7 @@ public class StaticEntity extends Entity {
     public StaticEntity(EntityType kind)
     {
         super(kind);
-        sprite = new StaticSprite("");
+        sprite = new StaticSprite("", "");
     }
 
     public StaticEntity(EntityType kind, double x, double y)

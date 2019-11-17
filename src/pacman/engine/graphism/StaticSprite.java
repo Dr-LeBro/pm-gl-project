@@ -5,23 +5,22 @@ import javafx.scene.canvas.GraphicsContext;
 public class StaticSprite extends Sprite{
     private ImageManager image;
 
-    public StaticSprite(String imagesPaths){
-        super();
+    public StaticSprite(String imagesPaths, String name){
+        super(name);
         image = new ImageManager(imagesPaths);
     }
 
-    public void setSize(){
-
-    }
-
+    @Override
     public void loadSprite(){
         image.loadImage();
     }
 
+    @Override
     protected void reloadImageSize(){
         image.loadImageWithSize(width, height);
     }
 
+    @Override
     public boolean isReadyToDraw(){
         if(image.getImage() == null){
             return false;
@@ -29,6 +28,7 @@ public class StaticSprite extends Sprite{
         return true;
     }
 
+    @Override
     public void draw(GraphicsContext gc){
         gc.drawImage(image.getImage(), point.getX(), point.getY());
     }

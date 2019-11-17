@@ -2,19 +2,22 @@ package pacman.engine.graphism;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ResizableCanvas extends Canvas{
 
-    protected double midX;
-    protected double midY;
-    protected double width;
-    protected double height;
-    protected double minDistance;
-    protected ArrayList<DrawableObject> drawableObjects;
+    private double midX;
+    private double midY;
+    private double width;
+    private double height;
+    private double minDistance;
+    private Color fontColor;
+    private HashMap<String, DrawableObject> drawableObjects;
 
     public ResizableCanvas(){
+        fontColor = new Color(0,0,0,1); //RGBA
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
             callDrawingElements();
@@ -23,7 +26,7 @@ public class ResizableCanvas extends Canvas{
             resizeCanvas(super.getWidth(), super.getHeight());
             callDrawingElements();
         });
-        drawableObjects = new ArrayList<>();
+        drawableObjects = new HashMap<>();
     }
 
     private void resizeCanvas(double width, double height){
@@ -53,23 +56,39 @@ public class ResizableCanvas extends Canvas{
     }
 
     public void addDrawingElement(DrawableObject newObject){
-        drawableObjects.add(newObject);
+
+        String basicKey = newObject.getName();
+        String key = basicKey;
+        while(drawableObjects.containsKey(key)){
+            key = basicKey + Math.random()*10000;
+        }
+        newObject.setKey(key);
+        drawableObjects.put(newObject.getKey(), newObject);
     }
 
-
+    public void removeDrawingElement(DrawableObject newObject){
+        drawableObjects.remove(newObject.getKey());
+    }
 
     private void callDrawingElements() {
         GraphicsContext gc = getGraphicsContext2D();
         gc.clearRect(0, 0, width, height);
-        for(int i =0; i<drawableObjects.size(); i++){
-            if(drawableObjects.get(i).isReadyToDraw()){
-                drawableObjects.get(i).draw(gc);
+        for (String key : drawableObjects.keySet()) {
+            if(drawableObjects.get(key).isReadyToDraw()){
+                drawableObjects.get(key).draw(gc);
             }
         }
     }
 
-    public void clear(){
+    public void resetCache(){
+        drawableObjects.clear();
+    }
 
+    public void clear(){
+        GraphicsContext gc = getGraphicsContext2D();
+        gc.setFill(fontColor);
+        gc.fillRect(0,0,width,height);
+        gc.setFill(Color.WHITE);
     }
 
     @Override

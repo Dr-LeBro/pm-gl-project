@@ -19,10 +19,10 @@ public class MovableEntity extends Entity {
         //TODO implement with enumTypeDirection.values().length
         movingSprites = new AnimatedSprite[4];
         //TODO add animated sprite manager
-        movingSprites[0] = new StaticSprite("");
-        movingSprites[1] = new StaticSprite("");
-        movingSprites[2] = new StaticSprite("");
-        movingSprites[3] = new StaticSprite("");
+        movingSprites[0] = new StaticSprite("", "");
+        movingSprites[1] = new StaticSprite("", "");
+        movingSprites[2] = new StaticSprite("", "");
+        movingSprites[3] = new StaticSprite("", "");
     }
 
     public MovableEntity(EntityType kind, double x, double y)
