@@ -1,6 +1,5 @@
 package pacman.engine.core.Entity;
 
-import javafx.geometry.Point2D;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Movement;
 
@@ -34,6 +33,15 @@ public class MovableEntity extends Entity {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public Sprite getSprite(){
+        if(isVisible()){
+            //TODO make sprite with directions
+            return movingSprites[0];
+        }else{
+            return null;
         }
     }
 

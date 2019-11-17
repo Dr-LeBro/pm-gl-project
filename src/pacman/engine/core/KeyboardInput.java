@@ -27,6 +27,8 @@ public class KeyboardInput {
 
 
     public KeyCode getLastKeyPressed() {
-        return lastKeyPressed;
+        KeyCode returnCode = lastKeyPressed;
+        lastKeyPressed = null;
+        return returnCode;
     }
 }

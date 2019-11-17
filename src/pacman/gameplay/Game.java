@@ -1,28 +1,48 @@
 package pacman.gameplay;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.engine.core.KeyboardInput;
+import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.gameplay.pacman.Pacman;
 
 public class Game {
 
-    Pacman pacman;
-    KeyboardInput kI;
-    ResizableCanvas canvas;
+    private Pacman pacman;
+    private KeyboardInput kI;
+    private ResizableCanvas canvas;
+    private Map labyrynth;
+    public static double ratioX;
+    public static double ratioY;
 
     public Game(GridPane root){
-        ResizableCanvas canvas = new ResizableCanvas();
+        canvas = new ResizableCanvas();
         root.getChildren().add(canvas);
         canvas.setWidth(800);
         canvas.setHeight(875);
-
+        labyrynth = new Map(100,100);
+        //ratioX = canvas.getWidth() / labyrynth.getWidth();
+        //ratioY = canvas.getHeight() - labyrynth.getHeight();
         pacman = new Pacman(3);
+        pacman.spawn();
+        //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());
     }
 
     public void gameLoop(){
+        gameUpdate();
+        graphicalUpdate();
+    }
 
+    private void gameUpdate(){
+        KeyCode lastKeyPressed = kI.getLastKeyPressed();
+    }
+
+    private void graphicalUpdate(){
+        canvas.addDrawingElement(pacman.getSprite());
+        canvas.clear();
+        canvas.draw();
     }
 
 }

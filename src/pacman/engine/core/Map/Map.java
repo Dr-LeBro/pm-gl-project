@@ -16,7 +16,7 @@ public class Map {
     private StaticEntity[][] staticEntityMap; //pac-gommes, fruits, etc
     private ArrayList<MovableEntity> movableList; //pac-man, ghosts
 
-    Map(int x, int y)
+    public Map(int x, int y)
     {
         staticMap = new Block[x][y];
         staticEntityMap = new StaticEntity[x][y];
