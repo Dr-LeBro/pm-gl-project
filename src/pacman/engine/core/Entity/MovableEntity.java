@@ -2,6 +2,7 @@ package pacman.engine.core.Entity;
 
 import pacman.engine.graphism.AnimatedSprite;
 import pacman.engine.graphism.Sprite;
+import pacman.engine.graphism.StaticSprite;
 import pacman.engine.physic.movement.Movement;
 
 import java.util.ArrayList;
@@ -18,10 +19,10 @@ public class MovableEntity extends Entity {
         //TODO implement with enumTypeDirection.values().length
         movingSprites = new AnimatedSprite[4];
         //TODO add animated sprite manager
-        movingSprites[0] = new AnimatedSprite(new ArrayList(), 60);
-        movingSprites[1] = new AnimatedSprite(new ArrayList(), 60);
-        movingSprites[2] = new AnimatedSprite(new ArrayList(), 60);
-        movingSprites[3] = new AnimatedSprite(new ArrayList(), 60);
+        movingSprites[0] = new StaticSprite("");
+        movingSprites[1] = new StaticSprite("");
+        movingSprites[2] = new StaticSprite("");
+        movingSprites[3] = new StaticSprite("");
     }
 
     public MovableEntity(EntityType kind, double x, double y)
