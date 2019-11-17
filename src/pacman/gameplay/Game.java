@@ -22,25 +22,29 @@ public class Game {
         canvas.setWidth(800);
         canvas.setHeight(875);
         labyrynth = new Map(100,100);
-        //ratioX = canvas.getWidth() / labyrynth.getWidth();
-        //ratioY = canvas.getHeight() - labyrynth.getHeight();
+        ratioX = canvas.getWidth() / 100;
+        ratioY = canvas.getHeight() / 100;
         pacman = new Pacman(3);
         pacman.spawn();
+        canvas.addDrawingElement(pacman.getSprite());
         //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());
     }
 
     public void gameLoop(){
-        gameUpdate();
-        graphicalUpdate();
+
+            gameUpdate();
+            graphicalUpdate();
+
     }
 
     private void gameUpdate(){
         KeyCode lastKeyPressed = kI.getLastKeyPressed();
+        pacman.setCurrentMove(lastKeyPressed);
+        pacman.move();
     }
 
     private void graphicalUpdate(){
-        canvas.addDrawingElement(pacman.getSprite());
         canvas.clear();
         canvas.draw();
     }

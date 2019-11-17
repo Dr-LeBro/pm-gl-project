@@ -11,17 +11,17 @@ public class Movement {
 
     public Point2D move(double x, double y, Direction direction){
         switch (direction) {
-            case up:
+            case UP:
                 y -= speed;
                 break;
-            case down:
+            case DOWN:
                 y += speed;
                 break;
-            case left:
+            case LEFT:
                 x -= speed;
                 break;
-            case right:
-                y += speed;
+            case RIGHT:
+                x += speed;
                 break;
             default:
         }

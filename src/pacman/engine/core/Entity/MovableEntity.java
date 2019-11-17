@@ -1,26 +1,31 @@
 package pacman.engine.core.Entity;
 
+import javafx.geometry.Point2D;
+import javafx.scene.input.KeyCode;
 import pacman.engine.graphism.Sprite;
+import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
+import pacman.gameplay.Game;
 
 public class MovableEntity extends Entity {
 
-    protected Movement move;
-
+    protected Movement moveManager;
+    protected Direction dir;
     protected Sprite movingSprites[];
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double size)
     {
         super(kind, baseSprite, size);
-        //TODO implement with enumTypeDirection.values().length
+        moveManager = new Movement(0.32);
+        dir = Direction.STANDING;
         //TODO add animated sprite manager
     }
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size)
     {
         super(kind, baseSprite, x, y, size);
-        //TODO implement with enumTypeMoves.values().length
-
+        moveManager = new Movement(0.32);
+        dir = Direction.STANDING;
     }
 
     public boolean setMovingSprites(Sprite sprites[]){
@@ -38,23 +43,37 @@ public class MovableEntity extends Entity {
 
     public Sprite getSprite(){
         if(isVisible()){
-            //TODO make sprite with directions
-            return movingSprites[0];
+            if(dir == null){
+                return baseSprite;
+            }else{
+                return movingSprites[0];
+            }
         }else{
             return null;
         }
     }
 
-    //TODO implement with direction
-    /*
-    public Sprite getCurrentMovingSprite(){
-    }
-    */
-    /* waiting for spec
-    //TODO add sprite implementation
-    public void move(Direction dir){
-        Movement.
+    public void setCurrentMove(KeyCode keyPressed){
+        if(keyPressed == KeyCode.UP){
+            dir = Direction.UP;
+        }else if(keyPressed == KeyCode.DOWN){
+            dir = Direction.DOWN;
+        }else if(keyPressed == KeyCode.LEFT){
+            dir = Direction.LEFT;
+        }else if(keyPressed == KeyCode.RIGHT){
+            dir = Direction.RIGHT;
+        }else{
+        }
     }
 
-     */
+    public void move(){
+        //TODO add check of hitbox
+        Point2D point = moveManager.move(x, y,dir);
+        x = point.getX();
+        y = point.getY();
+        System.out.println(x*Game.ratioX + " " + y*Game.ratioY);
+        getSprite().setPoint(x*Game.ratioX, y*Game.ratioY);
+    }
+
+
 }
