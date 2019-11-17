@@ -1,7 +1,10 @@
 package pacman.engine.core.Entity;
 
+import pacman.engine.graphism.AnimatedSprite;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Movement;
+
+import java.util.ArrayList;
 
 public class MovableEntity extends Entity {
 
@@ -13,7 +16,12 @@ public class MovableEntity extends Entity {
     {
         super(kind);
         //TODO implement with enumTypeDirection.values().length
-        movingSprites = new Sprite[4];
+        movingSprites = new AnimatedSprite[4];
+        //TODO add animated sprite manager
+        movingSprites[0] = new AnimatedSprite(new ArrayList(), 60);
+        movingSprites[1] = new AnimatedSprite(new ArrayList(), 60);
+        movingSprites[2] = new AnimatedSprite(new ArrayList(), 60);
+        movingSprites[3] = new AnimatedSprite(new ArrayList(), 60);
     }
 
     public MovableEntity(EntityType kind, double x, double y)
@@ -21,6 +29,11 @@ public class MovableEntity extends Entity {
         super(kind, x, y);
         //TODO implement with enumTypeMoves.values().length
         movingSprites = new Sprite[4];
+
+        sprite.setPoint(x,y);
+        for(int i = 0; i<movingSprites.length; i++){
+            movingSprites[i].setPoint(x,y);
+        }
     }
 
     public boolean loadMovingSprites(Sprite sprites[]){
@@ -40,6 +53,7 @@ public class MovableEntity extends Entity {
 
 
     /* waiting for spec
+    //TODO add sprite implementation
     public void move(Direction dir){
         Movement.
     }
