@@ -1,11 +1,8 @@
 package pacman.engine.core.Entity;
 
-import pacman.engine.graphism.AnimatedSprite;
+import javafx.geometry.Point2D;
 import pacman.engine.graphism.Sprite;
-import pacman.engine.graphism.StaticSprite;
 import pacman.engine.physic.movement.Movement;
-
-import java.util.ArrayList;
 
 public class MovableEntity extends Entity {
 
@@ -13,33 +10,27 @@ public class MovableEntity extends Entity {
 
     protected Sprite movingSprites[];
 
-    public MovableEntity(EntityType kind)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double size)
     {
-        super(kind);
+        super(kind, baseSprite, size);
         //TODO implement with enumTypeDirection.values().length
-        movingSprites = new AnimatedSprite[4];
         //TODO add animated sprite manager
-        movingSprites[0] = new StaticSprite("", "");
-        movingSprites[1] = new StaticSprite("", "");
-        movingSprites[2] = new StaticSprite("", "");
-        movingSprites[3] = new StaticSprite("", "");
     }
 
-    public MovableEntity(EntityType kind, double x, double y)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size)
     {
-        super(kind, x, y);
+        super(kind, baseSprite, x, y, size);
         //TODO implement with enumTypeMoves.values().length
-        movingSprites = new Sprite[4];
 
-        sprite.setPoint(x,y);
-        for(int i = 0; i<movingSprites.length; i++){
-            movingSprites[i].setPoint(x,y);
-        }
     }
 
-    public boolean loadMovingSprites(Sprite sprites[]){
+    public boolean setMovingSprites(Sprite sprites[]){
         if(sprites.length == 4){
             movingSprites = sprites;
+            for(int i = 0; i<movingSprites.length; i++){
+                movingSprites[i].setSize(sizeX, sizeY);
+                movingSprites[i].setPoint(x,y);
+            }
             return true;
         }else{
             return false;
