@@ -1,6 +1,5 @@
 package pacman.engine.core.Entity;
 
-import javafx.geometry.Point2D;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
 
@@ -91,7 +90,11 @@ public abstract class Entity {
         return visible;
     }
 
-    public Sprite getSprite() {
-        return baseSprite;
+    public Sprite getSprite(){
+        if(isVisible()){
+            return baseSprite;
+        }else{
+            return null;
+        }
     }
 }

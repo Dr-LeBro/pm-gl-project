@@ -21,10 +21,12 @@ public class ResizableCanvas extends Canvas{
         fontColor = new Color(0,0,0,1); //RGBA
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
+            clear();
             callDrawingElements();
         });
         heightProperty().addListener(evtH ->{
             resizeCanvas(super.getWidth(), super.getHeight());
+            clear();
             callDrawingElements();
         });
         drawableObjects = new HashMap<>();
@@ -57,7 +59,7 @@ public class ResizableCanvas extends Canvas{
     }
 
     public void addDrawingElement(DrawableObject newObject){
-
+        if(newObject == null || newObject.getKey() != null) return;
         String basicKey = newObject.getName();
         String key = basicKey;
         while(drawableObjects.containsKey(key)){
@@ -67,8 +69,14 @@ public class ResizableCanvas extends Canvas{
         drawableObjects.put(newObject.getKey(), newObject);
     }
 
-    public void removeDrawingElement(DrawableObject newObject){
-        drawableObjects.remove(newObject.getKey());
+    public void removeDrawingElement(DrawableObject removedObject){
+        drawableObjects.remove(removedObject.getKey());
+        removedObject.setKey(null);
+    }
+
+    public void draw(){
+        clear();
+        callDrawingElements();
     }
 
     private void callDrawingElements() {
@@ -82,6 +90,9 @@ public class ResizableCanvas extends Canvas{
     }
 
     public void resetCache(){
+        for (String key : drawableObjects.keySet()) {
+            drawableObjects.get(key).setKey(null);
+        }
         drawableObjects.clear();
     }
 

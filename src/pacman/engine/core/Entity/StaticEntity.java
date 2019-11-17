@@ -1,8 +1,6 @@
 package pacman.engine.core.Entity;
 
-import javafx.geometry.Point2D;
 import pacman.engine.graphism.Sprite;
-import pacman.engine.graphism.StaticSprite;
 
 public class StaticEntity extends Entity {
 

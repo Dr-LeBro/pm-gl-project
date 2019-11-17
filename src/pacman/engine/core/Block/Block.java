@@ -2,12 +2,11 @@ package pacman.engine.core.Block;
 
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.StaticEntity;
-import pacman.engine.graphism.Sprite;
+import pacman.engine.graphism.StaticSprite;
 
 public class Block extends StaticEntity {
-
-    public Block(Sprite sprite, double size) {
-        super(EntityType.BLOCK, sprite, size);
+    public Block() {
+        super(EntityType.BLOCK, new StaticSprite("file:sprites/wall.png", "wall"),10);
     }
 
 }

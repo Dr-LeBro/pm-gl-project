@@ -16,11 +16,26 @@ public class Map {
     private StaticEntity[][] staticEntityMap; //pac-gommes, fruits, etc
     private ArrayList<MovableEntity> movableList; //pac-man, ghosts
 
-    Map(int x, int y)
+    public Map(int x, int y)
     {
         staticMap = new Block[x][y];
         staticEntityMap = new StaticEntity[x][y];
         movableList = new ArrayList<MovableEntity>();
+    }
+
+    public void addMovableToList(MovableEntity e)
+    {
+        movableList.add(e);
+    }
+
+    public void setStaticEntity(int x,int y, StaticEntity e)
+    {
+        staticEntityMap[x][y] = e;
+    }
+
+    public void setStaticMap(int x,int y, Block e)
+    {
+        staticMap[x][y] = e;
     }
 
     public ArrayList<MovableEntity> getMovableList()
