@@ -83,6 +83,10 @@ public abstract class Entity {
         return x;
     }
 
+    public double getSizeX() { return sizeX; }
+
+    public double getSizeY() { return sizeY; }
+
     public boolean isVisible() {
         return visible;
     }
