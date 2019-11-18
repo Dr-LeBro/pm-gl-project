@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="org.junit.jupiter:junit-jupiter-params:5.0.0-M6" type="repository">
+    <properties maven-id="org.junit.jupiter:junit-jupiter-params:5.0.0-M6" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.0.0-M6/junit-jupiter-params-5.0.0-M6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.0.0-M6/junit-jupiter-api-5.0.0-M6.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/opentest4j/opentest4j/1.0.0-M3/opentest4j-1.0.0-M3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.0.0-M6/junit-platform-commons-1.0.0-M6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
