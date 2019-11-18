@@ -1,5 +1,6 @@
 package pacman.engine.core.Entity;
 
+import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
 
@@ -20,6 +21,7 @@ public abstract class Entity {
     protected boolean visible;
 
     protected Sprite baseSprite;
+    protected Map map;
 
     public Entity(EntityType kind, Sprite sprite, double size) {
         type = kind;
@@ -58,6 +60,10 @@ public abstract class Entity {
             visible = true;
         }
         return visible;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     public void kill(){
