@@ -2,6 +2,7 @@ package pacman.engine.core.Entity;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import pacman.engine.core.Block.Block;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
@@ -78,11 +79,25 @@ public class MovableEntity extends Entity {
 
     public void move(){
         //TODO add check of hitbox
+        boolean inContact = false;
+        double tempX, tempY;
         Point2D point = moveManager.move(x, y, dir);
-        x = point.getX();
-        y = point.getY();
+        tempX = point.getX();
+        tempY = point.getY();
+        // REPLACE WITH getSurroundingStaticMap later
+        Block[][] walls = this.map.getStaticMap();
+
+        for (int i = 0; i < walls.length; i++){
+            for (int j = 0; j < walls[i].length; j++){
+                if (this.hitBox.isInContact(tempX, tempY, walls[i][j])){
+                    inContact = true;
+                    break;
+                }
+            }
+        }
         //System.out.println(x*Game.ratioX + " " + y*Game.ratioY);
-        getSprite().setPoint(x*Game.ratioX, y*Game.ratioY);
+        if (!inContact)
+            getSprite().setPoint(x*Game.ratioX, y*Game.ratioY);
     }
 
 
