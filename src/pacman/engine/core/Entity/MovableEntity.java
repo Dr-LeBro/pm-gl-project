@@ -84,20 +84,29 @@ public class MovableEntity extends Entity {
         Point2D point = moveManager.move(x, y, dir);
         tempX = point.getX();
         tempY = point.getY();
-        // REPLACE WITH getSurroundingStaticMap later
-        Block[][] walls = this.map.getStaticMap();
-
-        for (int i = 0; i < walls.length; i++){
-            for (int j = 0; j < walls[i].length; j++){
-                if (this.hitBox.isInContact(tempX, tempY, walls[i][j])){
-                    inContact = true;
-                    break;
+        try {
+            // REPLACE WITH getSurroundingStaticMap later
+            System.out.println(this.map.getStaticMap());
+            Block[][] walls = this.map.getStaticMap();
+            for (int i = 0; i < walls.length; i++){
+                for (int j = 0; j < walls[i].length; j++){
+                    if (this.hitBox.isInContact(tempX, tempY, walls[i][j])){
+                        inContact = true;
+                        break;
+                    }
                 }
             }
+        } catch (NullPointerException e) {
+            // e.printStackTrace();
         }
+
         //System.out.println(x*Game.ratioX + " " + y*Game.ratioY);
-        if (!inContact)
+        if (!inContact){
+            this.x = tempX;
+            this.y = tempY;
             getSprite().setPoint(x*Game.ratioX, y*Game.ratioY);
+        }
+
     }
 
 
