@@ -4,10 +4,12 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Sprite implements DrawableObject{
-    protected double width;
-    protected double height;
+    protected double width; //logical width, have to apply ratio
+    protected double height; //logical height, have to apply ratio
     protected Point2D point;
-    protected double ratioFromParent;
+    protected double ratioX;
+    protected double ratioY;
+    protected boolean updateRatio;
     protected String name;
     protected String key;
 
@@ -18,14 +20,20 @@ public abstract class Sprite implements DrawableObject{
 
     public void loadSprite(){}
 
-    protected void reloadImageSize(){}
-
-    public double getRatioFromParent() {
-        return ratioFromParent;
+    @Override
+    public void load(){
+        loadSprite();
     }
 
-    public void setRatioFromParent(double ratioFromParent) {
-        this.ratioFromParent = ratioFromParent;
+    @Override
+    public void setRatios(double ratioX, double ratioY) {
+        if(ratioX == this.ratioX && ratioY == this.ratioY){
+            updateRatio = false;
+        }else{
+            updateRatio = true;
+        }
+        this.ratioX = ratioX;
+        this.ratioY = ratioY;
     }
 
     @Override
@@ -42,7 +50,6 @@ public abstract class Sprite implements DrawableObject{
     public void setSize(double width, double height){
         setWidth(width);
         setHeight(height);
-        reloadImageSize();
     }
 
     @Override
@@ -71,7 +78,7 @@ public abstract class Sprite implements DrawableObject{
     }
 
     @Override
-    public void draw(GraphicsContext gc){}
+    public void draw(GraphicsContext gc){ }
 
     @Override
     public String getName(){

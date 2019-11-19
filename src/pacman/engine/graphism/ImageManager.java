@@ -3,10 +3,10 @@ package pacman.engine.graphism;
 import javafx.scene.image.Image;
 
 public class ImageManager {
-    Image image;
-    String path;
-    double width;
-    double height;
+    private Image image;
+    private String path;
+    private double width;
+    private double height;
 
     public ImageManager(String imagePath){
         path = imagePath;

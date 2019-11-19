@@ -25,17 +25,10 @@ public class AnimatedSprite extends Sprite{
     }
 
     @Override
-    protected void reloadImageSize(){
-        for(int i=0; i<images.size(); i++){
-            images.get(i).loadImageWithSize(width, height);
-        }
-    }
-
-    @Override
     public void draw(GraphicsContext gc){
         currentImage ++;
         if(currentImage >= fpsRefreshRate) currentImage = 0;
-        gc.drawImage(images.get(currentImage%images.size()).getImage(), point.getX(), point.getY());
+        gc.drawImage(images.get(currentImage%images.size()).getImage(), point.getX()-width/2, point.getY()-height/2);
     }
 
     @Override

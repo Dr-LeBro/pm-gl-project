@@ -4,6 +4,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 
 public interface DrawableObject {
+
+    void load();
+
+    void setRatios(double ratioX, double ratioY);
+
     void draw(GraphicsContext gc);
 
     void setSize(double width, double height);

@@ -11,13 +11,21 @@ public class ResizableCanvas extends Canvas{
     private double midY;
     private double width;
     private double height;
+    private int labSizeX;
+    private int labSizeY;
+    private double ratioX;
+    private double ratioY;
     private double minDistance;
     private Color fontColor;
     //TODO: think about make a second hashMap only for static objects (bg of game)
     private HashMap<String, DrawableObject> drawableObjects;
 
-    public ResizableCanvas(){
+    public ResizableCanvas(int labSizeX, int labSizeY, int width, int height){
+        super(width, height);
+        this.labSizeY = labSizeY;
+        this.labSizeX = labSizeX;
         fontColor = Color.rgb(1,20,50,1.0); //RGBA
+
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
             clear();
@@ -29,6 +37,7 @@ public class ResizableCanvas extends Canvas{
             callDrawingElements();
         });
         drawableObjects = new HashMap<>();
+        resizeCanvas(width, height);
     }
 
     private void resizeCanvas(double width, double height){
@@ -41,19 +50,15 @@ public class ResizableCanvas extends Canvas{
         }else{
             minDistance = height;
         }
+        ratioX = width/labSizeX;
+        ratioY = height/labSizeY;
         resizeDrawingElements();
     }
 
     //TODO: resizeDrawingElements
     private void resizeDrawingElements(){
-
-    }
-
-    public void addDrawingElementAndDraw(DrawableObject newObject){
-        GraphicsContext gc = getGraphicsContext2D();
-        addDrawingElement(newObject);
-        if(newObject.isReadyToDraw()){
-            newObject.draw(gc);
+        for (String key : drawableObjects.keySet()) {
+            drawableObjects.get(key).setRatios(ratioX, ratioY);
         }
     }
 
@@ -65,6 +70,7 @@ public class ResizableCanvas extends Canvas{
             key = basicKey + Math.random()*10000;
         }
         newObject.setKey(key);
+        newObject.setRatios(ratioX, ratioY);
         drawableObjects.put(newObject.getKey(), newObject);
     }
 
@@ -81,9 +87,10 @@ public class ResizableCanvas extends Canvas{
     private void callDrawingElements() {
         GraphicsContext gc = getGraphicsContext2D();
         for (String key : drawableObjects.keySet()) {
-            if(drawableObjects.get(key).isReadyToDraw()){
-                drawableObjects.get(key).draw(gc);
+            if(!drawableObjects.get(key).isReadyToDraw()){
+                drawableObjects.get(key).load();
             }
+            drawableObjects.get(key).draw(gc);
         }
     }
 

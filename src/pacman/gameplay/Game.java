@@ -5,6 +5,7 @@ import javafx.scene.layout.GridPane;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
+import pacman.engine.graphism.Sprite;
 import pacman.gameplay.pacman.Pacman;
 
 public class Game {
@@ -13,23 +14,26 @@ public class Game {
     private KeyboardInput kI;
     private ResizableCanvas canvas;
     private Map labyrynth;
-    public static double ratioX;
-    public static double ratioY;
 
     public Game(GridPane root){
-        canvas = new ResizableCanvas();
+        int labX = 100;
+        int labY = 100;
+        canvas = new ResizableCanvas(labX, labY, 800, 875);
         root.getChildren().add(canvas);
-        canvas.setWidth(800);
-        canvas.setHeight(875);
         labyrynth = new Map(100,100);
-        //TODO: make ratio dynamical, and move it to core engine
-        ratioX = canvas.getWidth() / 100;
-        ratioY = canvas.getHeight() / 100;
+
         pacman = new Pacman(3);
         pacman.spawn();
         canvas.addDrawingElement(pacman.getSprite());
+
         //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());
+        root.widthProperty().addListener(evtW ->{
+            canvas.setWidth(root.getWidth());
+        });
+        root.heightProperty().addListener(evtH ->{
+            canvas.setHeight(root.getHeight());
+        });
     }
 
     public void gameLoop(){
@@ -39,10 +43,13 @@ public class Game {
 
     private void gameUpdate(){
         //TODO make that better
+        Sprite lastSprite = pacman.getSprite();
         KeyCode lastKeyPressed = kI.getLastKeyPressed();
-        canvas.removeDrawingElement(pacman.getSprite());
-        pacman.setCurrentDir(lastKeyPressed);
-        canvas.addDrawingElement(pacman.getSprite());
+        if(pacman.setCurrentDir(lastKeyPressed)){
+            canvas.removeDrawingElement(lastSprite);
+            canvas.addDrawingElement(pacman.getSprite());
+        }
+
         pacman.move();
 
     }

@@ -6,7 +6,6 @@ import pacman.engine.core.Block.Block;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
-import pacman.gameplay.Game;
 
 
 public class MovableEntity extends Entity {
@@ -77,7 +76,7 @@ public class MovableEntity extends Entity {
         return dir != lastDir;
     }
 
-    public void move(){
+    public void move() {
         //TODO add check of hitbox
         boolean inContact = false;
         double tempX, tempY;
@@ -88,9 +87,9 @@ public class MovableEntity extends Entity {
             // REPLACE WITH getSurroundingStaticMap later
             System.out.println(this.map.getStaticMap());
             Block[][] walls = this.map.getStaticMap();
-            for (int i = 0; i < walls.length; i++){
-                for (int j = 0; j < walls[i].length; j++){
-                    if (this.hitBox.isInContact(tempX, tempY, walls[i][j])){
+            for (int i = 0; i < walls.length; i++) {
+                for (int j = 0; j < walls[i].length; j++) {
+                    if (this.hitBox.isInContact(tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;
                     }
@@ -100,14 +99,11 @@ public class MovableEntity extends Entity {
             // e.printStackTrace();
         }
 
-        //System.out.println(x*Game.ratioX + " " + y*Game.ratioY);
-        if (!inContact){
+        if (!inContact) {
             this.x = tempX;
             this.y = tempY;
-            getSprite().setPoint(x*Game.ratioX, y*Game.ratioY);
+            getSprite().setPoint(x, y);
         }
-
     }
-
 
 }

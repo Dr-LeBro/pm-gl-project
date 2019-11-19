@@ -12,7 +12,7 @@ public class Pacman extends MovableEntity {
 
     public Pacman(int nbLives) {
         //TODO look size And try to make it more logique (and add a ratio for graphic)
-        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_up.png", "pacman"), 20, 20, 50);
+        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_up.png", "pacman"), 20, 20, 4);
         Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");

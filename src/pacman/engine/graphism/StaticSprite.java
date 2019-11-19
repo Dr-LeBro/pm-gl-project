@@ -12,17 +12,13 @@ public class StaticSprite extends Sprite{
 
     @Override
     public void loadSprite(){
-        image.loadImage();
-    }
-
-    @Override
-    protected void reloadImageSize(){
-        image.loadImageWithSize(width, height);
+        image.loadImageWithSize(width*ratioX, height*ratioY);
+        updateRatio = false;
     }
 
     @Override
     public boolean isReadyToDraw(){
-        if(image.getImage() == null){
+        if(image.getImage() == null || updateRatio){
             return false;
         }
         return true;
@@ -30,6 +26,16 @@ public class StaticSprite extends Sprite{
 
     @Override
     public void draw(GraphicsContext gc){
-        gc.drawImage(image.getImage(), point.getX(), point.getY());
+        double xCenter = point.getX()*ratioX - width*ratioX/2;
+        double yCenter = point.getY()*ratioY - height*ratioY/2;
+        gc.drawImage(image.getImage(), xCenter, yCenter);
+
+        /* DEBUG
+        gc.setFill(Color.RED);
+        gc.fillRect(point.getX()*ratioX-2, point.getY()*ratioY-2, 4, 4);
+
+        gc.setStroke(Color.RED);
+        gc.strokeRect(point.getX()*ratioX - width*ratioX/2, point.getY()*ratioY - height*ratioY/2, width*ratioX, height*ratioY);
+        */
     }
 }
