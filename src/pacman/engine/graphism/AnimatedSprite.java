@@ -33,6 +33,7 @@ public class AnimatedSprite extends Sprite{
 
     @Override
     public boolean isReadyToDraw(){
+        if(updateRatio) return false;
         for(int i=0; i<images.size(); i++){
             if(images.get(i).getImage() == null){
                 return false;

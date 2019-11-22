@@ -11,7 +11,7 @@ public class Ghost extends MovableEntity {
     private int respawnTime;
 
     public Ghost(boolean invincible, int behaviour, int respawnTime) {
-        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost02_up.png", "ghost"), 40, 40, 100);
+        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost02_up.png", "ghost"), 40, 40, 100, 0.32);
         Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/qhost01_up.png", "qhostU");
         sprites[1] = new StaticSprite("file:sprites/qhost01_right.png", "qhostR");

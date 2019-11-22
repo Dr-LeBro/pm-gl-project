@@ -41,6 +41,7 @@ public class ResizableCanvas extends Canvas{
     }
 
     private void resizeCanvas(double width, double height){
+        if(width == this.width && height == this.height) return;
         this.midX = width/2;
         this.midY = height/2;
         this.width = width;
@@ -55,8 +56,8 @@ public class ResizableCanvas extends Canvas{
         resizeDrawingElements();
     }
 
-    //TODO: resizeDrawingElements
     private void resizeDrawingElements(){
+        System.out.println("Resize elements: " + this);
         for (String key : drawableObjects.keySet()) {
             drawableObjects.get(key).setRatios(ratioX, ratioY);
         }

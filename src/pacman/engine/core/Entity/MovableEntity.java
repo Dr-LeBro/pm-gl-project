@@ -3,6 +3,7 @@ package pacman.engine.core.Entity;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.Block.Block;
+import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
@@ -14,18 +15,18 @@ public class MovableEntity extends Entity {
     private Direction dir;
     private Sprite movingSprites[];
 
-    public MovableEntity(EntityType kind, Sprite baseSprite, double size)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
     {
         super(kind, baseSprite, size);
-        moveManager = new Movement(0.32);
+        moveManager = new Movement(speed);
         dir = Direction.STANDING;
         //TODO add animated sprite manager
     }
 
-    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed)
     {
         super(kind, baseSprite, x, y, size);
-        moveManager = new Movement(0.32);
+        moveManager = new Movement(speed);
         dir = Direction.STANDING;
     }
 
@@ -42,27 +43,26 @@ public class MovableEntity extends Entity {
         }
     }
 
-    public Sprite getSprite(){
-        if(isVisible()){
-            if(dir == Direction.STANDING){
-                return baseSprite;
-            }else if(dir == Direction.UP){
-                return movingSprites[0];
-            } else if(dir == Direction.DOWN){
-                return movingSprites[1];
-            } else if(dir == Direction.RIGHT){
-                return movingSprites[2];
-            } else if(dir == Direction.LEFT){
-                return movingSprites[3];
+    @Override
+    public void drawCurrentSprite(ResizableCanvas canvas){
+        canvas.removeDrawingElement(currentSprite);
+        if(isVisible()) {
+            if (dir == Direction.STANDING) {
+                currentSprite = movingSprites[0];
+            } else if (dir == Direction.UP) {
+                currentSprite = movingSprites[0];
+            } else if (dir == Direction.DOWN) {
+                currentSprite = movingSprites[1];
+            } else if (dir == Direction.RIGHT) {
+                currentSprite = movingSprites[2];
+            } else if (dir == Direction.LEFT) {
+                currentSprite = movingSprites[3];
             }
-            return baseSprite;
-
-        }else{
-            return null;
+            canvas.addDrawingElement(currentSprite);
         }
     }
 
-    public boolean setCurrentDir(KeyCode keyPressed){
+    private boolean setCurrentDir(KeyCode keyPressed){
         Direction lastDir = dir;
         if(keyPressed == KeyCode.UP){
             dir = Direction.UP;
@@ -76,15 +76,17 @@ public class MovableEntity extends Entity {
         return dir != lastDir;
     }
 
-    public void move() {
-        //TODO add check of hitbox
+    public void move(KeyCode keyPressed, ResizableCanvas canvas) {
+        if(setCurrentDir(keyPressed)){
+            drawCurrentSprite(canvas);
+        }
         boolean inContact = false;
         double tempX, tempY;
         Point2D point = moveManager.move(x, y, dir);
         tempX = point.getX();
         tempY = point.getY();
         try {
-            // REPLACE WITH getSurroundingStaticMap later
+            //TODO REPLACE WITH getSurroundingStaticMap later
             System.out.println(this.map.getStaticMap());
             Block[][] walls = this.map.getStaticMap();
             for (int i = 0; i < walls.length; i++) {

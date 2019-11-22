@@ -1,6 +1,7 @@
 package pacman.engine.core.Entity;
 
 import pacman.engine.core.Map.Map;
+import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
 
@@ -9,7 +10,6 @@ import static pacman.engine.core.Entity.EntityType.EMPTY;
 public abstract class Entity {
 
     protected EntityType type;
-    //TODO implement hitbox calls
 
     protected HitBox hitBox;
 
@@ -20,16 +20,17 @@ public abstract class Entity {
 
     protected boolean visible;
 
-    protected Sprite baseSprite;
+    protected Sprite currentSprite;
     protected Map map;
 
     public Entity(EntityType kind, Sprite sprite, double size) {
         type = kind;
         visible = false;
         sizeX = sizeY = size;
-        this.baseSprite = sprite;
-        this.baseSprite.setPoint(x,y);
-        this.baseSprite.setSize(size, size);
+        this.currentSprite = sprite;
+        this.currentSprite.setPoint(x,y);
+        this.currentSprite.setSize(size, size);
+        hitBox = new HitBox();
     }
 
     public Entity(EntityType kind, Sprite sprite, double x, double y, double size) {
@@ -38,26 +39,37 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         sizeX = sizeY = size;
-        this.baseSprite = sprite;
-        this.baseSprite.setPoint(x,y);
-        this.baseSprite.setSize(size, size);
+        this.currentSprite = sprite;
+        this.currentSprite.setPoint(x,y);
+        this.currentSprite.setSize(size, size);
+        hitBox = new HitBox();
     }
 
     public EntityType getType() {
         return type;
     }
 
-    public void setSprite(Sprite sprite){
-        this.baseSprite = sprite;
-        this.baseSprite.setPoint(x, y);
+    public void setSprite(Sprite sprite, ResizableCanvas canvas){
+        if(currentSprite != null){
+            canvas.removeDrawingElement(currentSprite);
+        }
+        this.currentSprite = sprite;
+        this.currentSprite.setPoint(x, y);
+    }
+
+    public void drawCurrentSprite(ResizableCanvas canvas){
+        if(isVisible()) {
+            canvas.addDrawingElement(currentSprite);
+        }
     }
 
     //send false if is nothing to show
-    public boolean spawn(){
-        if(baseSprite == null){
+    public boolean spawn(ResizableCanvas canvas){
+        if(currentSprite == null){
             visible = false;
         }else{
             visible = true;
+            drawCurrentSprite(canvas);
         }
         return visible;
     }
@@ -66,12 +78,14 @@ public abstract class Entity {
         this.map = map;
     }
 
-    public void kill(){
+    public void kill(ResizableCanvas canvas){
         visible = false;
+        canvas.removeDrawingElement(currentSprite);
     }
 
-    public void delete(){
+    public void delete(ResizableCanvas canvas){
         type = EMPTY;
+        canvas.removeDrawingElement(currentSprite);
     }
 
     public void move(){
@@ -98,7 +112,7 @@ public abstract class Entity {
 
     public Sprite getSprite(){
         if(isVisible()){
-            return baseSprite;
+            return currentSprite;
         }else{
             return null;
         }

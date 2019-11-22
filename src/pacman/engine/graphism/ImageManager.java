@@ -2,6 +2,8 @@ package pacman.engine.graphism;
 
 import javafx.scene.image.Image;
 
+import java.io.File;
+
 public class ImageManager {
     private Image image;
     private String path;
@@ -19,22 +21,28 @@ public class ImageManager {
     }
 
     public void setImagePath(String imagePath){
-        //TODO check if file exist and is image
-        path = imagePath;
+        File f = new File(path);
+        if(f.isFile()){
+            path = imagePath;
+        }else{
+            path = null;
+        }
     }
 
-    public void loadImage(){
+    public boolean loadImage(){
+        if(path == null) return false;
         if(width > 0 & height > 0){
             image = new Image(path, width, height, false, false);
         }else{
             image = new Image(path);
         }
+        return true;
     }
 
-    public void loadImageWithSize(double width, double height){
+    public boolean loadImageWithSize(double width, double height){
         setWidth(width);
         setHeight(height);
-        loadImage();
+        return loadImage();
     }
 
     public void setHeight(double height){

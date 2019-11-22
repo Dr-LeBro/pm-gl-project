@@ -23,8 +23,8 @@ public class Game {
         labyrynth = new Map(100,100);
 
         pacman = new Pacman(3);
-        pacman.spawn();
-        canvas.addDrawingElement(pacman.getSprite());
+        pacman.spawn(canvas);
+        //canvas.addDrawingElement(pacman.getSprite());
 
         //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());
@@ -42,15 +42,8 @@ public class Game {
     }
 
     private void gameUpdate(){
-        //TODO make that better
-        Sprite lastSprite = pacman.getSprite();
         KeyCode lastKeyPressed = kI.getLastKeyPressed();
-        if(pacman.setCurrentDir(lastKeyPressed)){
-            canvas.removeDrawingElement(lastSprite);
-            canvas.addDrawingElement(pacman.getSprite());
-        }
-
-        pacman.move();
+        pacman.move(lastKeyPressed, canvas);
 
     }
 

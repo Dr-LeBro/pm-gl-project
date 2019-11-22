@@ -2,6 +2,7 @@ package pacman.gameplay.pacman;
 
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
+import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
@@ -11,8 +12,7 @@ public class Pacman extends MovableEntity {
     private int nbPoints;           //points used to get lives
 
     public Pacman(int nbLives) {
-        //TODO look size And try to make it more logique (and add a ratio for graphic)
-        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_up.png", "pacman"), 20, 20, 4);
+        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), 20, 20, 4, 0.32);
         Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");
@@ -33,16 +33,16 @@ public class Pacman extends MovableEntity {
         nbLives++;
     }
 
-    public void getDamaged()
+    public void getDamaged(ResizableCanvas canvas)
     {
         if(nbLives > 1) {
             nbLives--;
-            kill();
+            kill(canvas);
         }
 
         else {
-            kill();
-            delete();
+            kill(canvas);
+            delete(canvas);
         }
     }
 
