@@ -91,7 +91,7 @@ public class MovableEntity extends Entity {
             Block[][] walls = this.map.getStaticMap();
             for (int i = 0; i < walls.length; i++) {
                 for (int j = 0; j < walls[i].length; j++) {
-                    if (this.hitBox.isInContact(tempX, tempY, walls[i][j])) {
+                    if (this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;
                     }
