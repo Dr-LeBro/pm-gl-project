@@ -23,7 +23,7 @@ public class ButtonManager {
         button.setOnAction(event);
     }
 
-    public Button getButton() {
+    public Button getComponent() {
         return button;
     }
 }

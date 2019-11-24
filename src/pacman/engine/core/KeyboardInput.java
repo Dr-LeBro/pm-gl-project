@@ -7,8 +7,10 @@ import javafx.scene.input.KeyEvent;
 public class KeyboardInput {
 
     private KeyCode lastKeyPressed;
+    private Scene scene;
 
     public KeyboardInput(Scene scene){
+        this.scene = scene;
         scene.getRoot().requestFocus();
         scene.setOnKeyPressed(keyEvent -> handleEvent(keyEvent));
     }
@@ -31,5 +33,9 @@ public class KeyboardInput {
         KeyCode returnCode = lastKeyPressed;
         lastKeyPressed = null;
         return returnCode;
+    }
+
+    public void removeListener(){
+        scene.setOnKeyPressed(null);
     }
 }

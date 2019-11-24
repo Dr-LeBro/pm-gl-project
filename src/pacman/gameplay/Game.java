@@ -1,5 +1,7 @@
 package pacman.gameplay;
 
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.engine.core.KeyboardInput;
@@ -13,8 +15,10 @@ public class Game {
     private KeyboardInput kI;
     private ResizableCanvas canvas;
     private Map labyrynth;
+    private GridPane root;
 
     public Game(GridPane root){
+        this.root = root;
         int labX = 100;
         int labY = 100;
         canvas = new ResizableCanvas(labX, labY, 800, 875);
@@ -33,6 +37,12 @@ public class Game {
     public void gameLoop(){
         gameUpdate();
         graphicalUpdate();
+        //TODO make game condition end here
+        if(false){
+            Event myEvent = new GameEvent(this, root, GameEvent.GAME_END);
+            this.root.fireEvent(myEvent);
+        }
+
     }
 
     private void gameUpdate(){
@@ -44,6 +54,12 @@ public class Game {
     private void graphicalUpdate(){
         canvas.clear();
         canvas.draw();
+    }
+
+    public void removeHandlers(){
+        //root.widthProperty().removeListener();
+        //root.heightProperty().addListener();
+        kI.removeListener();
     }
 
 }
