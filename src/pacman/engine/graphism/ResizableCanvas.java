@@ -28,13 +28,12 @@ public class ResizableCanvas extends Canvas{
 
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
-            clear();
-            callDrawingElements();
+            draw();
+            System.out.println("yes");
         });
         heightProperty().addListener(evtH ->{
             resizeCanvas(super.getWidth(), super.getHeight());
-            clear();
-            callDrawingElements();
+            draw();
         });
         drawableObjects = new HashMap<>();
         resizeCanvas(width, height);

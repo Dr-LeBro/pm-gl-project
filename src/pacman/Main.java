@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import pacman.GUI.menu.MainMenu;
 import pacman.gameplay.Game;
 
 public class Main extends Application {
@@ -19,20 +20,9 @@ public class Main extends Application {
         primaryStage.setTitle("DARK PACMAN");
         primaryStage.setScene(new Scene(root, 800, 875));
 
-        Timeline gameLoop = new Timeline();
-        gameLoop.setCycleCount( Timeline.INDEFINITE );
-        final long timeStart = System.currentTimeMillis();
 
-        Game game = new Game(root);
-        KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.017),                // 60 FPS
-                ae -> {
-                    game.gameLoop();
-                });
 
-        gameLoop.getKeyFrames().add( kf );
-        gameLoop.play();
-
+        MainMenu menu = new MainMenu(root);
         primaryStage.show();
 
     }

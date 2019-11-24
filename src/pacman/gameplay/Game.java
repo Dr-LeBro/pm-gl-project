@@ -5,7 +5,6 @@ import javafx.scene.layout.GridPane;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
-import pacman.engine.graphism.Sprite;
 import pacman.gameplay.pacman.Pacman;
 
 public class Game {
@@ -24,16 +23,11 @@ public class Game {
 
         pacman = new Pacman(3);
         pacman.spawn(canvas);
-        //canvas.addDrawingElement(pacman.getSprite());
 
         //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());
-        root.widthProperty().addListener(evtW ->{
-            canvas.setWidth(root.getWidth());
-        });
-        root.heightProperty().addListener(evtH ->{
-            canvas.setHeight(root.getHeight());
-        });
+        root.widthProperty().addListener(evtW -> canvas.setWidth(root.getWidth()));
+        root.heightProperty().addListener(evtH -> canvas.setHeight(root.getHeight()));
     }
 
     public void gameLoop(){

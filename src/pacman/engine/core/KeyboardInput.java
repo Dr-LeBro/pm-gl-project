@@ -9,6 +9,7 @@ public class KeyboardInput {
     private KeyCode lastKeyPressed;
 
     public KeyboardInput(Scene scene){
+        scene.getRoot().requestFocus();
         scene.setOnKeyPressed(keyEvent -> handleEvent(keyEvent));
     }
 
