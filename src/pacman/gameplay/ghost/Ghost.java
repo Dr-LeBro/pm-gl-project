@@ -3,6 +3,7 @@ package pacman.gameplay.ghost;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Map.Map;
+import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
