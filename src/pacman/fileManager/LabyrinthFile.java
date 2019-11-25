@@ -83,7 +83,7 @@ public class LabyrinthFile{
                                         map.setStaticEntity(blocX, blocY, new PacGomme());
                                         break;
                                     case PACMAN:
-                                        map.addMovableToList(new Pacman(3, map,blocX,blocY));
+                                        map.addMovableToList(new Pacman(3, blocX,blocY));
                                     default:
                                         //TODO
                                         break;

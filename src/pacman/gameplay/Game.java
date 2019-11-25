@@ -1,7 +1,6 @@
 package pacman.gameplay;
 
 import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.engine.core.Block.Block;
@@ -11,14 +10,12 @@ import pacman.engine.graphism.ResizableCanvas;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.pacman.Pacman;
 
-import java.util.Iterator;
-
 public class Game {
 
     private Pacman pacman;
     private KeyboardInput kI;
     private ResizableCanvas canvas;
-    private Map labyrynth;
+    public static Map labyrynth = null;
     private GridPane root;
 
     public Game(GridPane root, String mapId){

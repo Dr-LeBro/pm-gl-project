@@ -1,11 +1,9 @@
 package pacman.gameplay.ghost;
 
-import pacman.engine.core.Map.Map;
-
 public class IAGhost extends Ghost {
 
-    public IAGhost(boolean invincible, int behaviour, int respawnTime, Map map) {
-        super(invincible, behaviour, respawnTime, map);
+    public IAGhost(boolean invincible, int behaviour, int respawnTime) {
+        super(invincible, behaviour, respawnTime);
     }
 
     //TODO : behaviour of ghosts

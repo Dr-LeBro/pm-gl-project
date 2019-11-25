@@ -12,8 +12,8 @@ public class Pacman extends MovableEntity {
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
 
-    public Pacman(int nbLives, Map map, int x, int y) {
-        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 2 * Map.ArrayUnit, 1, map);
+    public Pacman(int nbLives, int x, int y) {
+        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 2 * Map.ArrayUnit, 1);
         Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");

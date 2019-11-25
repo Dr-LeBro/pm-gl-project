@@ -3,11 +3,11 @@ package pacman.engine.core.Entity;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.Block.Block;
-import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
+import pacman.gameplay.Game;
 
 
 public class MovableEntity extends Entity {
@@ -15,26 +15,19 @@ public class MovableEntity extends Entity {
     private Movement moveManager;
     private Direction dir;
     private Sprite movingSprites[];
-    protected Map map;
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed, Map map)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
     {
         super(kind, baseSprite, size);
         moveManager = new Movement(speed);
         dir = Direction.STANDING;
-        this.map = map;
         //TODO add animated sprite manager
     }
 
-    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed, Map map)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed)
     {
         super(kind, baseSprite, x, y, size);
         moveManager = new Movement(speed);
-        this.map = map;
         dir = Direction.STANDING;
     }
 
@@ -93,15 +86,15 @@ public class MovableEntity extends Entity {
         Point2D point = moveManager.move(x, y, dir);
         tempX = point.getX();
         tempY = point.getY();
-        if (map == null)
+        if (Game.labyrynth == null)
             System.out.println("NULL");
         try {
             //TODO REPLACE WITH getSurroundingStaticMap later
             //System.out.println(this.map.getStaticMap());
 
-            Block[][] walls = this.map.getStaticMap();
-            for (int i = 0; i < map.getMaxX(); i++) {
-                for (int j = 0; j < map.getMaxY(); j++) {
+            Block[][] walls = Game.labyrynth.getStaticMap();
+            for (int i = 0; i < Game.labyrynth.getMaxX(); i++) {
+                for (int j = 0; j < Game.labyrynth.getMaxY(); j++) {
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;
