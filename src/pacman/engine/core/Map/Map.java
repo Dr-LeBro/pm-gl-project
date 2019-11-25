@@ -126,22 +126,28 @@ public class Map {
                     if(staticMap[Math.max(0, x-1)][y] != null)
                     {
                         temp = new StaticSprite("file:sprites/empty_border_left.png", "borderU");
+                        temp.setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
+                        temp.setSize(Map.ArrayUnit,Map.ArrayUnit);
+                        returnMap.add(temp);
                     }
                     if(staticMap[Math.min(staticMap.length-1, x+1)][y] != null)
                     {
                         temp = new StaticSprite("file:sprites/empty_border_right.png", "borderD");
+                        temp.setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
+                        temp.setSize(Map.ArrayUnit,Map.ArrayUnit);
+                        returnMap.add(temp);
 
                     }
                     if(staticMap[x][Math.max(0,y-1)] != null)
                     {
                         temp = new StaticSprite("file:sprites/empty_border_top.png", "borderL");
+                        temp.setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
+                        temp.setSize(Map.ArrayUnit,Map.ArrayUnit);
+                        returnMap.add(temp);
                     }
                     if(staticMap[x][Math.min(staticMap[0].length-1,y+1)] != null)
                     {
                         temp = new StaticSprite("file:sprites/empty_border_down.png", "borderR");
-                    }
-                    if(temp != null)
-                    {
                         temp.setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
                         temp.setSize(Map.ArrayUnit,Map.ArrayUnit);
                         returnMap.add(temp);
