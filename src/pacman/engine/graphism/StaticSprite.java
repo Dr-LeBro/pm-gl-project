@@ -1,6 +1,7 @@
 package pacman.engine.graphism;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class StaticSprite extends Sprite{
     private ImageManager image;
@@ -30,7 +31,7 @@ public class StaticSprite extends Sprite{
         double yCenter = point.getY()*ratioY - height*ratioY/2;
         gc.drawImage(image.getImage(), xCenter, yCenter);
 
-        /* DEBUG
+        /*
         gc.setFill(Color.RED);
         gc.fillRect(point.getX()*ratioX-2, point.getY()*ratioY-2, 4, 4);
 

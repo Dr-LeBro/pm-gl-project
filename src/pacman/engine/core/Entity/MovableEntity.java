@@ -3,6 +3,7 @@ package pacman.engine.core.Entity;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.Block.Block;
+import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
@@ -14,19 +15,26 @@ public class MovableEntity extends Entity {
     private Movement moveManager;
     private Direction dir;
     private Sprite movingSprites[];
+    protected Map map;
 
-    public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed, Map map)
     {
         super(kind, baseSprite, size);
         moveManager = new Movement(speed);
         dir = Direction.STANDING;
+        this.map = map;
         //TODO add animated sprite manager
     }
 
-    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed)
+    public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed, Map map)
     {
         super(kind, baseSprite, x, y, size);
         moveManager = new Movement(speed);
+        this.map = map;
         dir = Direction.STANDING;
     }
 
@@ -85,27 +93,30 @@ public class MovableEntity extends Entity {
         Point2D point = moveManager.move(x, y, dir);
         tempX = point.getX();
         tempY = point.getY();
+        if (map == null)
+            System.out.println("NULL");
         try {
             //TODO REPLACE WITH getSurroundingStaticMap later
-            System.out.println(this.map.getStaticMap());
+            //System.out.println(this.map.getStaticMap());
+
             Block[][] walls = this.map.getStaticMap();
-            for (int i = 0; i < walls.length; i++) {
-                for (int j = 0; j < walls[i].length; j++) {
-                    if (this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
+            for (int i = 0; i < map.getMaxX(); i++) {
+                for (int j = 0; j < map.getMaxY(); j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;
                     }
                 }
             }
         } catch (NullPointerException e) {
-            // e.printStackTrace();
+             e.printStackTrace();
         }
 
         if (!inContact) {
             this.x = tempX;
             this.y = tempY;
-            getSprite().setPoint(x, y);
         }
+            getSprite().setPoint(x, y);
     }
 
 }

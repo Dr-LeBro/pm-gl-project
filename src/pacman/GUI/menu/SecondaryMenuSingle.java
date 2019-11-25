@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
+import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.Game;
 import pacman.gameplay.GameEvent;
 
@@ -33,6 +34,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         mapChooser = new SliderManager(selectMapIdListener, 0, 10, 1);
         rootOfMenu.add(launchGameSingle.getComponent(), 0, 0);
         rootOfMenu.add(mapChooser.getComponent(), 0, 1);
+        mapId = 1; // Default value of the Slider
     }
 
 
@@ -42,14 +44,13 @@ public class SecondaryMenuSingle extends SecondaryMenu {
     }
 
     public void launchGame(){
-
         Timeline gameLoop = new Timeline();
         //TODO trouver un moyen d'arreter la boucle
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
         menuMemory = FXCollections.observableArrayList(mainRoot.getChildren()) ;
         mainRoot.getChildren().clear();
-        Game game = new Game(mainRoot);
+        Game game = new Game(mainRoot, Integer.toString(mapId));
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.017),                // 60 FPS
                 ae -> {

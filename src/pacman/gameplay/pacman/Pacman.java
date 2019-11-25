@@ -5,16 +5,16 @@ import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.engine.core.Map.Map;
 
 public class Pacman extends MovableEntity {
     private int nbLives;
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
-    private static double initialX = 20, initialY = 20;
 
-    public Pacman(int nbLives) {
-        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), initialX, initialY, 4, 0.32);
-        Sprite[] sprites = new Sprite[4];
+    public Pacman(int nbLives, Map map, int x, int y) {
+        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 2 * Map.ArrayUnit, 1, map);
+        Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");
         sprites[2] = new StaticSprite("file:sprites/pacman01_right.png", "pacmanR");
@@ -40,7 +40,7 @@ public class Pacman extends MovableEntity {
         if(nbLives > 1) {
             nbLives--;
             kill(canvas);
-            respawn(canvas, initialX, initialY);
+            respawn(canvas, this.x, this.y);
         }
 
         /* Else, he is deleted, and the game ends */

@@ -4,10 +4,14 @@ import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import pacman.engine.core.Block.Block;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
+import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.pacman.Pacman;
+
+import java.util.Iterator;
 
 public class Game {
 
@@ -17,16 +21,27 @@ public class Game {
     private Map labyrynth;
     private GridPane root;
 
-    public Game(GridPane root){
+    public Game(GridPane root, String mapId){
+        LabyrinthFile.loadMaps();
+        labyrynth = LabyrinthFile.getMapById(mapId);
+
         this.root = root;
-        int labX = 100;
-        int labY = 100;
+        int labX = labyrynth.getMaxX()*Map.ArrayUnit;
+        int labY = labyrynth.getMaxY()*Map.ArrayUnit;
         canvas = new ResizableCanvas(labX, labY, 800, 875);
         root.getChildren().add(canvas);
-        labyrynth = new Map(100,100);
 
-        pacman = new Pacman(3);
+        pacman = (Pacman)labyrynth.getPacMan();
         pacman.spawn(canvas);
+
+        System.out.println("Labyrynth");
+        Block[][] block = labyrynth.getStaticMap();
+        for (int i = 0; i < labyrynth.getMaxX(); i++){
+            for (int j = 0; j < labyrynth.getMaxY(); j++){
+                if (block[i][j] != null)
+                    block[i][j].spawn(canvas);
+            }
+        }
 
         //TODO add a map caller to add entity
         kI = new KeyboardInput(root.getScene());

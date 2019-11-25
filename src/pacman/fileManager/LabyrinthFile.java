@@ -8,17 +8,31 @@ import pacman.engine.core.Block.Block;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Map.Map;
 import pacman.gameplay.Bonus.advantageBonus.PacGomme;
+import pacman.gameplay.pacman.Pacman;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LabyrinthFile{
     private static ArrayList<Map> maps = null;
+
+    public static Map getMapById(String id){
+        Iterator<Map> itMaps = maps.iterator();
+        while(itMaps.hasNext()){
+            Map tempMap = itMaps.next();
+            if (tempMap.getId().equals(id)){
+                return tempMap;
+            }
+        }
+        System.out.println("This map doesn't exist");
+        return new Map(100, 100);
+    }
+
     public static void loadMaps() {
         try {
-
             File fXmlFile = new File("maps.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -63,11 +77,13 @@ public class LabyrinthFile{
                                     case EMPTY:
                                         break;
                                     case BLOCK:
-                                        map.setStaticEntity(blocX, blocY, new Block());
+                                        map.setStaticMap(blocX, blocY, new Block(blocX, blocY));
                                         break;
                                     case PACK_GOMME:
                                         map.setStaticEntity(blocX, blocY, new PacGomme());
                                         break;
+                                    case PACMAN:
+                                        map.addMovableToList(new Pacman(3, map,blocX,blocY));
                                     default:
                                         //TODO
                                         break;
@@ -79,13 +95,13 @@ public class LabyrinthFile{
                             }
                         }
                     }
-
                     maps.add(map);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }
