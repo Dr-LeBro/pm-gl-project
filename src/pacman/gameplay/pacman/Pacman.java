@@ -2,10 +2,10 @@ package pacman.gameplay.pacman;
 
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
-import pacman.engine.graphism.ResizableCanvas;
-import pacman.engine.graphism.Sprite;
-import pacman.engine.graphism.StaticSprite;
+import pacman.engine.graphism.*;
 import pacman.engine.core.Map.Map;
+
+import java.util.ArrayList;
 
 public class Pacman extends MovableEntity {
     private int nbLives;
@@ -14,11 +14,28 @@ public class Pacman extends MovableEntity {
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 2 * Map.ArrayUnit, 1);
-        Sprite[] sprites = new Sprite[4];
-        sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
-        sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");
-        sprites[2] = new StaticSprite("file:sprites/pacman01_right.png", "pacmanR");
-        sprites[3] = new StaticSprite("file:sprites/pacman01_left.png", "pacmanL");
+        Sprite sprites[] = new Sprite[4];
+        ArrayList<String> tempSprites = new ArrayList<>();
+        AnimationSyncrhonizer animSync = new AnimationSyncrhonizer(0.30);
+        tempSprites.add("file:sprites/pacman01_up.png");
+        tempSprites.add("file:sprites/pacman02_up.png");
+        sprites[0] = new AnimatedSprite(tempSprites, "pacmanU", animSync);
+
+        tempSprites = new ArrayList<>();
+        tempSprites.add("file:sprites/pacman01_down.png");
+        tempSprites.add("file:sprites/pacman02_down.png");
+        sprites[1] = new AnimatedSprite(tempSprites, "pacmanD", animSync);
+
+        tempSprites = new ArrayList<>();
+        tempSprites.add("file:sprites/pacman01_right.png");
+        tempSprites.add("file:sprites/pacman02_right.png");
+        sprites[2] = new AnimatedSprite(tempSprites, "pacmanR", animSync);
+
+        tempSprites = new ArrayList<>();
+        tempSprites.add("file:sprites/pacman01_left.png");
+        tempSprites.add("file:sprites/pacman02_left.png");
+        sprites[3] = new AnimatedSprite(tempSprites, "pacmanL", animSync);
+
         if(setMovingSprites(sprites)){
             System.out.println("pacman Sprites loaded");
         }

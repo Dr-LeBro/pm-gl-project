@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
+import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
@@ -72,6 +73,7 @@ public class Game {
 
     private void graphicalUpdate(){
         canvas.clear();
+        AnimationSyncrhonizer.incrementFrame();
         canvas.draw();
     }
 

@@ -93,7 +93,7 @@ public class MovableEntity extends Entity {
             //System.out.println(this.map.getStaticMap());
 
 
-            System.out.println((int)(x/ Map.ArrayUnit) + " " + (int)(y / Map.ArrayUnit));
+            //System.out.println((int)(x/ Map.ArrayUnit) + " " + (int)(y / Map.ArrayUnit));
             Entity[][] walls = Game.labyrynth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
             for (int i = 0; i < walls.length; i++) {
                 for (int j = 0; j < walls[0].length; j++) {

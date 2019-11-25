@@ -91,7 +91,7 @@ public class LabyrinthFile{
                             }
                             catch(Exception e)
                             {
-                                System.out.println("x " + blocX +  " y " + blocY);
+                                System.out.println("Error: loading elment pos: x " + blocX +  " y " + blocY +  " Type: " + EntityType.valueOf(blocElement.getAttribute("type")));
                             }
                         }
                     }

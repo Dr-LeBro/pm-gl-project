@@ -6,29 +6,30 @@ import java.util.ArrayList;
 
 public class AnimatedSprite extends Sprite{
     private ArrayList<ImageManager> images;
-    private int fpsRefreshRate;
-    private int currentImage;
-
-    public AnimatedSprite(ArrayList<String> imagesPaths, String name,int fpsRefreshRate){
-        super(name);
-        this.fpsRefreshRate = fpsRefreshRate;
-        for(int i = 0; i<imagesPaths.size(); i++){
-            images.add(new ImageManager(imagesPaths.get(0)));
-        }
-    }
+    private AnimationSyncrhonizer animSync;
 
     @Override
     public void loadSprite(){
         for(int i=0; i<images.size(); i++){
-            images.get(i).loadImage();
+            images.get(i).loadImageWithSize(width*ratioX, height*ratioY);
+        }
+        updateRatio = false;
+    }
+
+    public AnimatedSprite(ArrayList<String> imagesPaths, String name, AnimationSyncrhonizer animSync){
+        super(name);
+        images = new ArrayList<>();
+        this.animSync = animSync;
+        for(int i = 0; i<imagesPaths.size(); i++){
+            images.add(new ImageManager(imagesPaths.get(i)));
         }
     }
 
     @Override
     public void draw(GraphicsContext gc){
-        currentImage ++;
-        if(currentImage >= fpsRefreshRate) currentImage = 0;
-        gc.drawImage(images.get(currentImage%images.size()).getImage(), point.getX()-width/2, point.getY()-height/2);
+        double xCenter = point.getX()*ratioX - width*ratioX/2;
+        double yCenter = point.getY()*ratioY - height*ratioY/2;
+        gc.drawImage(images.get(animSync.getImageIdTodraw(images.size())).getImage(), xCenter, yCenter);
     }
 
     @Override
