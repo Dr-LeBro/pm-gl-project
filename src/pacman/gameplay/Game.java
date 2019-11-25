@@ -8,6 +8,9 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
+import pacman.gameplay.ghost.Blinky;
+import pacman.gameplay.ghost.Ghost;
+import pacman.gameplay.labyrinth.Labyrinth;
 import pacman.gameplay.pacman.Pacman;
 
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 public class Game {
 
     private Pacman pacman;
+    private Ghost blinky;
     private KeyboardInput kI;
     private ResizableCanvas canvas;
     public static Map labyrynth = null;
@@ -33,7 +37,11 @@ public class Game {
         pacman = (Pacman)labyrynth.getPacMan();
         pacman.spawn(canvas);
 
-        System.out.println("Labyrynth");
+        blinky = new Blinky();
+        //blinky = (Ghost) labyrynth.getPacMan();
+        //blinky.spawn(canvas);
+
+        System.out.println("Labyrinth");
         ArrayList<Sprite> staticMap = labyrynth.getStaticMapVisual();
         for (int i = 0; i < staticMap.size(); i++){
                     canvas.addDrawingElement(staticMap.get(i));

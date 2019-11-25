@@ -14,7 +14,7 @@ public class Pacman extends MovableEntity {
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 2 * Map.ArrayUnit, 1);
-        Sprite sprites[] = new Sprite[4];
+        Sprite[] sprites = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");
         sprites[2] = new StaticSprite("file:sprites/pacman01_right.png", "pacmanR");
