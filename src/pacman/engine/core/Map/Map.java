@@ -1,10 +1,13 @@
 package pacman.engine.core.Map;
 
 import pacman.engine.core.Block.Block;
+import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.Utilis.Matrix;
+import pacman.engine.graphism.Sprite;
+import pacman.engine.graphism.StaticSprite;
 
 import java.util.ArrayList;
 
@@ -101,52 +104,81 @@ public class Map {
     {
         if(x < 0 || x > maxX || y < 0 || y < maxY)
             return null;
-        return (StaticEntity[][])Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-1), Math.min(this.staticEntityMap.length-1, x+1), Math.max(0, y-1), Math.min(this.staticEntityMap[0].length-1, y+1));
+        return (StaticEntity[][])Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-2), Math.min(this.staticEntityMap.length-1, x+2), Math.max(0, y-2), Math.min(this.staticEntityMap[0].length-1, y+2));
     }
 
-    public EntityType[][] getStaticMapVisual()
+    public Sprite[][] getStaticMapVisual()
     {
         if(staticMap.length == 0)
             return null;
 
-        EntityType[][] returnMap = new EntityType[staticMap.length][staticMap[0].length];
+        Sprite[][] returnMap = new Sprite[staticMap.length][staticMap[0].length];
 
         for(int x = 0; x < staticMap.length; x++)
-            for(int y = 0; y < staticMap[0].length; y++)
-                returnMap[x][y] = staticMap[x][y].getType();
+            for(int y = 0; y < staticMap[0].length; y++) {
+                if(staticMap[x][y] != null) {
+                    staticMap[x][y].setVisible(true);
+                    returnMap[x][y] = staticMap[x][y].getSprite();
+                }
+                else
+                {
+                    if(staticMap[Math.max(0, x-1)][y] != null)
+                    {
+                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_left.png", "borderU");
+                    }
+                    if(staticMap[Math.min(staticMap.length-1, x+1)][y] != null)
+                    {
+                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_right.png", "borderD");
+
+                    }
+                    if(staticMap[x][Math.max(0,y-1)] != null)
+                    {
+                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_top.png", "borderL");
+                    }
+                    if(staticMap[x][Math.min(staticMap[0].length-1,y+1)] != null)
+                    {
+                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_down.png", "borderR");
+                    }
+                    if(returnMap[x][y] != null)
+                    {
+                        returnMap[x][y].setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
+                        returnMap[x][y].setSize(Map.ArrayUnit,Map.ArrayUnit);
+                    }
+                }
+            }
 
         return returnMap;
     }
 
-    public EntityType[][] getStaticEntityMapVisual()
+    public Entity[][] getStaticEntityMapVisual()
     {
         if(staticMap.length == 0)
             return null;
 
-        EntityType[][] returnMap = new EntityType[staticMap.length][staticMap[0].length];
+        Entity[][] returnMap = new Entity[staticMap.length][staticMap[0].length];
 
         for(int x = 0; x < staticEntityMap.length; x++)
             for(int y = 0; y < staticEntityMap[0].length; y++)
-                    returnMap[x][y] = staticEntityMap[x][y].getType();
+                    returnMap[x][y] = staticEntityMap[x][y];
 
         return returnMap;
     }
 
-    public EntityType[][] getCompleteMapStaticVisual()
+    public Entity[][] getCompleteMapStaticVisual()
     {
         if(staticMap.length == 0)
             return null;
 
-        EntityType[][] returnMap = new EntityType[staticMap.length][staticMap[0].length];
+        Entity[][] returnMap = new Entity[staticMap.length][staticMap[0].length];
 
         for(int x = 0; x < staticMap.length; x++)
             for(int y = 0; y < staticMap[0].length; y++)
-                returnMap[x][y] = staticMap[x][y].getType();
+                returnMap[x][y] = staticMap[x][y];
 
         for(int x = 0; x < staticEntityMap.length; x++)
             for(int y = 0; y < staticEntityMap[0].length; y++)
-                if(returnMap[x][y] == EntityType.EMPTY)
-                    returnMap[x][y] = staticEntityMap[x][y].getType();
+                if(returnMap[x][y] == null)
+                    returnMap[x][y] = staticEntityMap[x][y];
 
         return returnMap;
     }

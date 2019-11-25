@@ -116,6 +116,10 @@ public abstract class Entity {
         return visible;
     }
 
+    public void setVisible(boolean vis) {
+        visible = vis;
+    }
+
     public Sprite getSprite(){
         if(isVisible()){
             return currentSprite;

@@ -3,10 +3,10 @@ package pacman.gameplay;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import pacman.engine.core.Block.Block;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
+import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.pacman.Pacman;
 
@@ -32,11 +32,11 @@ public class Game {
         pacman.spawn(canvas);
 
         System.out.println("Labyrynth");
-        Block[][] block = labyrynth.getStaticMap();
-        for (int i = 0; i < labyrynth.getMaxX(); i++){
-            for (int j = 0; j < labyrynth.getMaxY(); j++){
-                if (block[i][j] != null)
-                    block[i][j].spawn(canvas);
+        Sprite[][] staticMap = labyrynth.getStaticMapVisual();
+        for (int i = 0; i < staticMap.length; i++){
+            for (int j = 0; j < staticMap[0].length; j++){
+                if (staticMap[i][j] != null)
+                    canvas.addDrawingElement(staticMap[i][j]);
             }
         }
 
