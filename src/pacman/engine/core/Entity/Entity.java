@@ -74,6 +74,12 @@ public abstract class Entity {
         return visible;
     }
 
+    public void respawn(ResizableCanvas canvas, double x, double y){
+        this.x = x;
+        this.y = y;
+        spawn(canvas);
+    }
+
     public void setMap(Map map) {
         this.map = map;
     }
