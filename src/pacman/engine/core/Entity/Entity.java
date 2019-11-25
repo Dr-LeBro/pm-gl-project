@@ -7,7 +7,7 @@ import pacman.engine.physic.hitBox.HitBox;
 import static pacman.engine.core.Entity.EntityType.EMPTY;
 
 public abstract class Entity {
-
+    // TODO MAKE SO THAT THE HITBOX CAN BE TURNED OFF
     protected EntityType type;
 
     protected HitBox hitBox;

@@ -26,16 +26,15 @@ public class Game {
         labyrynth = LabyrinthFile.getMapById(mapId);
 
         this.root = root;
-        int labX = 100;
-        int labY = 100;
+        int labX = labyrynth.getMaxX()*Map.ArrayUnit;
+        int labY = labyrynth.getMaxY()*Map.ArrayUnit;
         canvas = new ResizableCanvas(labX, labY, 800, 875);
         root.getChildren().add(canvas);
 
-        pacman = new Pacman(3, labyrynth);
+        pacman = (Pacman)labyrynth.getPacMan();
         pacman.spawn(canvas);
 
         System.out.println("Labyrynth");
-        labyrynth.afficheContenuMap();
         Block[][] block = labyrynth.getStaticMap();
         for (int i = 0; i < labyrynth.getMaxX(); i++){
             for (int j = 0; j < labyrynth.getMaxY(); j++){

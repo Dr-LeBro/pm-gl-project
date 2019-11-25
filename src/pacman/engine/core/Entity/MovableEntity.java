@@ -102,7 +102,6 @@ public class MovableEntity extends Entity {
             Block[][] walls = this.map.getStaticMap();
             for (int i = 0; i < map.getMaxX(); i++) {
                 for (int j = 0; j < map.getMaxY(); j++) {
-                    //if (walls[i][j] != null) System.out.println("X : " + walls[i][j].getX() + "   Y : " + walls[i][j].getY() + " " + this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j]) );
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;
@@ -116,8 +115,8 @@ public class MovableEntity extends Entity {
         if (!inContact) {
             this.x = tempX;
             this.y = tempY;
-            getSprite().setPoint(x, y);
         }
+            getSprite().setPoint(x, y);
     }
 
 }

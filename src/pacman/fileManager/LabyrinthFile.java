@@ -8,6 +8,7 @@ import pacman.engine.core.Block.Block;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Map.Map;
 import pacman.gameplay.Bonus.advantageBonus.PacGomme;
+import pacman.gameplay.pacman.Pacman;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -76,12 +77,13 @@ public class LabyrinthFile{
                                     case EMPTY:
                                         break;
                                     case BLOCK:
-                                        System.out.println("BLOCK x : "+blocX+ "  y : "+blocY);
                                         map.setStaticMap(blocX, blocY, new Block(blocX, blocY));
                                         break;
                                     case PACK_GOMME:
                                         map.setStaticEntity(blocX, blocY, new PacGomme());
                                         break;
+                                    case PACMAN:
+                                        map.addMovableToList(new Pacman(3, map,blocX,blocY));
                                     default:
                                         //TODO
                                         break;
@@ -94,10 +96,6 @@ public class LabyrinthFile{
                         }
                     }
                     maps.add(map);
-                    //TODO A RETIRER
-                    System.out.println("test3");
-                    map.afficheContenuMap();
-                    // A RETIRER
                 }
             }
         } catch (Exception e) {

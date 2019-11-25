@@ -5,14 +5,42 @@
 		<bloc x="3" y="4" type="BLOCK">
 		</bloc>
     </map>
-    <map id="1" x="100" y="100">
+    <map id="1" x="40" y="40">
 		<bloc x="0" y="0" type="BLOCK">
 		</bloc>
-		<bloc x="10" y="0" type="BLOCK">
+		<bloc x="0" y="1" type="BLOCK">
 		</bloc>
-		<bloc x="0" y="10" type="BLOCK">
+		<bloc x="0" y="2" type="BLOCK">
 		</bloc>
-		<bloc x="10" y="10" type="BLOCK">
+		<bloc x="0" y="3" type="BLOCK">
+		</bloc>
+		<bloc x="0" y="3" type="BLOCK">
+		</bloc>
+		<bloc x="4" y="0" type="BLOCK">
+		</bloc>
+		<bloc x="4" y="1" type="BLOCK">
+		</bloc>
+		<bloc x="4" y="2" type="BLOCK">
+		</bloc>
+		<bloc x="4" y="3" type="BLOCK">
+		</bloc>
+		<bloc x="4" y="4" type="BLOCK">
+		</bloc>
+		<bloc x="30" y="30" type="BLOCK">
+		</bloc>
+		<bloc x="6" y="3" type="PACMAN">
+		</bloc>
+    </map>
+    <map id="2" x="20" y="20">
+		<bloc x="0" y="0" type="BLOCK">
+		</bloc>
+		<bloc x="0" y="1" type="BLOCK">
+		</bloc>
+		<bloc x="0" y="2" type="BLOCK">
+		</bloc>
+		<bloc x="0" y="3" type="BLOCK">
+		</bloc>
+		<bloc x="3" y="4" type="PACMAN">
 		</bloc>
     </map>
 </maps>

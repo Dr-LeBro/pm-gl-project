@@ -59,6 +59,15 @@ public class Map {
         staticEntityMap[x][y] = e;
     }
 
+    public MovableEntity getPacMan()
+    {
+        for (int i = 0; i < movableList.size(); i++) {
+            if(movableList.get(i).getType() == EntityType.PACMAN)
+                return movableList.get(i);
+        }
+        return null;
+    }
+
     public void setStaticMap(int x,int y, Block e)
     {
         if(x < 0 || x > maxX || y < 0 || y > maxY)
