@@ -29,7 +29,6 @@ public class ResizableCanvas extends Canvas{
         widthProperty().addListener(evtW ->{
             resizeCanvas(super.getWidth(), super.getHeight());
             draw();
-            System.out.println("yes");
         });
         heightProperty().addListener(evtH ->{
             resizeCanvas(super.getWidth(), super.getHeight());
