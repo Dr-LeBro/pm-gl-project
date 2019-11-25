@@ -2,7 +2,7 @@ package pacman.engine.core.Entity;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
-import pacman.engine.core.Block.Block;
+import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
@@ -92,9 +92,11 @@ public class MovableEntity extends Entity {
             //TODO REPLACE WITH getSurroundingStaticMap later
             //System.out.println(this.map.getStaticMap());
 
-            Block[][] walls = Game.labyrynth.getStaticMap();
-            for (int i = 0; i < Game.labyrynth.getMaxX(); i++) {
-                for (int j = 0; j < Game.labyrynth.getMaxY(); j++) {
+
+            System.out.println((int)(x/ Map.ArrayUnit) + " " + (int)(y / Map.ArrayUnit));
+            Entity[][] walls = Game.labyrynth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            for (int i = 0; i < walls.length; i++) {
+                for (int j = 0; j < walls[0].length; j++) {
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
                         inContact = true;
                         break;

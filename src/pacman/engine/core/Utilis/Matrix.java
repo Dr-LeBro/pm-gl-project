@@ -10,6 +10,7 @@ public class Matrix {
             int colStart, int colEnd
     )
     {
+        System.out.println(rowStart + " " + rowEnd + " " + colStart + " " + colEnd);
         int sizeRow = rowEnd - rowStart;
         int sizeCol = colEnd - colStart;
 

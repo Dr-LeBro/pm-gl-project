@@ -93,18 +93,18 @@ public class Map {
         return this.staticMap;
     }
 
-    public Block[][] getSurroundingStaticMap(int x, int y)
+    public Entity[][] getSurroundingStaticMap(int x, int y)
     {
-        if(x < 0 || x > maxX || y < 0 || y < maxY)
+        if(x < 0 || x > maxX-1 || y < 0 || y > maxY-1)
             return null;
-        return (Block[][])Matrix.extractSubMatrix(this.staticMap, Math.max(0, x-1), Math.min(this.staticMap.length-1, x+1), Math.max(0, y-1), Math.min(this.staticMap[0].length-1, y+1));
+        return Matrix.extractSubMatrix(this.staticMap, Math.max(0, x-3), Math.min(this.staticMap.length, x+3), Math.max(0, y-3), Math.min(this.staticMap[0].length, y+3));
     }
 
-    public StaticEntity[][] getSurroundingStaticEntityMap(int x, int y)
+    public Entity[][] getSurroundingStaticEntityMap(int x, int y)
     {
-        if(x < 0 || x > maxX || y < 0 || y < maxY)
+        if(x < 0 || x > maxX-1 || y < 0 || y > maxY-1)
             return null;
-        return (StaticEntity[][])Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-2), Math.min(this.staticEntityMap.length-1, x+2), Math.max(0, y-2), Math.min(this.staticEntityMap[0].length-1, y+2));
+        return Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-3), Math.min(this.staticEntityMap.length, x+3), Math.max(0, y-3), Math.min(this.staticEntityMap[0].length, y+3));
     }
 
     public ArrayList<Sprite> getStaticMapVisual()
