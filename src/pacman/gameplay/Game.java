@@ -10,6 +10,8 @@ import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.pacman.Pacman;
 
+import java.util.ArrayList;
+
 public class Game {
 
     private Pacman pacman;
@@ -32,12 +34,9 @@ public class Game {
         pacman.spawn(canvas);
 
         System.out.println("Labyrynth");
-        Sprite[][] staticMap = labyrynth.getStaticMapVisual();
-        for (int i = 0; i < staticMap.length; i++){
-            for (int j = 0; j < staticMap[0].length; j++){
-                if (staticMap[i][j] != null)
-                    canvas.addDrawingElement(staticMap[i][j]);
-            }
+        ArrayList<Sprite> staticMap = labyrynth.getStaticMapVisual();
+        for (int i = 0; i < staticMap.size(); i++){
+                    canvas.addDrawingElement(staticMap.get(i));
         }
 
         //TODO add a map caller to add entity

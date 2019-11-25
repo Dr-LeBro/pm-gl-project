@@ -4,6 +4,8 @@
 		</bloc>
 		<bloc x="3" y="4" type="BLOCK">
 		</bloc>
+		<bloc x="6" y="3" type="PACMAN">
+		</bloc>
     </map>
     <map id="1" x="40" y="40">
 		<bloc x="0" y="0" type="BLOCK">

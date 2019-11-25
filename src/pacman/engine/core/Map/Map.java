@@ -107,42 +107,44 @@ public class Map {
         return (StaticEntity[][])Matrix.extractSubMatrix(this.staticEntityMap, Math.max(0, x-2), Math.min(this.staticEntityMap.length-1, x+2), Math.max(0, y-2), Math.min(this.staticEntityMap[0].length-1, y+2));
     }
 
-    public Sprite[][] getStaticMapVisual()
+    public ArrayList<Sprite> getStaticMapVisual()
     {
         if(staticMap.length == 0)
             return null;
 
-        Sprite[][] returnMap = new Sprite[staticMap.length][staticMap[0].length];
+        ArrayList<Sprite> returnMap = new ArrayList<Sprite>();
 
         for(int x = 0; x < staticMap.length; x++)
             for(int y = 0; y < staticMap[0].length; y++) {
                 if(staticMap[x][y] != null) {
                     staticMap[x][y].setVisible(true);
-                    returnMap[x][y] = staticMap[x][y].getSprite();
+                    returnMap.add(staticMap[x][y].getSprite());
                 }
                 else
                 {
+                    Sprite temp = null;
                     if(staticMap[Math.max(0, x-1)][y] != null)
                     {
-                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_left.png", "borderU");
+                        temp = new StaticSprite("file:sprites/empty_border_left.png", "borderU");
                     }
                     if(staticMap[Math.min(staticMap.length-1, x+1)][y] != null)
                     {
-                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_right.png", "borderD");
+                        temp = new StaticSprite("file:sprites/empty_border_right.png", "borderD");
 
                     }
                     if(staticMap[x][Math.max(0,y-1)] != null)
                     {
-                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_top.png", "borderL");
+                        temp = new StaticSprite("file:sprites/empty_border_top.png", "borderL");
                     }
                     if(staticMap[x][Math.min(staticMap[0].length-1,y+1)] != null)
                     {
-                        returnMap[x][y] = new StaticSprite("file:sprites/empty_border_down.png", "borderR");
+                        temp = new StaticSprite("file:sprites/empty_border_down.png", "borderR");
                     }
-                    if(returnMap[x][y] != null)
+                    if(temp != null)
                     {
-                        returnMap[x][y].setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
-                        returnMap[x][y].setSize(Map.ArrayUnit,Map.ArrayUnit);
+                        temp.setPoint(x*Map.ArrayUnit,y*Map.ArrayUnit);
+                        temp.setSize(Map.ArrayUnit,Map.ArrayUnit);
+                        returnMap.add(temp);
                     }
                 }
             }
