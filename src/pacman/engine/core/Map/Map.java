@@ -17,6 +17,7 @@ public class Map {
     private ArrayList<MovableEntity> movableList; //pac-man, ghosts
     private int maxX = 0;
     private int maxY = 0;
+    public String id = null;
 
     public String getId() {
         return id;
@@ -25,8 +26,6 @@ public class Map {
     public void setId(String id) {
         this.id = id;
     }
-
-    public String id = null;
 
     public Map(int x, int y)
     {
@@ -37,7 +36,16 @@ public class Map {
         maxY = y;
     }
 
-
+    // TODO A RETIRER
+    public void afficheContenuMap(){
+        for (int i = 0; i < maxX; i++){
+            for (int j = 0; j < maxY; j++){
+                if (staticMap[i][j] != null) System.out.println("Bloc en " + i + " " + j);
+                if (staticEntityMap[i][j] != null) System.out.println("Static entity en " + i + " " + j);
+            }
+        }
+    }
+    // A RETIRER
 
     public void addMovableToList(MovableEntity e)
     {
@@ -53,7 +61,7 @@ public class Map {
 
     public void setStaticMap(int x,int y, Block e)
     {
-        if(x < 0 || x > maxX || y < 0 || y < maxY)
+        if(x < 0 || x > maxX || y < 0 || y > maxY)
             return;
         staticMap[x][y] = e;
     }
@@ -132,5 +140,13 @@ public class Map {
                     returnMap[x][y] = staticEntityMap[x][y].getType();
 
         return returnMap;
+    }
+
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public int getMaxY() {
+        return maxY;
     }
 }

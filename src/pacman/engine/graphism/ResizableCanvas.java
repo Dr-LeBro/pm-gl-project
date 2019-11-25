@@ -17,7 +17,7 @@ public class ResizableCanvas extends Canvas{
     private double ratioY;
     private double minDistance;
     private Color fontColor;
-    //TODO: think about make a second hashMap only for static objects (bg of game)
+    //TODO: think about making a second hashMap only for static objects (bg of game)
     private HashMap<String, DrawableObject> drawableObjects;
 
     public ResizableCanvas(int labSizeX, int labSizeY, int width, int height){

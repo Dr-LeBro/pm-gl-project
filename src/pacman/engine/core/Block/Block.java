@@ -9,4 +9,9 @@ public class Block extends StaticEntity {
         super(EntityType.BLOCK, new StaticSprite("file:sprites/wall.png", "wall"),10);
     }
 
+    public Block(int posX, int posY) {
+        // TODO FAIRE CONVERSION PROPRE
+        super(EntityType.BLOCK, new StaticSprite("file:sprites/wall.png", "wall"), (double) posX*3, (double) posY*3, 4);
+    }
+
 }

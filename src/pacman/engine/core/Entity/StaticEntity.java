@@ -4,6 +4,7 @@ import pacman.engine.graphism.Sprite;
 
 public class StaticEntity extends Entity {
 
+
     public StaticEntity(EntityType kind, Sprite sprite, double size)
     {
         super(kind, sprite, size);

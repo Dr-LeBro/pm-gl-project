@@ -5,14 +5,15 @@ import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.engine.core.Map.Map;
 
 public class Pacman extends MovableEntity {
     private int nbLives;
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
 
-    public Pacman(int nbLives) {
-        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), 20, 20, 4, 0.32);
+    public Pacman(int nbLives, Map map) {
+        super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), 20, 20, 4, 0.32, map);
         Sprite sprites[] = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pacman01_up.png", "pacmanU");
         sprites[1] = new StaticSprite("file:sprites/pacman01_down.png", "pacmanD");

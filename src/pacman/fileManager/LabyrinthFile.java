@@ -13,12 +13,25 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LabyrinthFile{
     private static ArrayList<Map> maps = null;
+
+    public static Map getMapById(String id){
+        Iterator<Map> itMaps = maps.iterator();
+        while(itMaps.hasNext()){
+            Map tempMap = itMaps.next();
+            if (tempMap.getId().equals(id)){
+                return tempMap;
+            }
+        }
+        System.out.println("This map doesn't exist");
+        return new Map(100, 100);
+    }
+
     public static void loadMaps() {
         try {
-
             File fXmlFile = new File("maps.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -63,7 +76,8 @@ public class LabyrinthFile{
                                     case EMPTY:
                                         break;
                                     case BLOCK:
-                                        map.setStaticEntity(blocX, blocY, new Block());
+                                        System.out.println("BLOCK x : "+blocX+ "  y : "+blocY);
+                                        map.setStaticMap(blocX, blocY, new Block(blocX, blocY));
                                         break;
                                     case PACK_GOMME:
                                         map.setStaticEntity(blocX, blocY, new PacGomme());
@@ -79,13 +93,17 @@ public class LabyrinthFile{
                             }
                         }
                     }
-
                     maps.add(map);
+                    //TODO A RETIRER
+                    System.out.println("test3");
+                    map.afficheContenuMap();
+                    // A RETIRER
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }

@@ -1,6 +1,5 @@
 package pacman.engine.core.Entity;
 
-import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
@@ -21,7 +20,7 @@ public abstract class Entity {
     protected boolean visible;
 
     protected Sprite currentSprite;
-    protected Map map;
+
 
     public Entity(EntityType kind, Sprite sprite, double size) {
         type = kind;
@@ -31,6 +30,8 @@ public abstract class Entity {
         this.currentSprite.setPoint(x,y);
         this.currentSprite.setSize(size, size);
         hitBox = new HitBox();
+        this.x = 0;
+        this.y = 0;
     }
 
     public Entity(EntityType kind, Sprite sprite, double x, double y, double size) {
@@ -74,9 +75,6 @@ public abstract class Entity {
         return visible;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
 
     public void kill(ResizableCanvas canvas){
         visible = false;
@@ -113,7 +111,7 @@ public abstract class Entity {
     public Sprite getSprite(){
         if(isVisible()){
             return currentSprite;
-        }else{
+        } else {
             return null;
         }
     }

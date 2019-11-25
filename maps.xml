@@ -1,12 +1,18 @@
 <maps>
-    <map id="111" x="20" y="15">
+    <map id="0" x="20" y="15">
 		<bloc x="1" y="2" type="BLOCK">
 		</bloc>
 		<bloc x="3" y="4" type="BLOCK">
 		</bloc>
     </map>
-    <map id="222" x="15" y="15">
+    <map id="1" x="100" y="100">
 		<bloc x="0" y="0" type="BLOCK">
+		</bloc>
+		<bloc x="10" y="0" type="BLOCK">
+		</bloc>
+		<bloc x="0" y="10" type="BLOCK">
+		</bloc>
+		<bloc x="10" y="10" type="BLOCK">
 		</bloc>
     </map>
 </maps>
