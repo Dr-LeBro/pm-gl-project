@@ -188,6 +188,47 @@
 		<bloc x="38" y="39" type="BLOCK"></bloc>
 		<bloc x="39" y="39" type="BLOCK"></bloc>
 
+		<bloc x="0" y="5" type="BLOCK"></bloc>
+		<bloc x="1" y="5" type="BLOCK"></bloc>
+		<bloc x="2" y="5" type="BLOCK"></bloc>
+		<bloc x="3" y="5" type="BLOCK"></bloc>
+		<bloc x="4" y="5" type="BLOCK"></bloc>
+		<bloc x="5" y="5" type="BLOCK"></bloc>
+		<bloc x="6" y="5" type="BLOCK"></bloc>
+		<bloc x="7" y="5" type="BLOCK"></bloc>
+		<bloc x="8" y="5" type="BLOCK"></bloc>
+		<bloc x="9" y="5" type="BLOCK"></bloc>
+		<bloc x="10" y="5" type="BLOCK"></bloc>
+		<bloc x="11" y="5" type="BLOCK"></bloc>
+		<bloc x="12" y="5" type="BLOCK"></bloc>
+		<bloc x="13" y="5" type="BLOCK"></bloc>
+		<bloc x="14" y="5" type="BLOCK"></bloc>
+		<bloc x="15" y="5" type="BLOCK"></bloc>
+		<bloc x="16" y="5" type="BLOCK"></bloc>
+		<bloc x="17" y="5" type="BLOCK"></bloc>
+		<bloc x="18" y="5" type="BLOCK"></bloc>
+
+
+		<bloc x="21" y="5" type="BLOCK"></bloc>
+		<bloc x="22" y="5" type="BLOCK"></bloc>
+		<bloc x="23" y="5" type="BLOCK"></bloc>
+		<bloc x="24" y="5" type="BLOCK"></bloc>
+		<bloc x="25" y="5" type="BLOCK"></bloc>
+		<bloc x="26" y="5" type="BLOCK"></bloc>
+		<bloc x="27" y="5" type="BLOCK"></bloc>
+		<bloc x="28" y="5" type="BLOCK"></bloc>
+		<bloc x="29" y="5" type="BLOCK"></bloc>
+		<bloc x="30" y="5" type="BLOCK"></bloc>
+		<bloc x="31" y="5" type="BLOCK"></bloc>
+		<bloc x="32" y="5" type="BLOCK"></bloc>
+		<bloc x="33" y="5" type="BLOCK"></bloc>
+		<bloc x="34" y="5" type="BLOCK"></bloc>
+		<bloc x="35" y="5" type="BLOCK"></bloc>
+		<bloc x="36" y="5" type="BLOCK"></bloc>
+		<bloc x="37" y="5" type="BLOCK"></bloc>
+		<bloc x="38" y="5" type="BLOCK"></bloc>
+		<bloc x="39" y="5" type="BLOCK"></bloc>
+
 		<bloc x="20" y="20" type="PACMAN"></bloc>
     </map>
     <map id="2" x="20" y="20">

@@ -13,14 +13,16 @@ import pacman.gameplay.Game;
 public class MovableEntity extends Entity {
 
     private Movement moveManager;
-    private Direction dir;
+    private Direction actualDir; // Direction the entity is currently heading toward
+    private Direction wishedDirection; // Direction the entity wishes to go
     private Sprite movingSprites[];
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
     {
         super(kind, baseSprite, size);
         moveManager = new Movement(speed);
-        dir = Direction.STANDING;
+        this.actualDir = Direction.STANDING;
+        this.wishedDirection= Direction.STANDING;
         //TODO add animated sprite manager
     }
 
@@ -28,7 +30,8 @@ public class MovableEntity extends Entity {
     {
         super(kind, baseSprite, x, y, size);
         moveManager = new Movement(speed);
-        dir = Direction.STANDING;
+        this.actualDir = Direction.STANDING;
+        this.wishedDirection= Direction.STANDING;
     }
 
     public boolean setMovingSprites(Sprite sprites[]){
@@ -48,70 +51,75 @@ public class MovableEntity extends Entity {
     public void drawCurrentSprite(ResizableCanvas canvas){
         canvas.removeDrawingElement(currentSprite);
         if(isVisible()) {
-            if (dir == Direction.STANDING) {
+            if (this.actualDir == Direction.STANDING) {
                 currentSprite = movingSprites[0];
-            } else if (dir == Direction.UP) {
+            } else if (this.actualDir == Direction.UP) {
                 currentSprite = movingSprites[0];
-            } else if (dir == Direction.DOWN) {
+            } else if (this.actualDir == Direction.DOWN) {
                 currentSprite = movingSprites[1];
-            } else if (dir == Direction.RIGHT) {
+            } else if (this.actualDir == Direction.RIGHT) {
                 currentSprite = movingSprites[2];
-            } else if (dir == Direction.LEFT) {
+            } else if (this.actualDir == Direction.LEFT) {
                 currentSprite = movingSprites[3];
             }
             canvas.addDrawingElement(currentSprite);
         }
     }
 
-    private boolean setCurrentDir(KeyCode keyPressed){
-        Direction lastDir = dir;
+
+    private void setWishedDirection(KeyCode keyPressed){
         if(keyPressed == KeyCode.UP){
-            dir = Direction.UP;
+            if (Direction.UP != this.actualDir) this.wishedDirection = Direction.UP;
         }else if(keyPressed == KeyCode.DOWN){
-            dir = Direction.DOWN;
+            if (Direction.DOWN != this.actualDir) this.wishedDirection = Direction.DOWN;
         }else if(keyPressed == KeyCode.LEFT){
-            dir = Direction.LEFT;
+            if (Direction.LEFT != this.actualDir) this.wishedDirection = Direction.LEFT;
         }else if(keyPressed == KeyCode.RIGHT){
-            dir = Direction.RIGHT;
+            if (Direction.RIGHT != this.actualDir) this.wishedDirection = Direction.RIGHT;
         }
-        return dir != lastDir;
     }
 
+
     public void move(KeyCode keyPressed, ResizableCanvas canvas) {
-        if(setCurrentDir(keyPressed)){
-            drawCurrentSprite(canvas);
-        }
-        boolean inContact = false;
-        double tempX, tempY;
-        Point2D point = moveManager.move(x, y, dir);
-        tempX = point.getX();
-        tempY = point.getY();
-        if (Game.labyrynth == null)
-            System.out.println("NULL");
+        setWishedDirection(keyPressed);
+        boolean inContactWished = false, inContactDir = false;
+        double tempXWished, tempYWished, tempXDir, tempYDir;
+        Point2D pointWished = moveManager.move(x, y, this.wishedDirection);
+        Point2D pointDir = moveManager.move(x, y, this.actualDir);
+        tempXWished = pointWished.getX();
+        tempYWished = pointWished.getY();
+        tempXDir = pointDir.getX();
+        tempYDir = pointDir.getY();
         try {
-            //TODO REPLACE WITH getSurroundingStaticMap later
-            //System.out.println(this.map.getStaticMap());
-
-
-            //System.out.println((int)(x/ Map.ArrayUnit) + " " + (int)(y / Map.ArrayUnit));
             Entity[][] walls = Game.labyrynth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
-            for (int i = 0; i < walls.length; i++) {
-                for (int j = 0; j < walls[0].length; j++) {
-                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempX, tempY, walls[i][j])) {
-                        inContact = true;
-                        break;
+            for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++){
+                for (int j = 0; j < walls[i].length  && !inContactWished; j++){
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
+                        inContactWished = true; // Can't go in wished direction
+                    }
+                }
+            }
+            for (int i = 0; i < walls.length && !inContactDir; i++) {
+                for (int j = 0; j < walls[i].length && !inContactDir; j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXDir, tempYDir, walls[i][j])) {
+                        inContactDir = true;
                     }
                 }
             }
         } catch (NullPointerException e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
 
-        if (!inContact) {
-            this.x = tempX;
-            this.y = tempY;
+        if (!inContactWished && this.wishedDirection != Direction.STANDING) {
+            this.x = tempXWished;
+            this.y = tempYWished;
+            this.actualDir = this.wishedDirection;
+            this.wishedDirection = Direction.STANDING;
+            drawCurrentSprite(canvas);
+        } else if (!inContactDir) {
+            this.x = tempXDir;
+            this.y = tempYDir;
         }
-            getSprite().setPoint(x, y);
+        getSprite().setPoint(x, y);
     }
-
 }
