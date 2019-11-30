@@ -13,12 +13,10 @@
 		<bloc x="1" y="0" type="BLOCK"></bloc>
 		<bloc x="2" y="0" type="BLOCK"></bloc>
 		<bloc x="3" y="0" type="BLOCK"></bloc>
-		<bloc x="4" y="0" type="BLOCK"></bloc>
 
 		<bloc x="1" y="3" type="BLOCK"></bloc>
 		<bloc x="2" y="3" type="BLOCK"></bloc>
 		<bloc x="3" y="3" type="BLOCK"></bloc>
-		<bloc x="4" y="3" type="BLOCK"></bloc>
 
 		<bloc x="1" y="1" type="PACMAN">
 		</bloc>
@@ -208,8 +206,8 @@
 		<bloc x="17" y="5" type="BLOCK"></bloc>
 		<bloc x="18" y="5" type="BLOCK"></bloc>
 
+		<bloc x="20" y="5" type="PAC_GOMME"></bloc>
 
-		<bloc x="21" y="5" type="BLOCK"></bloc>
 		<bloc x="22" y="5" type="BLOCK"></bloc>
 		<bloc x="23" y="5" type="BLOCK"></bloc>
 		<bloc x="24" y="5" type="BLOCK"></bloc>

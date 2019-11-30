@@ -79,13 +79,13 @@ public class LabyrinthFile{
                                     case BLOCK:
                                         map.setStaticMap(blocX, blocY, new Block(blocX, blocY));
                                         break;
-                                    case PACK_GOMME:
-                                        map.setStaticEntity(blocX, blocY, new PacGomme());
+                                    case PAC_GOMME:
+                                        map.setStaticEntity(blocX, blocY, new PacGomme(blocX, blocY));
                                         break;
                                     case PACMAN:
                                         map.addMovableToList(new Pacman(3, blocX,blocY));
                                     default:
-                                        //TODO
+                                        System.out.println("unknow " + blocKind.name());
                                         break;
                                 }
                             }

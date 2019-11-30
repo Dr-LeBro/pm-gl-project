@@ -3,6 +3,7 @@ package pacman.gameplay;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.AnimationSyncrhonizer;
@@ -11,7 +12,6 @@ import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.ghost.Blinky;
 import pacman.gameplay.ghost.Ghost;
-import pacman.gameplay.labyrinth.Labyrinth;
 import pacman.gameplay.pacman.Pacman;
 
 import java.util.ArrayList;
@@ -46,6 +46,17 @@ public class Game {
         ArrayList<Sprite> staticMap = labyrynth.getStaticMapVisual();
         for (int i = 0; i < staticMap.size(); i++){
                     canvas.addDrawingElement(staticMap.get(i));
+        }
+
+        StaticEntity[][] entities = labyrynth.getStaticEntityMap();
+        for(int x = 0; x < entities.length; x++)
+        {
+            for(int y = 0; y < entities[0].length; y++)
+            {
+                if(entities[x][y] != null) {
+                    entities[x][y].spawn(canvas);
+                }
+            }
         }
 
         //TODO add a map caller to add entity

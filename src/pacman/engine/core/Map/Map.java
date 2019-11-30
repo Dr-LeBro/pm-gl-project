@@ -57,7 +57,7 @@ public class Map {
 
     public void setStaticEntity(int x,int y, StaticEntity e)
     {
-        if(x < 0 || x > maxX || y < 0 || y < maxY)
+        if(x < 0 || x > maxX || y < 0 || y > maxY)
             return;
         staticEntityMap[x][y] = e;
     }

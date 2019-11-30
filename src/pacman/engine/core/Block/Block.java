@@ -11,5 +11,4 @@ public class Block extends StaticEntity {
         // TODO FAIRE CONVERSION PROPRE
         super(EntityType.BLOCK, new StaticSprite("file:sprites/wall.png", "wall"), (double) posX * Map.ArrayUnit, (double) posY * Map.ArrayUnit, Map.ArrayUnit);
     }
-
 }

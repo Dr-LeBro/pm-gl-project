@@ -1,7 +1,7 @@
 package pacman.engine.core.Entity;
 
 public enum EntityType {
-    PACK_GOMME,
+    PAC_GOMME,
     BLOCK,
     EMPTY,
     GHOST,
