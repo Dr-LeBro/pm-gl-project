@@ -106,6 +106,14 @@ public class MovableEntity extends Entity {
                     }
                 }
             }
+            Entity[][] staticEntities = Game.labyrynth.getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            for (int i = 0; i < staticEntities.length ; i++){
+                for (int j = 0; j < staticEntities[i].length ; j++){
+                    if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, staticEntities[i][j])) {
+                        staticEntities[i][j].kill(canvas);
+                    }
+                }
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
