@@ -2,25 +2,23 @@ package pacman.engine.graphism;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import java.util.HashMap;
 
 public class ResizableCanvas extends Canvas{
 
-    private double midX;
-    private double midY;
     private double width;
     private double height;
     private int labSizeX;
     private int labSizeY;
     private double ratioX;
     private double ratioY;
-    private double minDistance;
     private Color fontColor;
     //TODO: think about making a second hashMap only for static objects (bg of game)
     private HashMap<String, DrawableObject> drawableObjects;
 
-    public ResizableCanvas(int labSizeX, int labSizeY, int width, int height){
+    public ResizableCanvas(int labSizeX, int labSizeY, double width, double height){
         super(width, height);
         this.labSizeY = labSizeY;
         this.labSizeX = labSizeX;
@@ -40,22 +38,15 @@ public class ResizableCanvas extends Canvas{
 
     private void resizeCanvas(double width, double height){
         if(width == this.width && height == this.height) return;
-        this.midX = width/2;
-        this.midY = height/2;
         this.width = width;
         this.height = height;
-        if(width<=height){
-            minDistance = width;
-        }else{
-            minDistance = height;
-        }
         ratioX = width/labSizeX;
         ratioY = height/labSizeY;
         resizeDrawingElements();
     }
 
     private void resizeDrawingElements(){
-        System.out.println("Resize elements: " + this);
+        //System.out.println("Resize elements: " + this);
         for (String key : drawableObjects.keySet()) {
             drawableObjects.get(key).setRatios(ratioX, ratioY);
         }

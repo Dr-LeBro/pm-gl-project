@@ -1,18 +1,18 @@
 package pacman.engine.core;
 
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class KeyboardInput {
 
     private KeyCode lastKeyPressed;
-    private Scene scene;
+    private Node root;
 
-    public KeyboardInput(Scene scene){
-        this.scene = scene;
-        scene.getRoot().requestFocus();
-        scene.setOnKeyPressed(keyEvent -> handleEvent(keyEvent));
+    public KeyboardInput(Node root){
+        this.root = root;
+        root.requestFocus();
+        root.setOnKeyPressed(keyEvent -> handleEvent(keyEvent));
     }
 
     private void handleEvent(KeyEvent keyEvent){
@@ -25,7 +25,7 @@ public class KeyboardInput {
         }else if(keyEvent.getCode() == KeyCode.DOWN) {
             lastKeyPressed = KeyCode.DOWN;
         }else{ }
-        System.out.println(keyEvent.getCode());
+        //System.out.println(keyEvent.getCode());
     }
 
 
@@ -36,6 +36,6 @@ public class KeyboardInput {
     }
 
     public void removeListener(){
-        scene.setOnKeyPressed(null);
+        root.setOnKeyPressed(null);
     }
 }

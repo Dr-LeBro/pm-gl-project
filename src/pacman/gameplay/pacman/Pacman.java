@@ -1,9 +1,11 @@
 package pacman.gameplay.pacman;
 
+import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.graphism.*;
 import pacman.engine.core.Map.Map;
+import pacman.gameplay.GameEvent;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,9 @@ public class Pacman extends MovableEntity {
 
     public void getLive() {
         nbLives++;
+
+        //call GUI
+        MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
     }
 
     public void getDamaged(ResizableCanvas canvas)
@@ -58,6 +63,9 @@ public class Pacman extends MovableEntity {
             nbLives--;
             kill(canvas);
             respawn(canvas, this.x, this.y);
+
+            //call GUI
+            MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
         }
 
         /* Else, he is deleted, and the game ends */

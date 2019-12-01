@@ -23,7 +23,6 @@ public class MovableEntity extends Entity {
         moveManager = new Movement(speed);
         this.actualDir = Direction.STANDING;
         this.wishedDirection= Direction.STANDING;
-        //TODO add animated sprite manager
     }
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed)
@@ -91,7 +90,7 @@ public class MovableEntity extends Entity {
         tempXDir = pointDir.getX();
         tempYDir = pointDir.getY();
         try {
-            Entity[][] walls = Game.labyrynth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            Entity[][] walls = Game.labyrinth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
             for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++){
                 for (int j = 0; j < walls[i].length  && !inContactWished; j++){
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
@@ -106,7 +105,7 @@ public class MovableEntity extends Entity {
                     }
                 }
             }
-            Entity[][] staticEntities = Game.labyrynth.getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            Entity[][] staticEntities = Game.labyrinth.getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
             for (int i = 0; i < staticEntities.length ; i++){
                 for (int j = 0; j < staticEntities[i].length ; j++){
                     if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, staticEntities[i][j])) {

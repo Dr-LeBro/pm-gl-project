@@ -3,6 +3,8 @@ package pacman.gameplay;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
+import pacman.GUI.inGameGUI.MainGameGUI;
+import pacman.Main;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
@@ -13,6 +15,7 @@ import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.ghost.Blinky;
 import pacman.gameplay.ghost.Ghost;
 import pacman.gameplay.pacman.Pacman;
+import pacman.gameplay.scoreManager.Score;
 
 import java.util.ArrayList;
 
@@ -22,20 +25,20 @@ public class Game {
     private Ghost blinky;
     private KeyboardInput kI;
     private ResizableCanvas canvas;
-    public static Map labyrynth = null;
+    public static Map labyrinth = null;
     private GridPane root;
 
     public Game(GridPane root, String mapId){
         LabyrinthFile.loadMaps();
-        labyrynth = LabyrinthFile.getMapById(mapId);
+        labyrinth = LabyrinthFile.getMapById(mapId);
 
         this.root = root;
-        int labX = labyrynth.getMaxX()*Map.ArrayUnit;
-        int labY = labyrynth.getMaxY()*Map.ArrayUnit;
-        canvas = new ResizableCanvas(labX, labY, 800, 875);
+        int labX = labyrinth.getMaxX()*Map.ArrayUnit;
+        int labY = labyrinth.getMaxY()*Map.ArrayUnit;
+        canvas = new ResizableCanvas(labX, labY, root.getWidth(), root.getHeight());
         root.getChildren().add(canvas);
 
-        pacman = (Pacman)labyrynth.getPacMan();
+        pacman = (Pacman)labyrinth.getPacMan();
         pacman.spawn(canvas);
 
         blinky = new Blinky();
@@ -43,12 +46,12 @@ public class Game {
         //blinky.spawn(canvas);
 
         System.out.println("Labyrinth");
-        ArrayList<Sprite> staticMap = labyrynth.getStaticMapVisual();
+        ArrayList<Sprite> staticMap = labyrinth.getStaticMapVisual();
         for (int i = 0; i < staticMap.size(); i++){
                     canvas.addDrawingElement(staticMap.get(i));
         }
 
-        StaticEntity[][] entities = labyrynth.getStaticEntityMap();
+        StaticEntity[][] entities = labyrinth.getStaticEntityMap();
         for(int x = 0; x < entities.length; x++)
         {
             for(int y = 0; y < entities[0].length; y++)
@@ -60,7 +63,7 @@ public class Game {
         }
 
         //TODO add a map caller to add entity
-        kI = new KeyboardInput(root.getScene());
+        kI = new KeyboardInput(Main.root);
         root.widthProperty().addListener(evtW -> canvas.setWidth(root.getWidth()));
         root.heightProperty().addListener(evtH -> canvas.setHeight(root.getHeight()));
     }
@@ -94,4 +97,15 @@ public class Game {
         kI.removeListener();
     }
 
+    public int getScore(){
+        return Score.getInstance().getScore();
+    }
+
+    public int getPacmanRemainingLifes(){
+        return pacman.getNbLives();
+    }
+
+    public ResizableCanvas getCanvas() {
+        return canvas;
+    }
 }

@@ -1,25 +1,22 @@
 package pacman.GUI.menu;
 
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
+import javafx.scene.layout.Priority;
+import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
-import pacman.fileManager.LabyrinthFile;
-import pacman.gameplay.Game;
 import pacman.gameplay.GameEvent;
 
 public class SecondaryMenuSingle extends SecondaryMenu {
     private ObservableList<Node> menuMemory;
     private int mapId;
-    SliderManager mapChooser;
+    private SliderManager mapChooser;
 
     public SecondaryMenuSingle(GridPane root) {
         super(root);
@@ -35,6 +32,8 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         rootOfMenu.add(launchGameSingle.getComponent(), 0, 0);
         rootOfMenu.add(mapChooser.getComponent(), 0, 1);
         mapId = 1; // Default value of the Slider
+        GridPane.setHgrow(rootOfMenu, Priority.ALWAYS);
+        GridPane.setVgrow(rootOfMenu, Priority.ALWAYS);
     }
 
 
@@ -43,30 +42,17 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         mapId = mapChooser.getValue();
     }
 
-    public void launchGame(){
-        Timeline gameLoop = new Timeline();
-        //TODO trouver un moyen d'arreter la boucle
-        gameLoop.setCycleCount( Timeline.INDEFINITE );
-
-        menuMemory = FXCollections.observableArrayList(mainRoot.getChildren()) ;
+    public void launchGame() {
+        menuMemory = FXCollections.observableArrayList(mainRoot.getChildren());
         mainRoot.getChildren().clear();
-        Game game = new Game(mainRoot, Integer.toString(mapId));
-        KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.017),                // 60 FPS
-                ae -> {
-                    game.gameLoop();
-                });
-        gameLoop.getKeyFrames().add( kf );
-
+        MainGameGUI gameGui = new MainGameGUI(mapId);
+        mainRoot.getChildren().add(gameGui.getCurrentGUI());
+        gameGui.launch();
         mainRoot.addEventHandler(GameEvent.GAME_END, event -> {
             System.out.println("Fini");
             mainRoot.getChildren().clear();
             mainRoot.getChildren().addAll(menuMemory);
-            game.removeHandlers();
+            gameGui.getCurrentGame().removeHandlers();
         });
-
-        gameLoop.play();
-
-
     }
 }

@@ -2,12 +2,15 @@ package pacman.GUI.menu;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.GridPane;
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 
 public class MainMenu {
     private GridPane mainRoot;
     private GridPane rootOfMenu;
+    private GridPane buttons;
     private SecondaryMenu secondaryMenu;
 
     public MainMenu(GridPane root){
@@ -16,13 +19,14 @@ public class MainMenu {
         ButtonManager launchGameSingle = new ButtonManager("SinglePlayer", (EventHandler<ActionEvent>) actionEvent -> showSingle());
         ButtonManager gotoOpt = new ButtonManager("Options", (EventHandler<ActionEvent>) actionEvent -> showOpt());
         ButtonManager launchGameMulti = new ButtonManager("MultiPlayer", (EventHandler<ActionEvent>) actionEvent -> showMulti());
-
-
-        rootOfMenu.add(launchGameSingle.getComponent(), 0, 0);
-        rootOfMenu.add(gotoOpt.getComponent(), 0, 1);
-        rootOfMenu.add(launchGameMulti.getComponent(), 0, 2);
-
-
+        buttons = new GridPane();
+        buttons.add(launchGameSingle.getComponent(), 0, 0);
+        buttons.add(gotoOpt.getComponent(), 0, 1);
+        buttons.add(launchGameMulti.getComponent(), 0, 2);
+        rootOfMenu.add(buttons,0,0);
+        GridPane.setHgrow(rootOfMenu, Priority.ALWAYS);
+        GridPane.setVgrow(rootOfMenu, Priority.ALWAYS);
+        rootOfMenu.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         mainRoot.getChildren().add(rootOfMenu);
 
