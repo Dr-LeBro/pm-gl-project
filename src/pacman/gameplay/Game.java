@@ -23,6 +23,7 @@ public class Game {
 
     private Pacman pacman;
     private Ghost blinky;
+    private ArrayList<MovableEntity> ghosts;
     GameState pGame = GameState.getInstance();
 
     public Game(GridPane root, String mapId){
@@ -52,7 +53,7 @@ public class Game {
             }
         }
 
-        ArrayList<MovableEntity> ghosts = pGame.getCurrMap().getGhosts();
+        ghosts = pGame.getCurrMap().getGhosts();
         for (int i = 0; i < ghosts.size(); i++){
             ghosts.get(i).spawn();
         }
@@ -79,6 +80,7 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         pacman.move(lastKeyPressed);
+        ghosts.get(0).move(lastKeyPressed);
     }
 
     private void graphicalUpdate(){
