@@ -21,89 +21,8 @@
 		<bloc x="1" y="1" type="PACMAN">
 		</bloc>
     </map>
-    <map id="1" x="40" y="40">
-		<bloc x="0" y="0" type="BLOCK"></bloc>
-		<bloc x="0" y="1" type="BLOCK"></bloc>
-		<bloc x="0" y="2" type="BLOCK"></bloc>
-		<bloc x="0" y="3" type="BLOCK"></bloc>
-		<bloc x="0" y="4" type="BLOCK"></bloc>
-		<bloc x="0" y="5" type="BLOCK"></bloc>
-		<bloc x="0" y="6" type="BLOCK"></bloc>
-		<bloc x="0" y="7" type="BLOCK"></bloc>
-		<bloc x="0" y="8" type="BLOCK"></bloc>
-		<bloc x="0" y="9" type="BLOCK"></bloc>
-		<bloc x="0" y="10" type="BLOCK"></bloc>
-		<bloc x="0" y="11" type="BLOCK"></bloc>
-		<bloc x="0" y="12" type="BLOCK"></bloc>
-		<bloc x="0" y="13" type="BLOCK"></bloc>
-		<bloc x="0" y="14" type="BLOCK"></bloc>
-		<bloc x="0" y="15" type="BLOCK"></bloc>
-		<bloc x="0" y="16" type="BLOCK"></bloc>
-		<bloc x="0" y="17" type="BLOCK"></bloc>
-		<bloc x="0" y="18" type="BLOCK"></bloc>
-		<bloc x="0" y="19" type="BLOCK"></bloc>
-		<bloc x="0" y="20" type="BLOCK"></bloc>
-		<bloc x="0" y="21" type="BLOCK"></bloc>
-		<bloc x="0" y="22" type="BLOCK"></bloc>
-		<bloc x="0" y="23" type="BLOCK"></bloc>
-		<bloc x="0" y="24" type="BLOCK"></bloc>
-		<bloc x="0" y="25" type="BLOCK"></bloc>
-		<bloc x="0" y="26" type="BLOCK"></bloc>
-		<bloc x="0" y="27" type="BLOCK"></bloc>
-		<bloc x="0" y="28" type="BLOCK"></bloc>
-		<bloc x="0" y="29" type="BLOCK"></bloc>
-		<bloc x="0" y="30" type="BLOCK"></bloc>
-		<bloc x="0" y="31" type="BLOCK"></bloc>
-		<bloc x="0" y="32" type="BLOCK"></bloc>
-		<bloc x="0" y="33" type="BLOCK"></bloc>
-		<bloc x="0" y="34" type="BLOCK"></bloc>
-		<bloc x="0" y="35" type="BLOCK"></bloc>
-		<bloc x="0" y="36" type="BLOCK"></bloc>
-		<bloc x="0" y="37" type="BLOCK"></bloc>
-		<bloc x="0" y="38" type="BLOCK"></bloc>
-		<bloc x="0" y="39" type="BLOCK"></bloc>
-
-		<bloc x="39" y="0" type="BLOCK"></bloc>
-		<bloc x="39" y="1" type="BLOCK"></bloc>
-		<bloc x="39" y="2" type="BLOCK"></bloc>
-		<bloc x="39" y="3" type="BLOCK"></bloc>
-		<bloc x="39" y="4" type="BLOCK"></bloc>
-		<bloc x="39" y="5" type="BLOCK"></bloc>
-		<bloc x="39" y="6" type="BLOCK"></bloc>
-		<bloc x="39" y="7" type="BLOCK"></bloc>
-		<bloc x="39" y="8" type="BLOCK"></bloc>
-		<bloc x="39" y="9" type="BLOCK"></bloc>
-		<bloc x="39" y="10" type="BLOCK"></bloc>
-		<bloc x="39" y="11" type="BLOCK"></bloc>
-		<bloc x="39" y="12" type="BLOCK"></bloc>
-		<bloc x="39" y="13" type="BLOCK"></bloc>
-		<bloc x="39" y="14" type="BLOCK"></bloc>
-		<bloc x="39" y="15" type="BLOCK"></bloc>
-		<bloc x="39" y="16" type="BLOCK"></bloc>
-		<bloc x="39" y="17" type="BLOCK"></bloc>
-		<bloc x="39" y="18" type="BLOCK"></bloc>
-		<bloc x="39" y="19" type="BLOCK"></bloc>
-		<bloc x="39" y="20" type="BLOCK"></bloc>
-		<bloc x="39" y="21" type="BLOCK"></bloc>
-		<bloc x="39" y="22" type="BLOCK"></bloc>
-		<bloc x="39" y="23" type="BLOCK"></bloc>
-		<bloc x="39" y="24" type="BLOCK"></bloc>
-		<bloc x="39" y="25" type="BLOCK"></bloc>
-		<bloc x="39" y="26" type="BLOCK"></bloc>
-		<bloc x="39" y="27" type="BLOCK"></bloc>
-		<bloc x="39" y="28" type="BLOCK"></bloc>
-		<bloc x="39" y="29" type="BLOCK"></bloc>
-		<bloc x="39" y="30" type="BLOCK"></bloc>
-		<bloc x="39" y="31" type="BLOCK"></bloc>
-		<bloc x="39" y="32" type="BLOCK"></bloc>
-		<bloc x="39" y="33" type="BLOCK"></bloc>
-		<bloc x="39" y="34" type="BLOCK"></bloc>
-		<bloc x="39" y="35" type="BLOCK"></bloc>
-		<bloc x="39" y="36" type="BLOCK"></bloc>
-		<bloc x="39" y="37" type="BLOCK"></bloc>
-		<bloc x="39" y="38" type="BLOCK"></bloc>
-		<bloc x="39" y="39" type="BLOCK"></bloc>
-
+    <map id="1" x="41" y="41">
+		<!-- Line 0 -->
 		<bloc x="0" y="0" type="BLOCK"></bloc>
 		<bloc x="1" y="0" type="BLOCK"></bloc>
 		<bloc x="2" y="0" type="BLOCK"></bloc>
@@ -144,105 +63,15 @@
 		<bloc x="37" y="0" type="BLOCK"></bloc>
 		<bloc x="38" y="0" type="BLOCK"></bloc>
 		<bloc x="39" y="0" type="BLOCK"></bloc>
+		<bloc x="40" y="0" type="BLOCK"></bloc>
 
-		<bloc x="0" y="39" type="BLOCK"></bloc>
-		<bloc x="1" y="39" type="BLOCK"></bloc>
-		<bloc x="2" y="39" type="BLOCK"></bloc>
-		<bloc x="3" y="39" type="BLOCK"></bloc>
-		<bloc x="4" y="39" type="BLOCK"></bloc>
-		<bloc x="5" y="39" type="BLOCK"></bloc>
-		<bloc x="6" y="39" type="BLOCK"></bloc>
-		<bloc x="7" y="39" type="BLOCK"></bloc>
-		<bloc x="8" y="39" type="BLOCK"></bloc>
-		<bloc x="9" y="39" type="BLOCK"></bloc>
-		<bloc x="10" y="39" type="BLOCK"></bloc>
-		<bloc x="11" y="39" type="BLOCK"></bloc>
-		<bloc x="12" y="39" type="BLOCK"></bloc>
-		<bloc x="13" y="39" type="BLOCK"></bloc>
-		<bloc x="14" y="39" type="BLOCK"></bloc>
-		<bloc x="15" y="39" type="BLOCK"></bloc>
-		<bloc x="16" y="39" type="BLOCK"></bloc>
-		<bloc x="17" y="39" type="BLOCK"></bloc>
-		<bloc x="18" y="39" type="BLOCK"></bloc>
-		<bloc x="19" y="39" type="BLOCK"></bloc>
-		<bloc x="20" y="39" type="BLOCK"></bloc>
-		<bloc x="21" y="39" type="BLOCK"></bloc>
-		<bloc x="22" y="39" type="BLOCK"></bloc>
-		<bloc x="23" y="39" type="BLOCK"></bloc>
-		<bloc x="24" y="39" type="BLOCK"></bloc>
-		<bloc x="25" y="39" type="BLOCK"></bloc>
-		<bloc x="26" y="39" type="BLOCK"></bloc>
-		<bloc x="27" y="39" type="BLOCK"></bloc>
-		<bloc x="28" y="39" type="BLOCK"></bloc>
-		<bloc x="29" y="39" type="BLOCK"></bloc>
-		<bloc x="30" y="39" type="BLOCK"></bloc>
-		<bloc x="31" y="39" type="BLOCK"></bloc>
-		<bloc x="32" y="39" type="BLOCK"></bloc>
-		<bloc x="33" y="39" type="BLOCK"></bloc>
-		<bloc x="34" y="39" type="BLOCK"></bloc>
-		<bloc x="35" y="39" type="BLOCK"></bloc>
-		<bloc x="36" y="39" type="BLOCK"></bloc>
-		<bloc x="37" y="39" type="BLOCK"></bloc>
-		<bloc x="38" y="39" type="BLOCK"></bloc>
-		<bloc x="39" y="39" type="BLOCK"></bloc>
+		<!-- line 1 -->
+		<bloc x="0" y="1" type="BLOCK"></bloc>
+		<bloc x="20" y="1" type="BLOCK"></bloc>
+		<bloc x="40" y="1" type="BLOCK"></bloc>
 
-		<bloc x="0" y="4" type="BLOCK"></bloc>
-		<bloc x="1" y="4" type="BLOCK"></bloc>
-		<bloc x="2" y="4" type="BLOCK"></bloc>
-		<bloc x="3" y="4" type="BLOCK"></bloc>
-		<bloc x="4" y="4" type="BLOCK"></bloc>
-		<bloc x="5" y="4" type="BLOCK"></bloc>
-		<bloc x="6" y="4" type="BLOCK"></bloc>
-		<bloc x="7" y="4" type="BLOCK"></bloc>
-		<bloc x="8" y="4" type="BLOCK"></bloc>
-		<bloc x="9" y="4" type="BLOCK"></bloc>
-		<bloc x="10" y="4" type="BLOCK"></bloc>
-		<bloc x="11" y="4" type="BLOCK"></bloc>
-		<bloc x="12" y="4" type="BLOCK"></bloc>
-		<bloc x="13" y="4" type="BLOCK"></bloc>
-		<bloc x="14" y="4" type="BLOCK"></bloc>
-		<bloc x="15" y="4" type="BLOCK"></bloc>
-		<bloc x="16" y="4" type="BLOCK"></bloc>
-		<bloc x="17" y="4" type="BLOCK"></bloc>
-		<bloc x="18" y="5" type="BLOCK"></bloc>
-		<bloc x="18" y="6" type="BLOCK"></bloc>
-		<bloc x="18" y="7" type="BLOCK"></bloc>
-		<bloc x="18" y="8" type="BLOCK"></bloc>
-
-		<bloc x="20" y="13" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="12" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="11" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="10" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="9" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="8" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="7" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="6" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="5" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="4" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="3" type="PAC_GOMME"></bloc>
-		<bloc x="21" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="22" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="22" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="22" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="22" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="23" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="24" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="25" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="26" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="27" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="28" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="29" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="30" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="31" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="32" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="33" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="34" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="35" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="36" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="37" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="38" y="2" type="PAC_GOMME"></bloc>
-
-		<bloc x="1" y="2" type="PAC_GOMME"></bloc>
+		<!-- line 2 -->
+		<bloc x="0" y="2" type="BLOCK"></bloc>
 		<bloc x="2" y="2" type="PAC_GOMME"></bloc>
 		<bloc x="3" y="2" type="PAC_GOMME"></bloc>
 		<bloc x="4" y="2" type="PAC_GOMME"></bloc>
@@ -260,99 +89,306 @@
 		<bloc x="16" y="2" type="PAC_GOMME"></bloc>
 		<bloc x="17" y="2" type="PAC_GOMME"></bloc>
 		<bloc x="18" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="19" y="2" type="PAC_GOMME"></bloc>
-		<bloc x="20" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="2" type="BLOCK"></bloc>
+		<bloc x="22" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="23" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="24" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="25" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="26" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="27" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="28" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="29" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="30" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="31" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="32" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="33" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="34" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="35" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="36" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="37" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="38" y="2" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="2" type="BLOCK"></bloc>
 
-		<bloc x="22" y="8" type="BLOCK"></bloc>
-		<bloc x="22" y="7" type="BLOCK"></bloc>
-		<bloc x="22" y="6" type="BLOCK"></bloc>
-		<bloc x="22" y="5" type="BLOCK"></bloc>
-		<bloc x="23" y="4" type="BLOCK"></bloc>
+		<!-- line 3 -->
+		<bloc x="0" y="3" type="BLOCK"></bloc>
+		<bloc x="2" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="11" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="18" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="3" type="BLOCK"></bloc>
+		<bloc x="22" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="29" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="38" y="3" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="3" type="BLOCK"></bloc>
+
+		<!-- line 4 -->
+		<bloc x="0" y="4" type="BLOCK"></bloc>
+		<bloc x="2" y="4" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="4" type="BLOCK"></bloc>
+		<bloc x="5" y="4" type="BLOCK"></bloc>
+		<bloc x="6" y="4" type="BLOCK"></bloc>
+		<bloc x="7" y="4" type="BLOCK"></bloc>
+		<bloc x="8" y="4" type="BLOCK"></bloc>
+		<bloc x="9" y="4" type="BLOCK"></bloc>
+		<bloc x="11" y="4" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="4" type="BLOCK"></bloc>
+		<bloc x="14" y="4" type="BLOCK"></bloc>
+		<bloc x="15" y="4" type="BLOCK"></bloc>
+		<bloc x="16" y="4" type="BLOCK"></bloc>
+		<bloc x="18" y="4" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="4" type="BLOCK"></bloc>
+		<bloc x="22" y="4" type="PAC_GOMME"></bloc>
 		<bloc x="24" y="4" type="BLOCK"></bloc>
 		<bloc x="25" y="4" type="BLOCK"></bloc>
 		<bloc x="26" y="4" type="BLOCK"></bloc>
 		<bloc x="27" y="4" type="BLOCK"></bloc>
-		<bloc x="28" y="4" type="BLOCK"></bloc>
-		<bloc x="29" y="4" type="BLOCK"></bloc>
-		<bloc x="30" y="4" type="BLOCK"></bloc>
+		<bloc x="29" y="4" type="PAC_GOMME"></bloc>
 		<bloc x="31" y="4" type="BLOCK"></bloc>
 		<bloc x="32" y="4" type="BLOCK"></bloc>
 		<bloc x="33" y="4" type="BLOCK"></bloc>
 		<bloc x="34" y="4" type="BLOCK"></bloc>
 		<bloc x="35" y="4" type="BLOCK"></bloc>
 		<bloc x="36" y="4" type="BLOCK"></bloc>
-		<bloc x="37" y="4" type="BLOCK"></bloc>
-		<bloc x="38" y="4" type="BLOCK"></bloc>
-		<bloc x="39" y="4" type="BLOCK"></bloc>
+		<bloc x="38" y="4" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="4" type="BLOCK"></bloc>
 
-		<bloc x="20" y="20" type="PACMAN"></bloc>
-		<bloc x="30" y="31" type="GHOST" name="PINKY"></bloc>
-		<bloc x="30" y="32" type="GHOST" name="BLINKY"></bloc>
-		<bloc x="30" y="33" type="GHOST" name="INKY"></bloc>
-		<bloc x="30" y="34" type="GHOST" name="CLYDE"></bloc>
+		<!-- line 5 -->
+		<bloc x="0" y="5" type="BLOCK"></bloc>
+		<bloc x="2" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="5" type="BLOCK"></bloc>
+		<bloc x="5" y="5" type="BLOCK"></bloc>
+		<bloc x="6" y="5" type="BLOCK"></bloc>
+		<bloc x="7" y="5" type="BLOCK"></bloc>
+		<bloc x="8" y="5" type="BLOCK"></bloc>
+		<bloc x="9" y="5" type="BLOCK"></bloc>
+		<bloc x="11" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="5" type="BLOCK"></bloc>
+		<bloc x="14" y="5" type="BLOCK"></bloc>
+		<bloc x="15" y="5" type="BLOCK"></bloc>
+		<bloc x="16" y="5" type="BLOCK"></bloc>
+		<bloc x="18" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="5" type="BLOCK"></bloc>
+		<bloc x="22" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="24" y="5" type="BLOCK"></bloc>
+		<bloc x="25" y="5" type="BLOCK"></bloc>
+		<bloc x="26" y="5" type="BLOCK"></bloc>
+		<bloc x="27" y="5" type="BLOCK"></bloc>
+		<bloc x="29" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="31" y="5" type="BLOCK"></bloc>
+		<bloc x="32" y="5" type="BLOCK"></bloc>
+		<bloc x="33" y="5" type="BLOCK"></bloc>
+		<bloc x="34" y="5" type="BLOCK"></bloc>
+		<bloc x="35" y="5" type="BLOCK"></bloc>
+		<bloc x="36" y="5" type="BLOCK"></bloc>
+		<bloc x="38" y="5" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="5" type="BLOCK"></bloc>
 
+		<!-- line 6 -->
+		<bloc x="0" y="6" type="BLOCK"></bloc>
+		<bloc x="2" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="6" type="BLOCK"></bloc>
+		<bloc x="5" y="6" type="BLOCK"></bloc>
+		<bloc x="6" y="6" type="BLOCK"></bloc>
+		<bloc x="7" y="6" type="BLOCK"></bloc>
+		<bloc x="8" y="6" type="BLOCK"></bloc>
+		<bloc x="9" y="6" type="BLOCK"></bloc>
+		<bloc x="11" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="6" type="BLOCK"></bloc>
+		<bloc x="14" y="6" type="BLOCK"></bloc>
+		<bloc x="15" y="6" type="BLOCK"></bloc>
+		<bloc x="16" y="6" type="BLOCK"></bloc>
+		<bloc x="18" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="6" type="BLOCK"></bloc>
+		<bloc x="22" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="24" y="6" type="BLOCK"></bloc>
+		<bloc x="25" y="6" type="BLOCK"></bloc>
+		<bloc x="26" y="6" type="BLOCK"></bloc>
+		<bloc x="27" y="6" type="BLOCK"></bloc>
+		<bloc x="29" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="31" y="6" type="BLOCK"></bloc>
+		<bloc x="32" y="6" type="BLOCK"></bloc>
+		<bloc x="33" y="6" type="BLOCK"></bloc>
+		<bloc x="34" y="6" type="BLOCK"></bloc>
+		<bloc x="35" y="6" type="BLOCK"></bloc>
+		<bloc x="36" y="6" type="BLOCK"></bloc>
+		<bloc x="38" y="6" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="6" type="BLOCK"></bloc>
 
-		<bloc x="18" y="8" type="BLOCK"></bloc>
-		<bloc x="17" y="8" type="BLOCK"></bloc>
-		<bloc x="16" y="8" type="BLOCK"></bloc>
-		<bloc x="15" y="8" type="BLOCK"></bloc>
-		<bloc x="14" y="8" type="BLOCK"></bloc>
-		<bloc x="13" y="8" type="BLOCK"></bloc>
-		<bloc x="12" y="8" type="BLOCK"></bloc>
-		<bloc x="11" y="8" type="BLOCK"></bloc>
-		<bloc x="10" y="8" type="BLOCK"></bloc>
-		<bloc x="9" y="8" type="BLOCK"></bloc>
-		<bloc x="8" y="8" type="BLOCK"></bloc>
-		<bloc x="7" y="8" type="BLOCK"></bloc>
-		<bloc x="6" y="8" type="BLOCK"></bloc>
-		<bloc x="5" y="8" type="BLOCK"></bloc>
+		<!-- line 7 -->
+		<bloc x="0" y="7" type="BLOCK"></bloc>
+		<bloc x="2" y="7" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="7" type="BLOCK"></bloc>
+		<bloc x="5" y="7" type="BLOCK"></bloc>
+		<bloc x="6" y="7" type="BLOCK"></bloc>
+
+		<bloc x="11" y="7" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="7" type="BLOCK"></bloc>
+		<bloc x="14" y="7" type="BLOCK"></bloc>
+		<bloc x="15" y="7" type="BLOCK"></bloc>
+		<bloc x="16" y="7" type="BLOCK"></bloc>
+		<bloc x="18" y="7" type="PAC_GOMME"></bloc>
+		<bloc x="22" y="7" type="PAC_GOMME"></bloc>
+		<bloc x="24" y="7" type="BLOCK"></bloc>
+		<bloc x="25" y="7" type="BLOCK"></bloc>
+		<bloc x="26" y="7" type="BLOCK"></bloc>
+		<bloc x="27" y="7" type="BLOCK"></bloc>
+		<bloc x="29" y="7" type="PAC_GOMME"></bloc>
+
+		<bloc x="34" y="7" type="BLOCK"></bloc>
+		<bloc x="35" y="7" type="BLOCK"></bloc>
+		<bloc x="36" y="7" type="BLOCK"></bloc>
+		<bloc x="38" y="7" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="7" type="BLOCK"></bloc>
+
+		<!-- line 8 -->
+		<bloc x="0" y="8" type="BLOCK"></bloc>
+		<bloc x="2" y="8" type="PAC_GOMME"></bloc>
 		<bloc x="4" y="8" type="BLOCK"></bloc>
+		<bloc x="5" y="8" type="BLOCK"></bloc>
+		<bloc x="6" y="8" type="BLOCK"></bloc>
+		<bloc x="8" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="9" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="10" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="11" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="8" type="BLOCK"></bloc>
+		<bloc x="14" y="8" type="BLOCK"></bloc>
+		<bloc x="15" y="8" type="BLOCK"></bloc>
+		<bloc x="16" y="8" type="BLOCK"></bloc>
 
-		<bloc x="22" y="8" type="BLOCK"></bloc>
-		<bloc x="23" y="8" type="BLOCK"></bloc>
+		<bloc x="18" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="19" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="21" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="22" y="8" type="PAC_GOMME"></bloc>
+
 		<bloc x="24" y="8" type="BLOCK"></bloc>
 		<bloc x="25" y="8" type="BLOCK"></bloc>
 		<bloc x="26" y="8" type="BLOCK"></bloc>
 		<bloc x="27" y="8" type="BLOCK"></bloc>
-		<bloc x="28" y="8" type="BLOCK"></bloc>
-		<bloc x="29" y="8" type="BLOCK"></bloc>
-		<bloc x="30" y="8" type="BLOCK"></bloc>
-		<bloc x="31" y="8" type="BLOCK"></bloc>
-		<bloc x="32" y="8" type="BLOCK"></bloc>
-		<bloc x="33" y="8" type="BLOCK"></bloc>
+
+		<bloc x="29" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="30" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="31" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="32" y="8" type="PAC_GOMME"></bloc>
+
 		<bloc x="34" y="8" type="BLOCK"></bloc>
 		<bloc x="35" y="8" type="BLOCK"></bloc>
+		<bloc x="36" y="8" type="BLOCK"></bloc>
+		<bloc x="38" y="8" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="8" type="BLOCK"></bloc>
 
-		<bloc x="22" y="12" type="BLOCK"></bloc>
-		<bloc x="23" y="12" type="BLOCK"></bloc>
-		<bloc x="24" y="12" type="BLOCK"></bloc>
-		<bloc x="25" y="12" type="BLOCK"></bloc>
-		<bloc x="26" y="12" type="BLOCK"></bloc>
+		<!-- line 9 -->
+		<bloc x="0" y="9" type="BLOCK"></bloc>
+		<bloc x="2" y="9" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="9" type="BLOCK"></bloc>
+		<bloc x="5" y="9" type="BLOCK"></bloc>
+		<bloc x="6" y="9" type="BLOCK"></bloc>
+		<bloc x="8" y="9" type="PAC_GOMME"></bloc>
+		<bloc x="13" y="9" type="BLOCK"></bloc>
+		<bloc x="14" y="9" type="BLOCK"></bloc>
+		<bloc x="15" y="9" type="BLOCK"></bloc>
+		<bloc x="16" y="9" type="BLOCK"></bloc>
+
+		<bloc x="18" y="9" type="PAC_GOMME"></bloc>
+		<bloc x="22" y="9" type="PAC_GOMME"></bloc>
+
+		<bloc x="24" y="9" type="BLOCK"></bloc>
+		<bloc x="25" y="9" type="BLOCK"></bloc>
+		<bloc x="26" y="9" type="BLOCK"></bloc>
+		<bloc x="27" y="9" type="BLOCK"></bloc>
+
+		<bloc x="32" y="9" type="PAC_GOMME"></bloc>
+		<bloc x="34" y="9" type="BLOCK"></bloc>
+		<bloc x="35" y="9" type="BLOCK"></bloc>
+		<bloc x="36" y="9" type="BLOCK"></bloc>
+		<bloc x="38" y="9" type="PAC_GOMME"></bloc>
+		<bloc x="40" y="9" type="BLOCK"></bloc>
+
+		<!-- line 10 -->
+		<bloc x="0" y="10" type="BLOCK"></bloc>
+		<bloc x="2" y="10" type="PAC_GOMME"></bloc>
+
+		<bloc x="8" y="10" type="PAC_GOMME"></bloc>
+		<bloc x="10" y="10" type="BLOCK"></bloc>
+		<bloc x="11" y="10" type="BLOCK"></bloc>
+		<bloc x="12" y="10" type="BLOCK"></bloc>
+		<bloc x="13" y="10" type="BLOCK"></bloc>
+
+		<bloc x="18" y="10" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="10" type="BLOCK"></bloc>
+		<bloc x="22" y="10" type="PAC_GOMME"></bloc>
+
+		<bloc x="27" y="10" type="BLOCK"></bloc>
+		<bloc x="28" y="10" type="BLOCK"></bloc>
+		<bloc x="29" y="10" type="BLOCK"></bloc>
+		<bloc x="30" y="10" type="BLOCK"></bloc>
+
+		<bloc x="32" y="10" type="PAC_GOMME"></bloc>
+		<bloc x="38" y="10" type="PAC_GOMME"></bloc>
+
+		<bloc x="40" y="10" type="BLOCK"></bloc>
+
+		<!-- line 11 -->
+		<bloc x="0" y="11" type="BLOCK"></bloc>
+		<bloc x="2" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="3" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="4" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="5" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="6" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="7" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="8" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="10" y="11" type="BLOCK"></bloc>
+		<bloc x="11" y="11" type="BLOCK"></bloc>
+		<bloc x="12" y="11" type="BLOCK"></bloc>
+		<bloc x="13" y="11" type="BLOCK"></bloc>
+
+		<bloc x="15" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="16" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="17" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="18" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="11" type="BLOCK"></bloc>
+		<bloc x="22" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="23" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="24" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="25" y="11" type="PAC_GOMME"></bloc>
+
+		<bloc x="27" y="11" type="BLOCK"></bloc>
+		<bloc x="28" y="11" type="BLOCK"></bloc>
+		<bloc x="29" y="11" type="BLOCK"></bloc>
+		<bloc x="30" y="11" type="BLOCK"></bloc>
+
+		<bloc x="32" y="11" type="PAC_GOMME"></bloc>
+		<bloc x="38" y="11" type="PAC_GOMME"></bloc>
+
+		<bloc x="40" y="11" type="BLOCK"></bloc>
+
+		<!-- line 12 -->
+		<bloc x="0" y="12" type="BLOCK"></bloc>
+
+		<bloc x="8" y="12" type="PAC_GOMME"></bloc>
+		<bloc x="10" y="12" type="BLOCK"></bloc>
+		<bloc x="11" y="12" type="BLOCK"></bloc>
+		<bloc x="12" y="12" type="BLOCK"></bloc>
+		<bloc x="13" y="12" type="BLOCK"></bloc>
+
+		<bloc x="15" y="12" type="PAC_GOMME"></bloc>
+		<bloc x="20" y="12" type="BLOCK"></bloc>
+		<bloc x="25" y="12" type="PAC_GOMME"></bloc>
+
 		<bloc x="27" y="12" type="BLOCK"></bloc>
 		<bloc x="28" y="12" type="BLOCK"></bloc>
 		<bloc x="29" y="12" type="BLOCK"></bloc>
 		<bloc x="30" y="12" type="BLOCK"></bloc>
-		<bloc x="31" y="12" type="BLOCK"></bloc>
-		<bloc x="32" y="12" type="BLOCK"></bloc>
-		<bloc x="33" y="12" type="BLOCK"></bloc>
-		<bloc x="34" y="12" type="BLOCK"></bloc>
-		<bloc x="35" y="12" type="BLOCK"></bloc>
 
-		<bloc x="18" y="12" type="BLOCK"></bloc>
-		<bloc x="17" y="12" type="BLOCK"></bloc>
-		<bloc x="16" y="12" type="BLOCK"></bloc>
-		<bloc x="15" y="12" type="BLOCK"></bloc>
-		<bloc x="14" y="12" type="BLOCK"></bloc>
-		<bloc x="13" y="12" type="BLOCK"></bloc>
-		<bloc x="12" y="12" type="BLOCK"></bloc>
-		<bloc x="11" y="12" type="BLOCK"></bloc>
-		<bloc x="10" y="12" type="BLOCK"></bloc>
-		<bloc x="9" y="12" type="BLOCK"></bloc>
-		<bloc x="8" y="12" type="BLOCK"></bloc>
-		<bloc x="7" y="12" type="BLOCK"></bloc>
-		<bloc x="6" y="12" type="BLOCK"></bloc>
-		<bloc x="5" y="12" type="BLOCK"></bloc>
-		<bloc x="4" y="12" type="BLOCK"></bloc>
+		<bloc x="32" y="12" type="PAC_GOMME"></bloc>
+
+		<bloc x="40" y="12" type="BLOCK"></bloc>
+
+		<bloc x="20" y="20" type="PACMAN"></bloc>
+        <bloc x="30" y="31" type="GHOST" name="PINKY"></bloc>
+        <bloc x="30" y="32" type="GHOST" name="BLINKY"></bloc>
+        <bloc x="30" y="33" type="GHOST" name="INKY"></bloc>
+        <bloc x="30" y="34" type="GHOST" name="CLYDE"></bloc>
+
 
     </map>
     <map id="2" x="20" y="20">
