@@ -118,6 +118,10 @@ public class MovableEntity extends Entity {
             this.x = tempXDir;
             this.y = tempYDir;
         }
-        getSprite().setPoint(x, y);
+            if(isVisible()){
+                getSprite().setPoint(x, y);
+            }
+
+
     }
 }

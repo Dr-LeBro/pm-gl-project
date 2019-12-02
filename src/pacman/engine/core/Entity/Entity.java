@@ -85,6 +85,7 @@ public abstract class Entity {
 
     public void delete(){
         type = EMPTY;
+        visible = false;
         GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
     }
 
