@@ -1,9 +1,10 @@
 package pacman.gameplay.ghost;
 
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
+import javafx.scene.input.KeyCode;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
+import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
@@ -47,5 +48,12 @@ public class Ghost extends MovableEntity {
     public void getDamaged(ResizableCanvas canvas) {
         kill();
         respawn(pos.getX(), pos.getY());
+    }
+
+    public void move(KeyCode keyPressed){
+        super.move(keyPressed);
+        if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
+            GameState.getInstance().getCurrMap().getPacMan().kill();
+        }
     }
 }
