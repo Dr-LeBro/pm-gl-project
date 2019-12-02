@@ -2,12 +2,12 @@ package pacman.engine.core.Entity;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
-import pacman.gameplay.Game;
 
 
 public class MovableEntity extends Entity {
@@ -47,8 +47,8 @@ public class MovableEntity extends Entity {
     }
 
     @Override
-    public void drawCurrentSprite(ResizableCanvas canvas){
-        canvas.removeDrawingElement(currentSprite);
+    public void drawCurrentSprite(){
+        GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
         if(isVisible()) {
             if (this.actualDir == Direction.STANDING) {
                 currentSprite = movingSprites[0];
@@ -61,7 +61,7 @@ public class MovableEntity extends Entity {
             } else if (this.actualDir == Direction.LEFT) {
                 currentSprite = movingSprites[3];
             }
-            canvas.addDrawingElement(currentSprite);
+            GameState.getInstance().getCanvas().addDrawingElement(currentSprite);
         }
     }
 
@@ -90,7 +90,7 @@ public class MovableEntity extends Entity {
         tempXDir = pointDir.getX();
         tempYDir = pointDir.getY();
         try {
-            Entity[][] walls = Game.labyrinth.getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
             for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++){
                 for (int j = 0; j < walls[i].length  && !inContactWished; j++){
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
@@ -105,11 +105,11 @@ public class MovableEntity extends Entity {
                     }
                 }
             }
-            Entity[][] staticEntities = Game.labyrinth.getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+            Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
             for (int i = 0; i < staticEntities.length ; i++){
                 for (int j = 0; j < staticEntities[i].length ; j++){
                     if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, staticEntities[i][j])) {
-                        staticEntities[i][j].kill(canvas);
+                        staticEntities[i][j].kill();
                     }
                 }
             }
@@ -122,7 +122,7 @@ public class MovableEntity extends Entity {
             this.y = tempYWished;
             this.actualDir = this.wishedDirection;
             this.wishedDirection = Direction.STANDING;
-            drawCurrentSprite(canvas);
+            drawCurrentSprite();
         } else if (!inContactDir) {
             this.x = tempXDir;
             this.y = tempYDir;

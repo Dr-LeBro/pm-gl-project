@@ -61,8 +61,8 @@ public class Pacman extends MovableEntity {
         /* If PacMan get hit even though he has at least 1 life, then he dies and respawn */
         if(nbLives > 1) {
             nbLives--;
-            kill(canvas);
-            respawn(canvas, this.x, this.y);
+            kill();
+            respawn( this.x, this.y);
 
             //call GUI
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
@@ -70,8 +70,8 @@ public class Pacman extends MovableEntity {
 
         /* Else, he is deleted, and the game ends */
         else {
-            kill(canvas);
-            delete(canvas);
+            kill();
+            delete();
         }
     }
 

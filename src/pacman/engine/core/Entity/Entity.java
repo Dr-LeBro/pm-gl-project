@@ -1,7 +1,6 @@
 package pacman.engine.core.Entity;
 
-import pacman.engine.core.Map.Map;
-import pacman.engine.graphism.ResizableCanvas;
+import pacman.engine.core.GameState;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.hitBox.HitBox;
 
@@ -21,7 +20,6 @@ public abstract class Entity {
     protected boolean visible;
 
     protected Sprite currentSprite;
-    protected Map map;
 
     public Entity(EntityType kind, Sprite sprite, double size) {
         type = kind;
@@ -49,49 +47,45 @@ public abstract class Entity {
         return type;
     }
 
-    public void setSprite(Sprite sprite, ResizableCanvas canvas){
+    public void setSprite(Sprite sprite){
         if(currentSprite != null){
-            canvas.removeDrawingElement(currentSprite);
+            GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
         }
         this.currentSprite = sprite;
         this.currentSprite.setPoint(x, y);
     }
 
-    public void drawCurrentSprite(ResizableCanvas canvas){
+    public void drawCurrentSprite(){
         if(isVisible()) {
-            canvas.addDrawingElement(currentSprite);
+            GameState.getInstance().getCanvas().addDrawingElement(currentSprite);
         }
     }
 
     //send false if is nothing to show
-    public boolean spawn(ResizableCanvas canvas){
+    public boolean spawn(){
         if(currentSprite == null){
             visible = false;
         }else{
             visible = true;
-            drawCurrentSprite(canvas);
+            drawCurrentSprite();
         }
         return visible;
     }
 
-    public void respawn(ResizableCanvas canvas, double x, double y){
+    public void respawn(double x, double y){
         this.x = x;
         this.y = y;
-        spawn(canvas);
+        spawn();
     }
 
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    public void kill(ResizableCanvas canvas){
+    public void kill(){
         visible = false;
-        canvas.removeDrawingElement(currentSprite);
+        GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
     }
 
-    public void delete(ResizableCanvas canvas){
+    public void delete(){
         type = EMPTY;
-        canvas.removeDrawingElement(currentSprite);
+        GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
     }
 
     public void move(){

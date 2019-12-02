@@ -39,7 +39,7 @@ public class Ghost extends MovableEntity {
     }
 
     public void getDamaged(ResizableCanvas canvas) {
-        kill(canvas);
-        respawn(canvas, initialX, initialY);
+        kill();
+        respawn(initialX, initialY);
     }
 }

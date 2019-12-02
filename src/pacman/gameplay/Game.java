@@ -3,9 +3,9 @@ package pacman.gameplay;
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.Main;
 import pacman.engine.core.Entity.StaticEntity;
+import pacman.engine.core.GameState;
 import pacman.engine.core.KeyboardInput;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.AnimationSyncrhonizer;
@@ -23,49 +23,46 @@ public class Game {
 
     private Pacman pacman;
     private Ghost blinky;
-    private KeyboardInput kI;
-    private ResizableCanvas canvas;
-    public static Map labyrinth = null;
-    private GridPane root;
+    GameState pGame = GameState.getInstance();
 
     public Game(GridPane root, String mapId){
         LabyrinthFile.loadMaps();
-        labyrinth = LabyrinthFile.getMapById(mapId);
+        pGame.setCurrMap(LabyrinthFile.getMapById(mapId));
 
-        this.root = root;
-        int labX = labyrinth.getMaxX()*Map.ArrayUnit;
-        int labY = labyrinth.getMaxY()*Map.ArrayUnit;
-        canvas = new ResizableCanvas(labX, labY, root.getWidth(), root.getHeight());
-        root.getChildren().add(canvas);
+        pGame.setRoot(root);
+        int labX = pGame.getCurrMap().getMaxX()*Map.ArrayUnit;
+        int labY = pGame.getCurrMap().getMaxY()*Map.ArrayUnit;
+        pGame.setCanvas(new ResizableCanvas(labX, labY, root.getWidth(), root.getHeight()));
+        root.getChildren().add(pGame.getCanvas());
 
-        pacman = (Pacman)labyrinth.getPacMan();
-        pacman.spawn(canvas);
+        pacman = (Pacman)pGame.getCurrMap().getPacMan();
+        pacman.spawn();
 
         blinky = new Blinky();
         //blinky = (Ghost) labyrynth.getPacMan();
         //blinky.spawn(canvas);
 
         System.out.println("Labyrinth");
-        ArrayList<Sprite> staticMap = labyrinth.getStaticMapVisual();
+        ArrayList<Sprite> staticMap = pGame.getCurrMap().getStaticMapVisual();
         for (int i = 0; i < staticMap.size(); i++){
-                    canvas.addDrawingElement(staticMap.get(i));
+            pGame.getCanvas().addDrawingElement(staticMap.get(i));
         }
 
-        StaticEntity[][] entities = labyrinth.getStaticEntityMap();
+        StaticEntity[][] entities = pGame.getCurrMap().getStaticEntityMap();
         for(int x = 0; x < entities.length; x++)
         {
             for(int y = 0; y < entities[0].length; y++)
             {
                 if(entities[x][y] != null) {
-                    entities[x][y].spawn(canvas);
+                    entities[x][y].spawn();
                 }
             }
         }
 
         //TODO add a map caller to add entity
-        kI = new KeyboardInput(Main.root);
-        root.widthProperty().addListener(evtW -> canvas.setWidth(root.getWidth()));
-        root.heightProperty().addListener(evtH -> canvas.setHeight(root.getHeight()));
+        pGame.setkI(new KeyboardInput(Main.root));
+        root.widthProperty().addListener(evtW -> pGame.getCanvas().setWidth(root.getWidth()));
+        root.heightProperty().addListener(evtH -> pGame.getCanvas().setHeight(root.getHeight()));
     }
 
     public void gameLoop(){
@@ -73,28 +70,28 @@ public class Game {
         graphicalUpdate();
         //TODO make game condition end here
         if(false){
-            Event myEvent = new GameEvent(this, root, GameEvent.GAME_END);
-            this.root.fireEvent(myEvent);
+            Event myEvent = new GameEvent(this, pGame.getRoot(), GameEvent.GAME_END);
+            this.pGame.getRoot().fireEvent(myEvent);
         }
 
     }
 
     private void gameUpdate(){
-        KeyCode lastKeyPressed = kI.getLastKeyPressed();
-        pacman.move(lastKeyPressed, canvas);
+        KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
+        pacman.move(lastKeyPressed, pGame.getCanvas());
 
     }
 
     private void graphicalUpdate(){
-        canvas.clear();
+        pGame.getCanvas().clear();
         AnimationSyncrhonizer.incrementFrame();
-        canvas.draw();
+        pGame.getCanvas().draw();
     }
 
     public void removeHandlers(){
         //root.widthProperty().removeListener();
         //root.heightProperty().addListener();
-        kI.removeListener();
+        pGame.getkI().removeListener();
     }
 
     public int getScore(){
@@ -103,9 +100,5 @@ public class Game {
 
     public int getPacmanRemainingLifes(){
         return pacman.getNbLives();
-    }
-
-    public ResizableCanvas getCanvas() {
-        return canvas;
     }
 }
