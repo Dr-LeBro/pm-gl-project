@@ -10,6 +10,7 @@ import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
+import pacman.gameplay.pacman.Pacman;
 
 public class Ghost extends MovableEntity {
     private boolean invincible;
@@ -55,7 +56,7 @@ public class Ghost extends MovableEntity {
     public void move(KeyCode keyPressed){
         super.move(keyPressed);
         if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
-            GameState.getInstance().getCurrMap().getPacMan().kill();
+            ((Pacman)GameState.getInstance().getCurrMap().getPacMan()).kill();
         }
     }
 }

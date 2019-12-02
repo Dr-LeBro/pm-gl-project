@@ -88,10 +88,10 @@ public class MovableEntity extends Entity {
         tempYWished = pointWished.getY();
         tempXDir = pointDir.getX();
         tempYDir = pointDir.getY();
-        try {
-            Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
-            for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++){
-                for (int j = 0; j < walls[i].length  && !inContactWished; j++){
+        Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+        if(walls != null) {
+            for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++) {
+                for (int j = 0; j < walls[i].length && !inContactWished; j++) {
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
                         inContactWished = true; // Can't go in wished direction
                     }
@@ -104,8 +104,6 @@ public class MovableEntity extends Entity {
                     }
                 }
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         }
 
         if (!inContactWished && this.wishedDirection != Direction.STANDING) {
