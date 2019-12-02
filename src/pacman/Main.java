@@ -11,12 +11,15 @@ import pacman.GUI.menu.MainMenu;
 public class Main extends Application {
 
     static public GridPane root;
+    static public Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage){
+        this.primaryStage = primaryStage;
+        primaryStage.resizableProperty().setValue(false);
         root = new GridPane();
         primaryStage.setTitle("DARK PACMAN");
-        primaryStage.setScene(new Scene(root, 800, 875));
+        primaryStage.setScene(new Scene(root, 848, 480));
 
         MainMenu menu = new MainMenu(root);
         primaryStage.show();

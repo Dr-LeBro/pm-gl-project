@@ -38,9 +38,8 @@ public class Game {
         pacman = (Pacman)pGame.getCurrMap().getPacMan();
         pacman.spawn();
 
-        blinky = new Blinky();
-        //blinky = (Ghost) labyrynth.getPacMan();
-        //blinky.spawn(canvas);
+        //blinky = new Blinky();
+        //blinky.spawn();
 
         System.out.println("Labyrinth");
         ArrayList<Sprite> staticMap = pGame.getCurrMap().getStaticMapVisual();

@@ -1,7 +1,8 @@
 package pacman.GUI.menu;
 
-import javafx.scene.layout.GridPane;
-
+import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 
 public class SecondaryMenu {
@@ -11,6 +12,10 @@ public class SecondaryMenu {
     public SecondaryMenu(GridPane root){
         mainRoot = root;
         rootOfMenu = new GridPane();
+        GridPane.setHgrow(rootOfMenu, Priority.ALWAYS);
+        GridPane.setVgrow(rootOfMenu, Priority.ALWAYS);
+
+        rootOfMenu.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     public GridPane getRootOfMenu() {

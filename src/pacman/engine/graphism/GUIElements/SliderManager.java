@@ -31,4 +31,8 @@ public class SliderManager {
         return (int) Math.round(slider.getValue());
 
     }
+
+    public void setValue(double i){
+        slider.setValue(i);
+    }
 }

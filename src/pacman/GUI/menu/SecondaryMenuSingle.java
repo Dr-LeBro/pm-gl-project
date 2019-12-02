@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
@@ -32,8 +31,6 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         rootOfMenu.add(launchGameSingle.getComponent(), 0, 0);
         rootOfMenu.add(mapChooser.getComponent(), 0, 1);
         mapId = 1; // Default value of the Slider
-        GridPane.setHgrow(rootOfMenu, Priority.ALWAYS);
-        GridPane.setVgrow(rootOfMenu, Priority.ALWAYS);
     }
 
 
