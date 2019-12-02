@@ -8,6 +8,10 @@ import pacman.engine.core.Block.Block;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Map.Map;
 import pacman.gameplay.Bonus.advantageBonus.PacGomme;
+import pacman.gameplay.ghost.Blinky;
+import pacman.gameplay.ghost.Clyde;
+import pacman.gameplay.ghost.Inky;
+import pacman.gameplay.ghost.Pinky;
 import pacman.gameplay.pacman.Pacman;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -72,7 +76,6 @@ public class LabyrinthFile{
 
                             try {
                                 EntityType blocKind = EntityType.valueOf(blocElement.getAttribute("type"));
-
                                 switch (blocKind) {
                                     case EMPTY:
                                         break;
@@ -84,6 +87,24 @@ public class LabyrinthFile{
                                         break;
                                     case PACMAN:
                                         map.addMovableToList(new Pacman(3, blocX,blocY));
+                                        break;
+                                    case GHOST:
+                                        String entityName = blocElement.getAttribute("name");
+                                        switch(entityName){
+                                            case "PINKY":
+                                                map.addMovableToList(new Pinky(blocX, blocY));
+                                                break;
+                                            case "INKY":
+                                                map.addMovableToList(new Inky(blocX, blocY));
+                                                break;
+                                            case "CLYDE":
+                                                map.addMovableToList(new Clyde(blocX, blocY));
+                                                break;
+                                            case "BLINKY":
+                                                map.addMovableToList(new Blinky(blocX, blocY));
+                                                break;
+                                        }
+                                        break;
                                     default:
                                         System.out.println("unknow " + blocKind.name());
                                         break;

@@ -56,7 +56,7 @@ public class Pacman extends MovableEntity {
         MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
     }
 
-    public void getDamaged(ResizableCanvas canvas)
+    public void getDamaged()
     {
         /* If PacMan get hit even though he has at least 1 life, then he dies and respawn */
         if(nbLives > 1) {

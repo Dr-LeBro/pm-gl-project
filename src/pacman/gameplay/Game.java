@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.Main;
+import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.KeyboardInput;
@@ -12,7 +13,6 @@ import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
-import pacman.gameplay.ghost.Blinky;
 import pacman.gameplay.ghost.Ghost;
 import pacman.gameplay.pacman.Pacman;
 import pacman.gameplay.scoreManager.Score;
@@ -35,12 +35,6 @@ public class Game {
         pGame.setCanvas(new ResizableCanvas(labX, labY, root.getWidth(), root.getHeight()));
         root.getChildren().add(pGame.getCanvas());
 
-        pacman = (Pacman)pGame.getCurrMap().getPacMan();
-        pacman.spawn();
-
-        //blinky = new Blinky();
-        //blinky.spawn();
-
         System.out.println("Labyrinth");
         ArrayList<Sprite> staticMap = pGame.getCurrMap().getStaticMapVisual();
         for (int i = 0; i < staticMap.size(); i++){
@@ -58,7 +52,14 @@ public class Game {
             }
         }
 
-        //TODO add a map caller to add entity
+        ArrayList<MovableEntity> ghosts = pGame.getCurrMap().getGhosts();
+        for (int i = 0; i < ghosts.size(); i++){
+            ghosts.get(i).spawn();
+        }
+
+        pacman = (Pacman) pGame.getCurrMap().getPacMan();
+        pacman.spawn();
+
         pGame.setkI(new KeyboardInput(Main.root));
         root.widthProperty().addListener(evtW -> pGame.getCanvas().setWidth(root.getWidth()));
         root.heightProperty().addListener(evtH -> pGame.getCanvas().setHeight(root.getHeight()));
@@ -77,7 +78,7 @@ public class Game {
 
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
-        pacman.move(lastKeyPressed, pGame.getCanvas());
+        pacman.move(lastKeyPressed);
 
     }
 

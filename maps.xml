@@ -286,6 +286,11 @@
 		<bloc x="39" y="4" type="BLOCK"></bloc>
 
 		<bloc x="20" y="20" type="PACMAN"></bloc>
+		<bloc x="30" y="31" type="GHOST" name="PINKY"></bloc>
+		<bloc x="30" y="32" type="GHOST" name="BLINKY"></bloc>
+		<bloc x="30" y="33" type="GHOST" name="INKY"></bloc>
+		<bloc x="30" y="34" type="GHOST" name="CLYDE"></bloc>
+
 
 		<bloc x="18" y="8" type="BLOCK"></bloc>
 		<bloc x="17" y="8" type="BLOCK"></bloc>

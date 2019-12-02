@@ -4,11 +4,11 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
 /* This is the red ghost */
-public class Blinky extends IAGhost {
+public class Clyde extends IAGhost {
     private Sprite[] sprites;
 
-    /* Blinky starts outside the ghost house */
-    public Blinky(int x, int y) {
+    /* Clyde starts outside the ghost house */
+    public Clyde(int x, int y) {
         super(0, 0, x, y);
         sprites = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/red_up.png", "redU");

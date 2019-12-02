@@ -1,5 +1,7 @@
 package pacman.gameplay.ghost;
 
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Map.Map;
@@ -11,16 +13,20 @@ public class Ghost extends MovableEntity {
     private boolean invincible;
     private int behaviour;
     private double respawnTime;
-    private static double initialX = 40, initialY = 40;
+    private Point2D pos;
 
-    public Ghost(int behaviour, double respawnTime) {
-        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost02_up.png", "ghost"), initialX, initialY, 2*Map.ArrayUnit, 0.32);
+
+    public Ghost(int behaviour, double respawnTime, int x, int y) {
+        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.32);
+        pos = new Point2D(x, y);
         Sprite[] sprites = new Sprite[4];
-        sprites[0] = new StaticSprite("file:sprites/qhost01_up.png", "qhostU");
-        sprites[1] = new StaticSprite("file:sprites/qhost01_right.png", "qhostR");
-        sprites[2] = new StaticSprite("file:sprites/qhost01_down.png", "qhostD");
-        sprites[3] = new StaticSprite("file:sprites/qhost01_left.png", "qhostL");
-        setMovingSprites(sprites);
+        sprites[0] = new StaticSprite("file:sprites/ghost1_up.png", "ghostU");
+        sprites[1] = new StaticSprite("file:sprites/ghost1_right.png", "ghostR");
+        sprites[2] = new StaticSprite("file:sprites/ghost1_down.png", "ghostD");
+        sprites[3] = new StaticSprite("file:sprites/ghost1_left.png", "ghostL");
+        if(setMovingSprites(sprites)){
+            System.out.println("Ghost Sprites loaded");
+        }
         invincible = true;
         this.behaviour = behaviour;
         this.respawnTime = respawnTime;
@@ -40,6 +46,6 @@ public class Ghost extends MovableEntity {
 
     public void getDamaged(ResizableCanvas canvas) {
         kill();
-        respawn(initialX, initialY);
+        respawn(pos.getX(), pos.getY());
     }
 }

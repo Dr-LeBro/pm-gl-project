@@ -10,6 +10,7 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Map {
 
@@ -71,13 +72,14 @@ public class Map {
         return null;
     }
 
-    public MovableEntity getGhost()
+    public ArrayList<MovableEntity> getGhosts()
     {
+        ArrayList<MovableEntity> ghosts = new ArrayList<>();
         for (int i = 0; i < movableList.size(); i++) {
             if(movableList.get(i).getType() == EntityType.GHOST)
-                return movableList.get(i);
+                ghosts.add(movableList.get(i));
         }
-        return null;
+        return ghosts;
     }
 
     public void setStaticMap(int x,int y, Block e)

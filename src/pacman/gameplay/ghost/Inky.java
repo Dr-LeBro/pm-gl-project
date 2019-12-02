@@ -4,10 +4,10 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
 /* This is the pink ghost */
-public class Pinky extends IAGhost {
+public class Inky extends IAGhost {
     private Sprite[] sprites;
 
-    public Pinky(int x, int y) {
+    public Inky(int x, int y) {
         super(1, 2.5, x, y);
         sprites = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/pink_up.png", "pinkU");

@@ -4,7 +4,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
-import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
@@ -79,7 +78,7 @@ public class MovableEntity extends Entity {
     }
 
 
-    public void move(KeyCode keyPressed, ResizableCanvas canvas) {
+    public void move(KeyCode keyPressed) {
         setWishedDirection(keyPressed);
         boolean inContactWished = false, inContactDir = false;
         double tempXWished, tempYWished, tempXDir, tempYDir;

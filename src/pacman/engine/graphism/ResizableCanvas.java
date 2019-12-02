@@ -2,7 +2,6 @@ package pacman.engine.graphism;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import java.util.HashMap;
 
@@ -62,6 +61,7 @@ public class ResizableCanvas extends Canvas{
         newObject.setKey(key);
         newObject.setRatios(ratioX, ratioY);
         drawableObjects.put(newObject.getKey(), newObject);
+        //System.out.println(drawableObjects.get(key).getName() + " : " + drawableObjects.get(key).getPoint());
     }
 
     public void removeDrawingElement(DrawableObject removedObject){
