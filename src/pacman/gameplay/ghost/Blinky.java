@@ -15,5 +15,12 @@ public class Blinky extends IAGhost {
         sprites[1] = new StaticSprite("file:sprites/red_right.png", "redR");
         sprites[2] = new StaticSprite("file:sprites/red_down.png", "redD");
         sprites[3] = new StaticSprite("file:sprites/red_left.png", "redL");
+        setMovingSprites(sprites);
+    }
+
+    @Override
+    public void chase()
+    {
+
     }
 }

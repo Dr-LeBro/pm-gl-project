@@ -8,13 +8,14 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.gameplay.ghost.mode.Mode;
 
 public class Ghost extends MovableEntity {
     private boolean invincible;
     private int behaviour;
     private double respawnTime;
     private Point2D pos;
-
+    private Mode mode;
 
     public Ghost(int behaviour, double respawnTime, int x, int y) {
         super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.32);
@@ -28,6 +29,7 @@ public class Ghost extends MovableEntity {
             System.out.println("Ghost Sprites loaded");
         }
         invincible = true;
+        mode = Mode.SCATTER;
         this.behaviour = behaviour;
         this.respawnTime = respawnTime;
     }
