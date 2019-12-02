@@ -104,14 +104,6 @@ public class MovableEntity extends Entity {
                     }
                 }
             }
-            Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
-            for (int i = 0; i < staticEntities.length ; i++){
-                for (int j = 0; j < staticEntities[i].length ; j++){
-                    if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
-                        staticEntities[i][j].kill();
-                    }
-                }
-            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

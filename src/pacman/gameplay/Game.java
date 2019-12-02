@@ -79,7 +79,6 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         pacman.move(lastKeyPressed);
-
     }
 
     private void graphicalUpdate(){

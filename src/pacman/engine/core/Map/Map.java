@@ -10,7 +10,6 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Map {
 
