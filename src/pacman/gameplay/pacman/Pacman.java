@@ -1,8 +1,11 @@
 package pacman.gameplay.pacman;
 
+import javafx.scene.input.KeyCode;
 import pacman.GUI.inGameGUI.MainGameGUI;
+import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
+import pacman.engine.core.GameState;
 import pacman.engine.graphism.*;
 import pacman.engine.core.Map.Map;
 import pacman.gameplay.GameEvent;
@@ -56,12 +59,12 @@ public class Pacman extends MovableEntity {
         MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
     }
 
-    public void getDamaged()
+    public void kill()
     {
         /* If PacMan get hit even though he has at least 1 life, then he dies and respawn */
         if(nbLives > 1) {
             nbLives--;
-            kill();
+            super.kill();
             respawn( this.x, this.y);
 
             //call GUI
@@ -70,8 +73,21 @@ public class Pacman extends MovableEntity {
 
         /* Else, he is deleted, and the game ends */
         else {
-            kill();
+            super.kill();
             delete();
+        }
+    }
+
+    @Override
+    public void move(KeyCode keyPressed) {
+        super.move(keyPressed);
+        Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+        for (int i = 0; i < staticEntities.length ; i++){
+            for (int j = 0; j < staticEntities[i].length ; j++){
+                if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
+                    staticEntities[i][j].kill();
+                }
+            }
         }
     }
 
