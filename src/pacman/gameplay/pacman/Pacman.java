@@ -85,13 +85,14 @@ public class Pacman extends MovableEntity {
     public void move(KeyCode keyPressed) {
         super.move(keyPressed);
         Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
-        for (int i = 0; i < staticEntities.length ; i++){
-            for (int j = 0; j < staticEntities[i].length ; j++){
-                if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
-                    staticEntities[i][j].kill();
+        if(staticEntities != null)
+            for (int i = 0; i < staticEntities.length ; i++){
+                for (int j = 0; j < staticEntities[i].length ; j++){
+                    if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
+                        staticEntities[i][j].kill();
+                    }
                 }
             }
-        }
     }
 
     /* TODO : From 100 to 5.000 points for fruits, and 200-400-800-1600 points for ghosts */
