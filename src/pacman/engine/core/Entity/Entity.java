@@ -86,6 +86,11 @@ public abstract class Entity {
         invulnerable = val;
     }
 
+    public boolean getInvulnerable()
+    {
+        return invulnerable;
+    }
+
     public void kill(){
         visible = false;
         GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
