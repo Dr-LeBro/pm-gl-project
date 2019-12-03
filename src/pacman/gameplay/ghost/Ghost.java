@@ -9,15 +9,13 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
+import pacman.gameplay.scoreManager.Score;
 
 public class Ghost extends MovableEntity {
-    private boolean invincible;
     private int behaviour;
     private double respawnTime;
     private Point2D pos;
     private Mode mode;
-    int spawnX;
-    int spawnY;
 
     public Ghost(int behaviour, double respawnTime, int x, int y) {
         super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.32);
@@ -30,16 +28,9 @@ public class Ghost extends MovableEntity {
         if(setMovingSprites(sprites)){
             System.out.println("Ghost Sprites loaded");
         }
-        spawnX = x*Map.ArrayUnit;
-        spawnY = y*Map.ArrayUnit;
-        invincible = true;
         mode = Mode.SCATTER;
         this.behaviour = behaviour;
         this.respawnTime = respawnTime;
-    }
-
-    public boolean isInvincible() {
-        return invincible;
     }
 
     public int getBehaviour() {
@@ -52,8 +43,8 @@ public class Ghost extends MovableEntity {
 
     @Override
     public void kill() {
+        Score.getInstance().add(100);
         super.kill();
-        respawn(spawnX, spawnY);
     }
 
     public void move(KeyCode keyPressed){
