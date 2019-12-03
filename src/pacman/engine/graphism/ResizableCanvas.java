@@ -24,15 +24,24 @@ public class ResizableCanvas extends Canvas{
         fontColor = Color.rgb(1,20,50,1.0); //RGBA
 
         widthProperty().addListener(evtW ->{
-            resizeCanvas(super.getWidth(), super.getHeight());
+            resize(super.getWidth(), super.getHeight());
             draw();
         });
         heightProperty().addListener(evtH ->{
-            resizeCanvas(super.getWidth(), super.getHeight());
+            resize(super.getWidth(), super.getHeight());
             draw();
         });
         drawableObjects = new HashMap<>();
-        resizeCanvas(width, height);
+        resize(width, height);
+    }
+
+    @Override
+    public void resize(double x, double y){
+        clear();
+        super.setHeight(y);
+        super.setWidth(x);
+        super.resize(x, y);
+        resizeCanvas(x,y);
     }
 
     private void resizeCanvas(double width, double height){

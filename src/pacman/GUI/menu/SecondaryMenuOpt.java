@@ -6,6 +6,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import pacman.Main;
+import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
 
 public class SecondaryMenuOpt extends SecondaryMenu{
@@ -19,11 +20,12 @@ public class SecondaryMenuOpt extends SecondaryMenu{
         ChangeListener<Number> selectResolutionListener = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                changeOpt1();
+
             }
         };
 
         resolution = new SliderManager(selectResolutionListener, 1, 3,1);
+        ButtonManager applyResize = new ButtonManager("Apply", event -> changeOpt1());
 
         if(Main.primaryStage.getWidth() == lowResWidth.getX()){
             resolution.setValue(1);
@@ -37,6 +39,7 @@ public class SecondaryMenuOpt extends SecondaryMenu{
 
         rootOfMenu.add(resizeText, 0, 0);
         rootOfMenu.add(resolution.getComponent(), 0, 1);
+        rootOfMenu.add(applyResize.getComponent(), 0, 2);
 
     }
 
