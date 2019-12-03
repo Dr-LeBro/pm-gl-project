@@ -52,6 +52,17 @@ public class MovableEntity extends Entity {
     }
 
     @Override
+    public void resize(double x, double y){
+        sizeX = x;
+        sizeY = y;
+        for(int i = 0; i<movingSprites.length; i++){
+            GameState.getInstance().getCanvas().removeDrawingElement(movingSprites[i]);
+            movingSprites[i].setSize(sizeX, sizeY);
+        }
+        drawCurrentSprite();
+    }
+
+    @Override
     public void drawCurrentSprite(){
         GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
         if(isVisible()) {

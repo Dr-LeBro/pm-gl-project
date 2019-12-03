@@ -24,7 +24,9 @@ public class KeyboardInput {
             lastKeyPressed = KeyCode.UP;
         }else if(keyEvent.getCode() == KeyCode.DOWN) {
             lastKeyPressed = KeyCode.DOWN;
-        }else{ }
+        }else if(keyEvent.getCode() == KeyCode.A){
+            lastKeyPressed = KeyCode.A;
+        }
         //System.out.println(keyEvent.getCode());
     }
 

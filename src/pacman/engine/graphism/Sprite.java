@@ -50,6 +50,7 @@ public abstract class Sprite implements DrawableObject{
     public void setSize(double width, double height){
         setWidth(width);
         setHeight(height);
+        loadSprite();
     }
 
     @Override

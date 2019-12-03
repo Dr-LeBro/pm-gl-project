@@ -11,6 +11,7 @@ import pacman.engine.graphism.AnimatedSprite;
 import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.engine.physic.movement.Direction;
 import pacman.gameplay.GameEvent;
 
 import java.util.ArrayList;
@@ -19,6 +20,10 @@ public class Pacman extends MovableEntity {
     private int nbLives;
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
+    private long timeResizeBegin = 0; //time in milliS when resize started
+    private long resizeState = 0;
+    private final long resizeDuration = 5000; // in millisecond, duration on resize
+    private final long resizeCooldown = 10000; // in millisecond, duration on cooldown of resize
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 3 * Map.ArrayUnit, 1);
@@ -62,6 +67,7 @@ public class Pacman extends MovableEntity {
         MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
     }
 
+    @Override
     public void kill()
     {
         /* If PacMan get hit even though he has at least 1 life, then he dies and respawn */
@@ -79,6 +85,27 @@ public class Pacman extends MovableEntity {
         }
     }
 
+    public void action(KeyCode keyPressed){
+        move(keyPressed);
+        if (keyPressed == KeyCode.A){
+            resizePowerUp(true);
+        }else{
+            resizePowerUp(false);
+        }
+    }
+
+    private void resizePowerUp(boolean keyPressed){
+        if(timeResizeBegin == -1 && keyPressed){
+            resize(Map.ArrayUnit, Map.ArrayUnit);
+            timeResizeBegin = System.currentTimeMillis();
+        }else if(System.currentTimeMillis() - timeResizeBegin >= resizeDuration){
+            resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
+            timeResizeBegin = -2;
+        }else if(timeResizeBegin == -2){
+
+        }
+    }
+
     @Override
     public void move(KeyCode keyPressed) {
         super.move(keyPressed);
@@ -92,6 +119,7 @@ public class Pacman extends MovableEntity {
                 }
             }
     }
+
 
     /* TODO : From 100 to 5.000 points for fruits, and 200-400-800-1600 points for ghosts */
     public void eat() {}
