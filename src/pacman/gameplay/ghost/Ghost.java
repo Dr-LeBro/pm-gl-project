@@ -213,19 +213,19 @@ public class Ghost extends MovableEntity {
             //System.out.println(i);
 
             if (xPred - 1 == startPos.getX() && yPred == startPos.getY()){
-                System.out.println("RIGHT");
+                //System.out.println("RIGHT");
                 return KeyCode.RIGHT;
             }
             else if (xPred + 1 == startPos.getX() && yPred == startPos.getY()){
-                System.out.println("LEFT");
+                //System.out.println("LEFT");
                 return KeyCode.LEFT;
             }
             else if (xPred == startPos.getX() && yPred - 1 == startPos.getY()){
-                System.out.println("DOWN");
+                //System.out.println("DOWN");
                 return KeyCode.DOWN;
             }
             else if (xPred == startPos.getX() && yPred + 1 == startPos.getY()){
-                System.out.println("UP");
+                //System.out.println("UP");
                 return KeyCode.UP;
             }
             else {
