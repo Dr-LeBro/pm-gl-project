@@ -8,6 +8,7 @@ import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.Utilis.Matrix;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.gameplay.ghost.Ghost;
 
 import java.util.ArrayList;
 
@@ -71,12 +72,12 @@ public class Map {
         return null;
     }
 
-    public ArrayList<MovableEntity> getGhosts()
+    public ArrayList<Ghost> getGhosts()
     {
-        ArrayList<MovableEntity> ghosts = new ArrayList<>();
+        ArrayList<Ghost> ghosts = new ArrayList<>();
         for (int i = 0; i < movableList.size(); i++) {
             if(movableList.get(i).getType() == EntityType.GHOST)
-                ghosts.add(movableList.get(i));
+                ghosts.add((Ghost) movableList.get(i));
         }
         return ghosts;
     }

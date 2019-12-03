@@ -3,6 +3,10 @@ package pacman.gameplay.ghost;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.GameState;
+import javafx.scene.input.KeyCode;
+import pacman.engine.core.Entity.MovableEntity;
+import pacman.engine.core.GameState;
+import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
@@ -26,8 +30,11 @@ public class Blinky extends IAGhost {
     }
 
     @Override
-    public void chase()
+    public KeyCode chase()
     {
+        MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
+        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        //Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
         mode = getMode();
         switch (mode) {
             case CHASE:

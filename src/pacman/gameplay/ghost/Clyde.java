@@ -1,5 +1,9 @@
 package pacman.gameplay.ghost;
 
+import javafx.scene.input.KeyCode;
+import pacman.engine.core.Entity.MovableEntity;
+import pacman.engine.core.GameState;
+import pacman.engine.core.Map.Map;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.GameState;
@@ -26,8 +30,10 @@ public class Clyde extends IAGhost {
     }
 
     @Override
-    public void chase()
+    public KeyCode chase()
     {
+        MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
+        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
         mode = getMode();
         switch (mode) {
             case CHASE:

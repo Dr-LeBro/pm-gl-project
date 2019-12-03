@@ -23,8 +23,7 @@ import java.util.ArrayList;
 public class Game {
 
     private Pacman pacman;
-    private Ghost blinky;
-    private ArrayList<MovableEntity> ghosts;
+    private ArrayList<Ghost> ghosts;
     GameState pGame = GameState.getInstance();
 
     public Game(GridPane root, String mapId){
@@ -80,10 +79,28 @@ public class Game {
 
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
-        pacman.action(lastKeyPressed);
-        //ghosts.get(0).move(lastKeyPressed);
-        IAGhost ghost = (IAGhost) ghosts.get(0);
-        ghost.chase();
+        KeyCode keyGhost = null;
+        pacman.move(lastKeyPressed);
+        for (int i = 0; i < ghosts.size(); i++){
+            switch(ghosts.get(i).getBehaviour()){
+                case 0 : // Blinky
+                    keyGhost = ((Blinky) (ghosts.get(i))).chase();
+                    break;
+                case 1 : // Pinky
+                    keyGhost = ((Pinky) (ghosts.get(i))).chase();
+                    break;
+                case 2 : // Inky
+                    keyGhost = ((Inky) (ghosts.get(i))).chase();
+                    break;
+                case 3 : // Clyde
+                    keyGhost = ((Clyde) (ghosts.get(i))).chase();
+                    break;
+                default : // Default
+                    keyGhost = null;
+                    break;
+            }
+            ghosts.get(i).move(keyGhost);
+        }
     }
 
     private void graphicalUpdate(){
