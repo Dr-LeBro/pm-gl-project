@@ -64,6 +64,14 @@ public abstract class Entity {
         }
     }
 
+    public void resize(double x, double y){
+        sizeX = x;
+        sizeY = y;
+        currentSprite.setSize(sizeX, sizeY);
+        GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
+        spawn();
+    }
+
     //send false if is nothing to show
     public boolean spawn(){
         if(currentSprite == null){

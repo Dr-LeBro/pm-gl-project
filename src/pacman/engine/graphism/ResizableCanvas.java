@@ -74,6 +74,7 @@ public class ResizableCanvas extends Canvas{
     }
 
     public void removeDrawingElement(DrawableObject removedObject){
+        if(removedObject == null) return;
         drawableObjects.remove(removedObject.getKey());
         removedObject.setKey(null);
     }

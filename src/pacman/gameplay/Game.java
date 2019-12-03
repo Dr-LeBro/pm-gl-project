@@ -79,8 +79,8 @@ public class Game {
 
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
-        pacman.move(lastKeyPressed);
-        ghosts.get(0).move(KeyCode.UP);
+        pacman.action(lastKeyPressed);
+        ghosts.get(0).move(lastKeyPressed);
     }
 
     private void graphicalUpdate(){
