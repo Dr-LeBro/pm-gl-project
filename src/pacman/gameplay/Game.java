@@ -79,7 +79,7 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         KeyCode keyGhost = null;
-        pacman.move(lastKeyPressed);
+        pacman.action(lastKeyPressed);
         for (int i = 0; i < ghosts.size(); i++){
             switch(ghosts.get(i).getBehaviour()){
                 case 0 : // Blinky
