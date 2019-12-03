@@ -17,7 +17,7 @@ public class MovableEntity extends Entity {
     private Direction actualDir; // Direction the entity is currently heading toward
     private Direction wishedDirection; // Direction the entity wishes to go
     private Sprite movingSprites[];
-    private double spawnX, spawnY;
+    protected double spawnX, spawnY;
 
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
@@ -87,7 +87,6 @@ public class MovableEntity extends Entity {
     public void kill()
     {
         super.kill();
-        respawn(spawnX, spawnY);
     }
 
 

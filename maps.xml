@@ -72,7 +72,7 @@
 
 		<!-- line 2 -->
 		<bloc x="0" y="2" type="BLOCK"/>
-		<bloc x="2" y="2" type="PAC_GOMME"/>
+		<bloc x="2" y="2" type="SUPER_PAC_GOMME"/>
 		<bloc x="3" y="2" type="PAC_GOMME"/>
 		<bloc x="4" y="2" type="PAC_GOMME"/>
 		<bloc x="5" y="2" type="PAC_GOMME"/>
@@ -106,7 +106,7 @@
 		<bloc x="35" y="2" type="PAC_GOMME"/>
 		<bloc x="36" y="2" type="PAC_GOMME"/>
 		<bloc x="37" y="2" type="PAC_GOMME"/>
-		<bloc x="38" y="2" type="PAC_GOMME"/>
+		<bloc x="38" y="2" type="SUPER_PAC_GOMME"/>
 		<bloc x="40" y="2" type="BLOCK"/>
 
 		<!-- line 3 -->
@@ -1263,7 +1263,7 @@
 		<bloc x="0" y="37" type="BLOCK"/>
 		<bloc x="1" y="37" type="BLOCK"/>
 
-		<bloc x="3" y="37" type="PAC_GOMME"/>
+		<bloc x="3" y="37" type="SUPER_PAC_GOMME"/>
 		<bloc x="4" y="37" type="PAC_GOMME"/>
 		<bloc x="5" y="37" type="PAC_GOMME"/>
 		<bloc x="6" y="37" type="PAC_GOMME"/>
@@ -1297,7 +1297,7 @@
 		<bloc x="34" y="37" type="PAC_GOMME"/>
 		<bloc x="35" y="37" type="PAC_GOMME"/>
 		<bloc x="36" y="37" type="PAC_GOMME"/>
-		<bloc x="37" y="37" type="PAC_GOMME"/>
+		<bloc x="37" y="37" type="SUPER_PAC_GOMME"/>
 
 		<bloc x="39" y="37" type="BLOCK"/>
 		<bloc x="40" y="37" type="BLOCK"/>

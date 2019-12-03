@@ -69,8 +69,8 @@ public class Game {
     public void gameLoop(){
         gameUpdate();
         graphicalUpdate();
-        //TODO make game condition end here
-        if(false){
+
+        if(GameState.getInstance().getCurrMap().isWon() || getPacmanRemainingLifes() < 1){
             Event myEvent = new GameEvent(this, pGame.getRoot(), GameEvent.GAME_END);
             this.pGame.getRoot().fireEvent(myEvent);
         }
