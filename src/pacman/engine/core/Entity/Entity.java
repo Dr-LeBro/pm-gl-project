@@ -19,11 +19,14 @@ public abstract class Entity {
 
     protected boolean visible;
 
+    protected boolean invulnerable;
+
     protected Sprite currentSprite;
 
     public Entity(EntityType kind, Sprite sprite, double size) {
         type = kind;
         visible = false;
+        invulnerable = false;
         sizeX = sizeY = size;
         this.currentSprite = sprite;
         this.currentSprite.setPoint(x,y);
@@ -76,6 +79,11 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         spawn();
+    }
+
+    public void setInvulnerable(boolean val)
+    {
+        invulnerable = val;
     }
 
     public void kill(){
