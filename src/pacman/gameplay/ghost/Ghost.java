@@ -6,9 +6,11 @@ import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
+import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
+import pacman.gameplay.pacman.Pacman;
 
 public class Ghost extends MovableEntity {
     private boolean invincible;
@@ -16,8 +18,6 @@ public class Ghost extends MovableEntity {
     private double respawnTime;
     private Point2D pos;
     private Mode mode;
-    int spawnX;
-    int spawnY;
 
     public Ghost(int behaviour, double respawnTime, int x, int y) {
         super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.32);
@@ -30,8 +30,6 @@ public class Ghost extends MovableEntity {
         if(setMovingSprites(sprites)){
             System.out.println("Ghost Sprites loaded");
         }
-        spawnX = x*Map.ArrayUnit;
-        spawnY = y*Map.ArrayUnit;
         invincible = true;
         mode = Mode.SCATTER;
         this.behaviour = behaviour;
@@ -50,19 +48,19 @@ public class Ghost extends MovableEntity {
         return respawnTime;
     }
 
-    @Override
-    public void kill() {
-        super.kill();
-        respawn(spawnX, spawnY);
+    public Mode getMode() {
+        return mode;
+    }
+
+    public void getDamaged(ResizableCanvas canvas) {
+        kill();
+        respawn(pos.getX(), pos.getY());
     }
 
     public void move(KeyCode keyPressed){
         super.move(keyPressed);
         if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
-            if(GameState.getInstance().getCurrMap().getPacMan().getInvulnerable())
-                this.kill();
-            else
-                GameState.getInstance().getCurrMap().getPacMan().kill();
+            ((Pacman)GameState.getInstance().getCurrMap().getPacMan()).kill();
         }
     }
 }

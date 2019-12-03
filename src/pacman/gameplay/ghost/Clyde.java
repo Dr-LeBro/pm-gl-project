@@ -23,4 +23,22 @@ public class Clyde extends IAGhost {
     {
 
     }
+
+    @Override
+    public void aggressiveChase()
+    {
+
+    }
+
+    @Override
+    public void scatterChase()
+    {
+
+    }
+
+    @Override
+    public void frightenedChase()
+    {
+
+    }
 }

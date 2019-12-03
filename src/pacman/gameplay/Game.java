@@ -80,7 +80,7 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         pacman.move(lastKeyPressed);
-        ghosts.get(0).move(lastKeyPressed);
+        ghosts.get(0).move(KeyCode.UP);
     }
 
     private void graphicalUpdate(){

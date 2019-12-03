@@ -2,6 +2,7 @@ package pacman.gameplay.ghost;
 
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.gameplay.ghost.mode.Mode;
 
 /* This is the red ghost */
 public class Blinky extends IAGhost {
@@ -20,6 +21,32 @@ public class Blinky extends IAGhost {
 
     @Override
     public void chase()
+    {
+        Mode mode = getMode();
+        switch (mode) {
+            case CHASE:
+                break;
+            case SCATTER:
+                break;
+            case FRIGHTENED:
+                break;
+        }
+    }
+
+    @Override
+    public void aggressiveChase()
+    {
+
+    }
+
+    @Override
+    public void scatterChase()
+    {
+
+    }
+
+    @Override
+    public void frightenedChase()
     {
 
     }
