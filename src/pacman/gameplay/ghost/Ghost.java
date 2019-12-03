@@ -45,6 +45,7 @@ public class Ghost extends MovableEntity {
     public void kill() {
         Score.getInstance().add(100);
         super.kill();
+        respawn(spawnX, spawnY);
     }
 
     public void move(KeyCode keyPressed){

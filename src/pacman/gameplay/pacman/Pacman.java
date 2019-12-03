@@ -65,7 +65,7 @@ public class Pacman extends MovableEntity {
         if(nbLives > 1) {
             nbLives--;
             super.kill();
-
+            respawn(spawnX, spawnY);
             //call GUI
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
         }
