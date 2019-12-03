@@ -87,7 +87,6 @@ public class MovableEntity extends Entity {
     public void kill()
     {
         super.kill();
-        respawn(spawnX, spawnY);
     }
 
 
