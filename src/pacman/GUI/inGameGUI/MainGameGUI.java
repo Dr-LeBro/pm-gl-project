@@ -39,6 +39,20 @@ public class MainGameGUI {
         eventHandler.addEventHandler(GameEvent.GAME_SCORE_UPDATED, event -> updateScoreDisplay());
         eventHandler.addEventHandler(GameEvent.GAME_LIFE_UPDATED, event -> updateLifesDisplay());
 
+        eventHandler.addEventHandler(GameEvent.GAME_POWERUP_READY, event -> showPUEvent(event.getAgrs()));
+        eventHandler.addEventHandler(GameEvent.GAME_POWERUP_USED, event -> showPUEvent(event.getAgrs()));
+        eventHandler.addEventHandler(GameEvent.GAME_POWERUP_IN_COOLDOWN, event -> showPUEvent(event.getAgrs()));
+
+
+    }
+
+    private void showPUEvent(String[] args){
+        if(args.length ==2 ){
+            //System.out.println(args[0] + ": " + args[1]);
+        }else{
+            System.out.println(args[0]);
+        }
+
     }
 
     public void launch(){

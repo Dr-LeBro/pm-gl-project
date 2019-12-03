@@ -38,4 +38,8 @@ public class GameEvent extends Event {
         super(o, eventTarget, eventType);
         this.args = args;
     }
+
+    public String[] getAgrs(){
+        return args;
+    }
 }

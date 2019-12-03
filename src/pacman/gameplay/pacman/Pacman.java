@@ -11,7 +11,7 @@ import pacman.engine.graphism.AnimatedSprite;
 import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
-import pacman.engine.physic.movement.Direction;
+import pacman.gameplay.Bonus.advantageBonus.PowerUp;
 import pacman.gameplay.GameEvent;
 
 import java.util.ArrayList;
@@ -20,10 +20,7 @@ public class Pacman extends MovableEntity {
     private int nbLives;
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
-    private long timeResizeBegin = 0; //time in milliS when resize started
-    private long resizeState = 0;
-    private final long resizeDuration = 5000; // in millisecond, duration on resize
-    private final long resizeCooldown = 10000; // in millisecond, duration on cooldown of resize
+    private PowerUp resize = new PowerUp(2000, 5000, "resize");
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 3 * Map.ArrayUnit, 1);
@@ -95,15 +92,20 @@ public class Pacman extends MovableEntity {
     }
 
     private void resizePowerUp(boolean keyPressed){
-        if(timeResizeBegin == -1 && keyPressed){
+        if(keyPressed && resize.canBeUsed()){
+            resize.use();
             resize(Map.ArrayUnit, Map.ArrayUnit);
-            timeResizeBegin = System.currentTimeMillis();
-        }else if(System.currentTimeMillis() - timeResizeBegin >= resizeDuration){
-            resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
-            timeResizeBegin = -2;
-        }else if(timeResizeBegin == -2){
-
+        }else{
+            int currentState = resize.checkState();
+            if(!resize.isEndedTargeted()){
+                System.out.println("X: "+ x + "Y:" + y);
+                x = ((int) x/Map.ArrayUnit) * Map.ArrayUnit;
+                y = ((int) y/Map.ArrayUnit) * Map.ArrayUnit;
+                System.out.println("X: "+ x + "Y:" + y);
+                resize(3* Map.ArrayUnit, 3* Map.ArrayUnit);
+            }
         }
+
     }
 
     @Override
