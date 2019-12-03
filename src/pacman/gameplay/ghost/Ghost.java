@@ -156,9 +156,13 @@ public class Ghost extends MovableEntity {
         //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + endPos.toString());
         final int LARGEUR = GameState.getInstance().getCurrMap().getMaxX();
         final int LONGUEUR = GameState.getInstance().getCurrMap().getMaxY();
-        Position startPos = new Position((int)Math.floor(this.x)/ Map.ArrayUnit, (int)Math.floor(this.y)/ Map.ArrayUnit);
-        System.out.println(startPos.toString());
-        Position endPos = new Position(30, 38);
+        Position startPos = new Position(((int)Math.floor(this.x) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(this.y) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        System.out.println(startPos.toString() + "  x : " + this.x + "  y : " + this.y + "  actualDir : " + getActualDir() + "  wishedDir : " + this.getWishedDirection());
+        //Position endPos = new Position(38, 2);
+        MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
+        Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        if (startPos.equals(endPos))
+            return null;
         boolean[][] alreadyVisited = new boolean[LARGEUR][LONGUEUR];// In java, the basic value of each cell for an array of boolean is false
         Position[][] predecessor = new Position[LARGEUR][LONGUEUR];
         QueueMaze queue = new QueueMaze();
@@ -203,14 +207,22 @@ public class Ghost extends MovableEntity {
             //}
             //System.out.println(i);
 
-            if (xPred - 1 == startPos.getX() && yPred == startPos.getY())
+            if (xPred - 1 == startPos.getX() && yPred == startPos.getY()){
+                System.out.println("RIGHT");
                 return KeyCode.RIGHT;
-            else if (xPred + 1 == startPos.getX() && yPred == startPos.getY())
+            }
+            else if (xPred + 1 == startPos.getX() && yPred == startPos.getY()){
+                System.out.println("LEFT");
                 return KeyCode.LEFT;
-            else if (xPred == startPos.getX() && yPred - 1 == startPos.getY())
+            }
+            else if (xPred == startPos.getX() && yPred - 1 == startPos.getY()){
+                System.out.println("DOWN");
                 return KeyCode.DOWN;
-            else if (xPred == startPos.getX() && yPred + 1 == startPos.getY())
+            }
+            else if (xPred == startPos.getX() && yPred + 1 == startPos.getY()){
+                System.out.println("UP");
                 return KeyCode.UP;
+            }
             else {
                 System.out.println("lastX : " + xPred + "  lastY : " + yPred + "  startPos.getX() : " + startPos.getX() + "startPos.getY()" + startPos.getY());
                 return null;

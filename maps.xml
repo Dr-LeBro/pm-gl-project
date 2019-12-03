@@ -727,7 +727,7 @@
         <bloc x="14" y="22" type="BLOCK"/>
         <bloc x="15" y="22" type="BLOCK"/>
 
-        <bloc x="17" y="32" type="GHOST" name="PINKY"/>
+        <bloc x="12" y="22" type="GHOST" name="PINKY"/>
 
         <bloc x="20" y="22" type="GHOST" name="BLINKY"/>
 
@@ -873,7 +873,7 @@
         
         
 
-		<bloc x="20" y="30" type="PACMAN"/>
+		<bloc x="20" y="38" type="PACMAN"/>
         <bloc x="30" y="34" type="GHOST" name="CLYDE"/>
 
 

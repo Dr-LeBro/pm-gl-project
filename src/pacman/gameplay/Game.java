@@ -80,11 +80,16 @@ public class Game {
 
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
+        KeyCode keyGhost = null;
         pacman.move(lastKeyPressed);
-        if (ghosts.get(0).getWishedDirection() == Direction.STANDING){
-            ghosts.get(0).move(ghosts.get(0).ghostIA());
+        if (ghosts.get(0).getWishedDirection() == Direction.STANDING)
+            keyGhost = ghosts.get(0).ghostIA();
+        ghosts.get(0).move(keyGhost);
+        /*if (ghosts.get(0).getWishedDirection() == Direction.STANDING){
+            //ghosts.get(0).move(ghosts.get(0).ghostIA());
+            ghosts.get(0).move(lastKeyPressed);
             System.out.println("IA : " + ghosts.get(0).getWishedDirection());
-        }
+        }*/
     }
 
     private void graphicalUpdate(){

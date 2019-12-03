@@ -171,4 +171,8 @@ public class MovableEntity extends Entity {
     public Direction getWishedDirection() {
         return wishedDirection;
     }
+
+    public Direction getActualDir() {
+        return actualDir;
+    }
 }
