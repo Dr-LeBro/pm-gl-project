@@ -17,6 +17,8 @@ public class MovableEntity extends Entity {
     private Direction actualDir; // Direction the entity is currently heading toward
     private Direction wishedDirection; // Direction the entity wishes to go
     private Sprite movingSprites[];
+    private double spawnX, spawnY;
+
 
     public MovableEntity(EntityType kind, Sprite baseSprite, double size, double speed)
     {
@@ -29,6 +31,8 @@ public class MovableEntity extends Entity {
     public MovableEntity(EntityType kind, Sprite baseSprite, double x, double y, double size, double speed)
     {
         super(kind, baseSprite, x, y, size);
+        spawnX = x;
+        spawnY = y;
         moveManager = new Movement(speed);
         this.actualDir = Direction.STANDING;
         this.wishedDirection= Direction.STANDING;
@@ -77,6 +81,13 @@ public class MovableEntity extends Entity {
         }else if(keyPressed == KeyCode.RIGHT){
             if (Direction.RIGHT != this.actualDir) this.wishedDirection = Direction.RIGHT;
         }
+    }
+
+    @Override
+    public void kill()
+    {
+        super.kill();
+        respawn(spawnX, spawnY);
     }
 
 

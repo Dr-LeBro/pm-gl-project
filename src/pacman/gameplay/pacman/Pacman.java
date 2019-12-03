@@ -16,12 +16,9 @@ public class Pacman extends MovableEntity {
     private int nbLives;
     private int displayedPoints;    //points displayed on screen
     private int nbPoints;           //points used to get lives
-    private double posX, posY;
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 3 * Map.ArrayUnit, 1);
-        posX = x * Map.ArrayUnit;
-        posY = y * Map.ArrayUnit;
         Sprite sprites[] = new Sprite[4];
         ArrayList<String> tempSprites = new ArrayList<>();
         AnimationSyncrhonizer animSync = new AnimationSyncrhonizer(0.30);
@@ -68,7 +65,6 @@ public class Pacman extends MovableEntity {
         if(nbLives > 1) {
             nbLives--;
             super.kill();
-            respawn(posX, posY);
 
             //call GUI
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_LIFE_UPDATED));
@@ -76,7 +72,6 @@ public class Pacman extends MovableEntity {
 
         /* Else, he is deleted, and the game ends */
         else {
-            super.kill();
             delete();
         }
     }

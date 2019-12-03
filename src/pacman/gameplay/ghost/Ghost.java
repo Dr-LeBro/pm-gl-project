@@ -6,14 +6,12 @@ import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
-import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
-import pacman.gameplay.pacman.Pacman;
+import pacman.gameplay.scoreManager.Score;
 
 public class Ghost extends MovableEntity {
-    private boolean invincible;
     private int behaviour;
     private double respawnTime;
     private Point2D pos;
@@ -30,14 +28,9 @@ public class Ghost extends MovableEntity {
         if(setMovingSprites(sprites)){
             System.out.println("Ghost Sprites loaded");
         }
-        invincible = true;
         mode = Mode.SCATTER;
         this.behaviour = behaviour;
         this.respawnTime = respawnTime;
-    }
-
-    public boolean isInvincible() {
-        return invincible;
     }
 
     public int getBehaviour() {
@@ -48,19 +41,19 @@ public class Ghost extends MovableEntity {
         return respawnTime;
     }
 
-    public Mode getMode() {
-        return mode;
-    }
-
-    public void getDamaged(ResizableCanvas canvas) {
-        kill();
-        respawn(pos.getX(), pos.getY());
+    @Override
+    public void kill() {
+        Score.getInstance().add(100);
+        super.kill();
     }
 
     public void move(KeyCode keyPressed){
         super.move(keyPressed);
         if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
-            ((Pacman)GameState.getInstance().getCurrMap().getPacMan()).kill();
+            if(GameState.getInstance().getCurrMap().getPacMan().getInvulnerable())
+                this.kill();
+            else
+                GameState.getInstance().getCurrMap().getPacMan().kill();
         }
     }
 }
