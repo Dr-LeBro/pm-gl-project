@@ -201,6 +201,15 @@ public class Map {
         return returnMap;
     }
 
+    public boolean isWon()
+    {
+        for(int x = 0; x < staticMap.length; x++)
+            for(int y = 0; y < staticMap[0].length; y++)
+                if(staticEntityMap[x][y] != null && (staticEntityMap[x][y].getType() == EntityType.PAC_GOMME && staticEntityMap[x][y].isVisible()))
+                    return false;
+        return true;
+    }
+
     public int getMaxX() {
         return maxX;
     }
