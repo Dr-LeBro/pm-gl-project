@@ -11,7 +11,6 @@ public abstract class IAGhost extends Ghost {
     }
 
     public abstract KeyCode chase();
-    public abstract void chase();
     public abstract void aggressiveChase();
     public abstract void scatterChase();
     public abstract void frightenedChase();

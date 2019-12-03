@@ -5,8 +5,6 @@ import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
 import javafx.geometry.Point2D;
-import javafx.scene.input.KeyCode;
-import pacman.engine.core.GameState;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
@@ -34,7 +32,7 @@ public class Clyde extends IAGhost {
     {
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
         return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
-        mode = getMode();
+        /*mode = getMode();
         switch (mode) {
             case CHASE:
                 aggressiveChase();
@@ -43,7 +41,7 @@ public class Clyde extends IAGhost {
                 break;
             case FRIGHTENED:
                 break;
-        }
+        }*/
     }
 
     @Override

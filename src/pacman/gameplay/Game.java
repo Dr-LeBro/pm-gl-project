@@ -13,8 +13,7 @@ import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
-import pacman.gameplay.ghost.Ghost;
-import pacman.gameplay.ghost.IAGhost;
+import pacman.gameplay.ghost.*;
 import pacman.gameplay.pacman.Pacman;
 import pacman.gameplay.scoreManager.Score;
 
