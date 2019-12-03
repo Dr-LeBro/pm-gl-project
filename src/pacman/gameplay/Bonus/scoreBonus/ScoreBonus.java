@@ -31,12 +31,12 @@ public class ScoreBonus {
 
             HitBox tempHB = new HitBox();
 
-            Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int) x, y);
+            Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap(x, y);
             if (walls != null) {
                 inContact = false;
                 for (int i = 0; i < walls.length; i++) {
                     for (int j = 0; j < walls[i].length; j++) {
-                        if (walls[i][j] != null && tempHB.isInContact(1, 1, x * Map.ArrayUnit, y * Map.ArrayUnit, walls[i][j])) {
+                        if (walls[i][j] != null && tempHB.isInContact(toAdd.getSizeX(), toAdd.getSizeY(), toAdd.getX(), toAdd.getY(), walls[i][j])) {
                             inContact = true;
                             break;
                         }
