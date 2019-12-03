@@ -8,6 +8,8 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
 
+import static pacman.engine.physic.movement.Direction.*;
+
 
 public class MovableEntity extends Entity {
 
@@ -51,9 +53,9 @@ public class MovableEntity extends Entity {
         if(isVisible()) {
             if (this.actualDir == Direction.STANDING) {
                 currentSprite = movingSprites[0];
-            } else if (this.actualDir == Direction.UP) {
+            } else if (this.actualDir == UP) {
                 currentSprite = movingSprites[0];
-            } else if (this.actualDir == Direction.DOWN) {
+            } else if (this.actualDir == DOWN) {
                 currentSprite = movingSprites[1];
             } else if (this.actualDir == Direction.RIGHT) {
                 currentSprite = movingSprites[2];
@@ -67,9 +69,9 @@ public class MovableEntity extends Entity {
 
     private void setWishedDirection(KeyCode keyPressed){
         if(keyPressed == KeyCode.UP){
-            if (Direction.UP != this.actualDir) this.wishedDirection = Direction.UP;
+            if (UP != this.actualDir) this.wishedDirection = UP;
         }else if(keyPressed == KeyCode.DOWN){
-            if (Direction.DOWN != this.actualDir) this.wishedDirection = Direction.DOWN;
+            if (DOWN != this.actualDir) this.wishedDirection = DOWN;
         }else if(keyPressed == KeyCode.LEFT){
             if (Direction.LEFT != this.actualDir) this.wishedDirection = Direction.LEFT;
         }else if(keyPressed == KeyCode.RIGHT){
@@ -80,20 +82,57 @@ public class MovableEntity extends Entity {
 
     public void move(KeyCode keyPressed) {
         setWishedDirection(keyPressed);
-        boolean inContactWished = false, inContactDir = false;
-        double tempXWished, tempYWished, tempXDir, tempYDir;
+        boolean inContactWished = false, inContactWishedTurn = false, inContactDir = false;
+        double tempXWished, tempYWished, tempXDir, tempYDir, greatestX, greatestY;
+        double tempXWishedTurn = -1;
+        double tempYWishedTurn = -1;
         Point2D pointWished = moveManager.move(x, y, this.wishedDirection);
         Point2D pointDir = moveManager.move(x, y, this.actualDir);
         tempXWished = pointWished.getX();
         tempYWished = pointWished.getY();
         tempXDir = pointDir.getX();
         tempYDir = pointDir.getY();
+
+        // TODO if speed > 1 then consider multiple tests at once
+        if (this.x > tempXDir) greatestX = this.x;
+        else greatestX = tempXDir;
+        if (this.y > tempYDir) greatestY = this.y;
+        else greatestY = tempYDir;
+        if (Math.floor(tempXDir) != Math.floor(this.x) && Math.floor(tempXDir) != tempXDir){
+            double differenceX = Math.abs(Math.floor(greatestX) - tempXDir);
+            if (this.wishedDirection == UP){
+                tempXWishedTurn = Math.floor(greatestX);
+                tempYWishedTurn = this.y - differenceX;
+            } else if (this.wishedDirection == DOWN){
+                tempXWishedTurn = Math.floor(greatestX);
+                tempYWishedTurn = this.y + differenceX;
+            }
+        }
+        if (Math.floor(tempYDir) != Math.floor(this.y) && Math.floor(tempYDir) != tempYDir){
+            double differenceY = Math.abs(Math.floor(greatestY) - tempYDir);
+            if (this.wishedDirection == RIGHT){
+                tempXWishedTurn = this.x + differenceY;
+                tempYWishedTurn = Math.floor(greatestY);
+            } else if (this.wishedDirection == LEFT){
+                tempXWishedTurn = this.x - differenceY;
+                tempYWishedTurn = Math.floor(greatestY);
+            }
+        }
+
+
         Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
         if(walls != null) {
             for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++) {
                 for (int j = 0; j < walls[i].length && !inContactWished; j++) {
                     if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
                         inContactWished = true; // Can't go in wished direction
+                    }
+                }
+            }
+            for (int i = 0; i < walls.length && !inContactWishedTurn && this.wishedDirection != Direction.STANDING && tempXWishedTurn != -1; i++) {
+                for (int j = 0; j < walls[i].length && !inContactWishedTurn; j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWishedTurn, tempYWishedTurn, walls[i][j])) {
+                        inContactWishedTurn = true; // Can't go in wished direction
                     }
                 }
             }
@@ -109,6 +148,12 @@ public class MovableEntity extends Entity {
         if (!inContactWished && this.wishedDirection != Direction.STANDING) {
             this.x = tempXWished;
             this.y = tempYWished;
+            this.actualDir = this.wishedDirection;
+            this.wishedDirection = Direction.STANDING;
+            drawCurrentSprite();
+        } else if (!inContactWishedTurn && tempXWishedTurn != -1 && tempYWishedTurn != -1) {
+            this.x = tempXWishedTurn;
+            this.y = tempYWishedTurn;
             this.actualDir = this.wishedDirection;
             this.wishedDirection = Direction.STANDING;
             drawCurrentSprite();

@@ -5,6 +5,9 @@ import javafx.geometry.Point2D;
 public class Movement {
     private double speed;
 
+    public double getSpeed(){
+        return speed;
+    }
     public Movement (double speed){
         this.speed = speed;
     }
