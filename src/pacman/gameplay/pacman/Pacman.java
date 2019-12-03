@@ -6,8 +6,11 @@ import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
-import pacman.engine.graphism.*;
 import pacman.engine.core.Map.Map;
+import pacman.engine.graphism.AnimatedSprite;
+import pacman.engine.graphism.AnimationSyncrhonizer;
+import pacman.engine.graphism.Sprite;
+import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.GameEvent;
 
 import java.util.ArrayList;
