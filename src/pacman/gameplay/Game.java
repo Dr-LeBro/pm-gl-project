@@ -102,4 +102,8 @@ public class Game {
     public int getPacmanRemainingLifes(){
         return pacman.getNbLives();
     }
+
+    public ResizableCanvas getCanvas(){
+        return GameState.getInstance().getCanvas();
+    }
 }

@@ -2,6 +2,8 @@ package pacman.GUI.inGameGUI;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -52,8 +54,12 @@ public class MainGameGUI {
         GridPane.setVgrow(gameRoot, Priority.ALWAYS);
         GridPane.setHgrow(middleGrid, Priority.ALWAYS);
         GridPane.setVgrow(middleGrid, Priority.ALWAYS);
-        //GridPane.setHgrow(currentGame.getCanvas(), Priority.ALWAYS);
-        //GridPane.setVgrow(currentGame.getCanvas(), Priority.ALWAYS);
+
+        middleGrid.setAlignment(Pos.CENTER);
+        Platform.runLater(() -> currentGame.getCanvas().resize(middleGrid.getHeight(), middleGrid.getHeight()));
+
+
+
 
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(0.017),                // 60 FPS
