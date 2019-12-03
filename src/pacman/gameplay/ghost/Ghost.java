@@ -41,6 +41,10 @@ public class Ghost extends MovableEntity {
         return respawnTime;
     }
 
+    public Mode getMode() {
+        return mode;
+    }
+
     @Override
     public void kill() {
         Score.getInstance().add(100);
