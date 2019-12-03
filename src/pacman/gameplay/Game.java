@@ -12,6 +12,7 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
+import pacman.engine.physic.movement.Direction;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.ghost.Ghost;
 import pacman.gameplay.pacman.Pacman;
@@ -23,7 +24,7 @@ public class Game {
 
     private Pacman pacman;
     private Ghost blinky;
-    private ArrayList<MovableEntity> ghosts;
+    private ArrayList<Ghost> ghosts;
     GameState pGame = GameState.getInstance();
 
     public Game(GridPane root, String mapId){
@@ -80,7 +81,10 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         pacman.move(lastKeyPressed);
-        ghosts.get(0).move(lastKeyPressed);
+        if (ghosts.get(0).getWishedDirection() == Direction.STANDING){
+            ghosts.get(0).move(ghosts.get(0).ghostIA());
+            System.out.println("IA : " + ghosts.get(0).getWishedDirection());
+        }
     }
 
     private void graphicalUpdate(){

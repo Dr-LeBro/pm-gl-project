@@ -2,6 +2,8 @@ package pacman.gameplay.ghost;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import pacman.engine.core.Block.Block;
+import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
@@ -11,6 +13,8 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
 import pacman.gameplay.pacman.Pacman;
+
+import java.util.LinkedList;
 
 public class Ghost extends MovableEntity {
     private boolean invincible;
@@ -57,6 +61,237 @@ public class Ghost extends MovableEntity {
         super.move(keyPressed);
         if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
             ((Pacman)GameState.getInstance().getCurrMap().getPacMan()).kill();
+        }
+    }
+
+    private boolean validPosition (Position pos){
+        Block[][] blocks = GameState.getInstance().getCurrMap().getStaticMap();
+        if (blocks[pos.getX()-1][pos.getY()-1] == null &&
+                blocks[pos.getX()-1][pos.getY()] == null &&
+                blocks[pos.getX()-1][pos.getY()+1] == null &&
+                blocks[pos.getX()][pos.getY()-1] == null &&
+                blocks[pos.getX()][pos.getY()+1] == null &&
+                blocks[pos.getX()+1][pos.getY()-1] == null &&
+                blocks[pos.getX()+1][pos.getY()] == null &&
+                blocks[pos.getX()+1][pos.getY()+1] == null )
+            return true;
+        else
+            return false;
+    }
+    private  Position[] validAdjacentPosition(Position pos){
+        final int LARGEUR = GameState.getInstance().getCurrMap().getMaxX();
+        final int LONGUEUR = GameState.getInstance().getCurrMap().getMaxY();
+        Position[] adjacent = new Position[4];
+
+        boolean inContact = false;
+        for (int i = 0; i < adjacent.length; i++) {
+            adjacent[i] = null;
+        }
+        Block[][] blocks = GameState.getInstance().getCurrMap().getStaticMap();
+        Position tempPos;
+        tempPos = new Position(pos.getX(), pos.getY()-1);
+        if (pos.getY()-2 > 0 && validPosition(tempPos))
+            adjacent[0] = tempPos;
+        tempPos = new Position(pos.getX()+1, pos.getY());
+        if (pos.getX() + 2  < LARGEUR && validPosition(tempPos))
+            adjacent[1] = tempPos;
+        tempPos = new Position(pos.getX(), pos.getY()+1);
+        if (pos.getY()+2 < LONGUEUR && validPosition(tempPos))
+            adjacent[2] = tempPos;
+        tempPos = new Position(pos.getX()-1, pos.getY());
+        if (pos.getX()-2 > 0 && validPosition(tempPos))
+            adjacent[3] = tempPos;
+        return adjacent;
+
+        /*Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(pos.getX()/ Map.ArrayUnit),(int)(pos.getY() - 1/ Map.ArrayUnit));
+        for (int i = 0; i < walls.length && !inContact; i++) {
+            for (int j = 0; j < walls[i].length && !inContact; j++) {
+                if (walls[i][j] != null && this.hitBox.isInContact(this.sizeX, this.sizeY, pos.getX(), pos.getY() - 1, walls[i][j])) {
+                    inContact = true;
+                }
+            }
+        }
+        if (!inContact && pos.getY() - 1 > 0)
+            adjacent[0] = new Position(pos.getX(), pos.getY() - 1); // LEFT TILE
+        inContact = false;
+        walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(pos.getX() - 1/ Map.ArrayUnit),(int)(pos.getY() / Map.ArrayUnit));
+        for (int i = 0; i < walls.length && !inContact; i++) {
+            for (int j = 0; j < walls[i].length && !inContact; j++) {
+                if (walls[i][j] != null && this.hitBox.isInContact(this.sizeX, this.sizeY, pos.getX() - 1, pos.getY(), walls[i][j])) {
+                    inContact = true;
+                }
+            }
+        }
+        if (!inContact && pos.getX() - 1 > 0)
+            adjacent[1] = new Position(pos.getX() - 1, pos.getY()); // UP TILE
+        inContact = false;
+        walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(pos.getX() / Map.ArrayUnit),(int)(pos.getY() + 1 / Map.ArrayUnit));
+        for (int i = 0; i < walls.length && !inContact; i++) {
+            for (int j = 0; j < walls[i].length && !inContact; j++) {
+                if (walls[i][j] != null && this.hitBox.isInContact(this.sizeX, this.sizeY, pos.getX() , pos.getY() + 1, walls[i][j])) {
+                    inContact = true;
+                }
+            }
+        }
+        if (!inContact && pos.getY() + 1 < LONGUEUR)
+            adjacent[2] = new Position(pos.getX() , pos.getY() + 1); // RIGHT TILE
+        inContact = false;
+        walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(pos.getX() + 1 / Map.ArrayUnit),(int)(pos.getY() / Map.ArrayUnit));
+        for (int i = 0; i < walls.length && !inContact; i++) {
+            for (int j = 0; j < walls[i].length && !inContact; j++) {
+                if (walls[i][j] != null && this.hitBox.isInContact(this.sizeX, this.sizeY, pos.getX() + 1, pos.getY(), walls[i][j])) {
+                    inContact = true;
+                }
+            }
+        }
+        if (!inContact && pos.getX() + 1 < LARGEUR)
+            adjacent[1] = new Position(pos.getX() + 1, pos.getY()); // DOWN TILE
+
+        return adjacent;*/
+    }
+
+    public KeyCode ghostIA(){
+        //GameState.getInstance().getCurrMap()
+        //System.out.println("startPos :" + startPos + "    endPos :" + endPos + "   Deplacement :"+ deplacement);
+        //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + endPos.toString());
+        final int LARGEUR = GameState.getInstance().getCurrMap().getMaxX();
+        final int LONGUEUR = GameState.getInstance().getCurrMap().getMaxY();
+        Position startPos = new Position((int)Math.floor(this.x)/ Map.ArrayUnit, (int)Math.floor(this.y)/ Map.ArrayUnit);
+        System.out.println(startPos.toString());
+        Position endPos = new Position(30, 38);
+        boolean[][] alreadyVisited = new boolean[LARGEUR][LONGUEUR];// In java, the basic value of each cell for an array of boolean is false
+        Position[][] predecessor = new Position[LARGEUR][LONGUEUR];
+        QueueMaze queue = new QueueMaze();
+        queue.addQueue(startPos);
+        alreadyVisited[startPos.getX()][startPos.getY()] = true;
+        outerloop:
+        while(!queue.isEmpty()){
+            Position head = queue.removeHead();
+            Position[] tabPos = validAdjacentPosition(head);
+            for (int i=0; i<tabPos.length; i++){
+                //System.out.println(i + "  " + tabPos[i]);
+                if (tabPos[i]!=null && !alreadyVisited[tabPos[i].getX()][tabPos[i].getY()]){
+                    //System.out.println(tabPos[i].x + "   " + tabPos[i].y);
+                    predecessor[tabPos[i].getX()][tabPos[i].getY()] = head;//On inscrit dans la nouvelle case les coordonnÃ©es de la case mÃ¨re pour pouvoir "remonter"
+                    queue.addQueue(tabPos[i]);
+                    alreadyVisited[tabPos[i].getX()][tabPos[i].getY()] = true;
+                    if (tabPos[i].equals(endPos))break outerloop;//On sort si on atteint le goal
+                }
+            }
+        }
+
+
+        //Position[] searchPath = new Position[50];
+        //int lastX = -2, lastY = -2; // We just need the direction we have to take, not the whole path
+        //System.out.println("endPos.x = " +  endPos.getX() + "    endPos.y = " +  endPos.getY());
+        if(alreadyVisited[endPos.getX()][endPos.getY()]){ // if goal is reached
+            int xPred = endPos.getX(), yPred = endPos.getY(), i = 0, xTemp;
+            //searchPath[i++]=endPos;
+            //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + predecessor[xPred][yPred].toString());
+            while (!predecessor[xPred][yPred].equals(startPos)){
+                //searchPath[i] = predecessor[xPred][yPred];
+                xTemp = xPred; // because xPred is modified after the first instruction
+                xPred = predecessor[xPred][yPred].getX();
+                yPred = predecessor[xTemp][yPred].getY();//Ici
+                i++;
+                //System.out.println(xPred + "   " + yPred);
+            }
+            //for (int n = 0; n < searchPath.length; n++){
+             //   if (searchPath[n] != null){
+                    //System.out.println("n = " + n + "SearchPath : " + searchPath[n].toString());
+             //   }
+            //}
+            //System.out.println(i);
+
+            if (xPred - 1 == startPos.getX() && yPred == startPos.getY())
+                return KeyCode.RIGHT;
+            else if (xPred + 1 == startPos.getX() && yPred == startPos.getY())
+                return KeyCode.LEFT;
+            else if (xPred == startPos.getX() && yPred - 1 == startPos.getY())
+                return KeyCode.DOWN;
+            else if (xPred == startPos.getX() && yPred + 1 == startPos.getY())
+                return KeyCode.UP;
+            else {
+                System.out.println("lastX : " + xPred + "  lastY : " + yPred + "  startPos.getX() : " + startPos.getX() + "startPos.getY()" + startPos.getY());
+                return null;
+            }
+        }
+        else {
+            System.out.println("No path");
+            return null;
+        }
+
+    }
+    protected class QueueMaze {
+        LinkedList<Position> fifo = new LinkedList<Position>();
+        protected QueueMaze() {
+        }
+        protected void addQueue(Position p){
+            fifo.add(p);
+        }
+        protected Position removeHead(){
+            return fifo.poll();
+        }
+        protected boolean isEmpty(){
+            return fifo.peekLast() == null;
+        }
+
+
+    }
+    protected class Position {
+        private int x;
+        private int y;
+
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+
+        public Position(Position p) {
+            this.x = p.x;
+            this.y = p.y;
+        }
+
+        public Position(){
+            x = 0;
+            y = 0;
+        }
+
+
+        public int getX() {
+            return x;
+        }
+
+
+        public int getY() {
+            return y;
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
+
+        public void setXY(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+
+        public boolean equals(Position p){
+            return this.getX() == p.getX() && this.getY() == p.getY();
+        }
+
+        public int distance(Position p){
+            return (int) Math.sqrt((this.x - p.x)*(this.x - p.x)+(this.y - p.y)*(this.y - p.y));
+        }
+
+        public String toString(){
+            return "X = " + this.x + "  Y = " + this.y;
         }
     }
 }
