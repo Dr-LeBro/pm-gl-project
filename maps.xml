@@ -394,7 +394,7 @@
         <bloc x="2" y="13" type="BLOCK"/>
         <bloc x="3" y="13" type="BLOCK"/>
         <bloc x="4" y="13" type="BLOCK"/>
-        <bloc x="5" y="13" type="BLOCK"/>
+		
         <bloc x="6" y="13" type="BLOCK"/>
         <bloc x="8" y="13" type="PAC_GOMME"/>
         <bloc x="10" y="13" type="BLOCK"/>
@@ -420,7 +420,7 @@
         <bloc x="32" y="13" type="PAC_GOMME"/>
 
         <bloc x="34" y="13" type="BLOCK"/>
-        <bloc x="35" y="13" type="BLOCK"/>
+
         <bloc x="36" y="13" type="BLOCK"/>
         <bloc x="37" y="13" type="BLOCK"/>
         <bloc x="38" y="13" type="BLOCK"/>
@@ -433,7 +433,7 @@
         <bloc x="2" y="14" type="BLOCK"/>
         <bloc x="3" y="14" type="BLOCK"/>
         <bloc x="4" y="14" type="BLOCK"/>
-        <bloc x="5" y="14" type="BLOCK"/>
+
         <bloc x="6" y="14" type="BLOCK"/>
         <bloc x="8" y="14" type="PAC_GOMME"/>
         <bloc x="10" y="14" type="BLOCK"/>
@@ -459,7 +459,7 @@
         <bloc x="32" y="14" type="PAC_GOMME"/>
 
         <bloc x="34" y="14" type="BLOCK"/>
-        <bloc x="35" y="14" type="BLOCK"/>
+
         <bloc x="36" y="14" type="BLOCK"/>
         <bloc x="37" y="14" type="BLOCK"/>
         <bloc x="38" y="14" type="BLOCK"/>
@@ -472,7 +472,7 @@
         <bloc x="2" y="15" type="BLOCK"/>
         <bloc x="3" y="15" type="BLOCK"/>
         <bloc x="4" y="15" type="BLOCK"/>
-        <bloc x="5" y="15" type="BLOCK"/>
+
         <bloc x="6" y="15" type="BLOCK"/>
         <bloc x="8" y="15" type="PAC_GOMME"/>
         <bloc x="10" y="15" type="BLOCK"/>
@@ -498,7 +498,7 @@
         <bloc x="32" y="15" type="PAC_GOMME"/>
 
         <bloc x="34" y="15" type="BLOCK"/>
-        <bloc x="35" y="15" type="BLOCK"/>
+
         <bloc x="36" y="15" type="BLOCK"/>
         <bloc x="37" y="15" type="BLOCK"/>
         <bloc x="38" y="15" type="BLOCK"/>
@@ -511,7 +511,7 @@
         <bloc x="2" y="16" type="BLOCK"/>
         <bloc x="3" y="16" type="BLOCK"/>
         <bloc x="4" y="16" type="BLOCK"/>
-        <bloc x="5" y="16" type="BLOCK"/>
+
         <bloc x="6" y="16" type="BLOCK"/>
         <bloc x="8" y="16" type="PAC_GOMME"/>
 
@@ -522,7 +522,7 @@
         <bloc x="32" y="16" type="PAC_GOMME"/>
 
         <bloc x="34" y="16" type="BLOCK"/>
-        <bloc x="35" y="16" type="BLOCK"/>
+
         <bloc x="36" y="16" type="BLOCK"/>
         <bloc x="37" y="16" type="BLOCK"/>
         <bloc x="38" y="16" type="BLOCK"/>
@@ -535,7 +535,7 @@
         <bloc x="2" y="17" type="BLOCK"/>
         <bloc x="3" y="17" type="BLOCK"/>
         <bloc x="4" y="17" type="BLOCK"/>
-        <bloc x="5" y="17" type="BLOCK"/>
+
         <bloc x="6" y="17" type="BLOCK"/>
         <bloc x="8" y="17" type="PAC_GOMME"/>
         <bloc x="9" y="17" type="PAC_GOMME"/>
@@ -564,7 +564,7 @@
         <bloc x="32" y="17" type="PAC_GOMME"/>
 
         <bloc x="34" y="17" type="BLOCK"/>
-        <bloc x="35" y="17" type="BLOCK"/>
+
         <bloc x="36" y="17" type="BLOCK"/>
         <bloc x="37" y="17" type="BLOCK"/>
         <bloc x="38" y="17" type="BLOCK"/>
@@ -577,7 +577,7 @@
         <bloc x="2" y="18" type="BLOCK"/>
         <bloc x="3" y="18" type="BLOCK"/>
         <bloc x="4" y="18" type="BLOCK"/>
-        <bloc x="5" y="18" type="BLOCK"/>
+
         <bloc x="6" y="18" type="BLOCK"/>
 
         <bloc x="12" y="18" type="PAC_GOMME"/>
@@ -585,7 +585,7 @@
         <bloc x="28" y="18" type="PAC_GOMME"/>
 
         <bloc x="34" y="18" type="BLOCK"/>
-        <bloc x="35" y="18" type="BLOCK"/>
+
         <bloc x="36" y="18" type="BLOCK"/>
         <bloc x="37" y="18" type="BLOCK"/>
         <bloc x="38" y="18" type="BLOCK"/>
@@ -598,7 +598,7 @@
         <bloc x="2" y="19" type="BLOCK"/>
         <bloc x="3" y="19" type="BLOCK"/>
         <bloc x="4" y="19" type="BLOCK"/>
-        <bloc x="5" y="19" type="BLOCK"/>
+
         <bloc x="6" y="19" type="BLOCK"/>
         <bloc x="7" y="19" type="BLOCK"/>
         <bloc x="8" y="19" type="BLOCK"/>
@@ -628,7 +628,7 @@
         <bloc x="32" y="19" type="BLOCK"/>
         <bloc x="33" y="19" type="BLOCK"/>
         <bloc x="34" y="19" type="BLOCK"/>
-        <bloc x="35" y="19" type="BLOCK"/>
+
         <bloc x="36" y="19" type="BLOCK"/>
         <bloc x="37" y="19" type="BLOCK"/>
         <bloc x="38" y="19" type="BLOCK"/>
@@ -641,7 +641,7 @@
         <bloc x="2" y="20" type="BLOCK"/>
         <bloc x="3" y="20" type="BLOCK"/>
         <bloc x="4" y="20" type="BLOCK"/>
-        <bloc x="5" y="20" type="BLOCK"/>
+
         <bloc x="6" y="20" type="BLOCK"/>
         <bloc x="7" y="20" type="BLOCK"/>
         <bloc x="8" y="20" type="BLOCK"/>
@@ -670,7 +670,7 @@
         <bloc x="32" y="20" type="BLOCK"/>
         <bloc x="33" y="20" type="BLOCK"/>
         <bloc x="34" y="20" type="BLOCK"/>
-        <bloc x="35" y="20" type="BLOCK"/>
+
         <bloc x="36" y="20" type="BLOCK"/>
         <bloc x="37" y="20" type="BLOCK"/>
         <bloc x="38" y="20" type="BLOCK"/>
@@ -683,7 +683,7 @@
         <bloc x="2" y="21" type="BLOCK"/>
         <bloc x="3" y="21" type="BLOCK"/>
         <bloc x="4" y="21" type="BLOCK"/>
-        <bloc x="5" y="21" type="BLOCK"/>
+
         <bloc x="6" y="21" type="BLOCK"/>
         <bloc x="7" y="21" type="BLOCK"/>
         <bloc x="8" y="21" type="BLOCK"/>
@@ -706,7 +706,7 @@
         <bloc x="32" y="21" type="BLOCK"/>
         <bloc x="33" y="21" type="BLOCK"/>
         <bloc x="34" y="21" type="BLOCK"/>
-        <bloc x="35" y="21" type="BLOCK"/>
+
         <bloc x="36" y="21" type="BLOCK"/>
         <bloc x="37" y="21" type="BLOCK"/>
         <bloc x="38" y="21" type="BLOCK"/>
@@ -719,7 +719,7 @@
         <bloc x="2" y="22" type="BLOCK"/>
         <bloc x="3" y="22" type="BLOCK"/>
         <bloc x="4" y="22" type="BLOCK"/>
-        <bloc x="5" y="22" type="BLOCK"/>
+
         <bloc x="6" y="22" type="BLOCK"/>
         <bloc x="7" y="22" type="BLOCK"/>
         <bloc x="8" y="22" type="BLOCK"/>
@@ -747,7 +747,7 @@
         <bloc x="32" y="22" type="BLOCK"/>
         <bloc x="33" y="22" type="BLOCK"/>
         <bloc x="34" y="22" type="BLOCK"/>
-        <bloc x="35" y="22" type="BLOCK"/>
+
         <bloc x="36" y="22" type="BLOCK"/>
         <bloc x="37" y="22" type="BLOCK"/>
         <bloc x="38" y="22" type="BLOCK"/>
@@ -760,7 +760,7 @@
         <bloc x="2" y="23" type="BLOCK"/>
         <bloc x="3" y="23" type="BLOCK"/>
         <bloc x="4" y="23" type="BLOCK"/>
-        <bloc x="5" y="23" type="BLOCK"/>
+
         <bloc x="6" y="23" type="BLOCK"/>
         <bloc x="7" y="23" type="BLOCK"/>
         <bloc x="8" y="23" type="BLOCK"/>
@@ -782,7 +782,7 @@
         <bloc x="32" y="23" type="BLOCK"/>
         <bloc x="33" y="23" type="BLOCK"/>
         <bloc x="34" y="23" type="BLOCK"/>
-        <bloc x="35" y="23" type="BLOCK"/>
+
         <bloc x="36" y="23" type="BLOCK"/>
         <bloc x="37" y="23" type="BLOCK"/>
         <bloc x="38" y="23" type="BLOCK"/>
@@ -795,7 +795,7 @@
         <bloc x="2" y="24" type="BLOCK"/>
         <bloc x="3" y="24" type="BLOCK"/>
         <bloc x="4" y="24" type="BLOCK"/>
-        <bloc x="5" y="24" type="BLOCK"/>
+
         <bloc x="6" y="24" type="BLOCK"/>
         <bloc x="7" y="24" type="BLOCK"/>
         <bloc x="8" y="24" type="BLOCK"/>
@@ -825,7 +825,7 @@
         <bloc x="32" y="24" type="BLOCK"/>
         <bloc x="33" y="24" type="BLOCK"/>
         <bloc x="34" y="24" type="BLOCK"/>
-        <bloc x="35" y="24" type="BLOCK"/>
+
         <bloc x="36" y="24" type="BLOCK"/>
         <bloc x="37" y="24" type="BLOCK"/>
         <bloc x="38" y="24" type="BLOCK"/>
@@ -838,7 +838,7 @@
         <bloc x="2" y="25" type="BLOCK"/>
         <bloc x="3" y="25" type="BLOCK"/>
         <bloc x="4" y="25" type="BLOCK"/>
-        <bloc x="5" y="25" type="BLOCK"/>
+
         <bloc x="6" y="25" type="BLOCK"/>
         <bloc x="7" y="25" type="BLOCK"/>
         <bloc x="8" y="25" type="BLOCK"/>
@@ -868,7 +868,7 @@
         <bloc x="32" y="25" type="BLOCK"/>
         <bloc x="33" y="25" type="BLOCK"/>
         <bloc x="34" y="25" type="BLOCK"/>
-        <bloc x="35" y="25" type="BLOCK"/>
+
         <bloc x="36" y="25" type="BLOCK"/>
         <bloc x="37" y="25" type="BLOCK"/>
         <bloc x="38" y="25" type="BLOCK"/>
@@ -972,7 +972,7 @@
         <bloc x="17" y="29" type="BLOCK"/>
         <bloc x="18" y="29" type="BLOCK"/>
         <bloc x="19" y="29" type="BLOCK"/>
-        <bloc x="20" y="29" type="BLOCK"/>
+
         <bloc x="21" y="29" type="BLOCK"/>
         <bloc x="22" y="29" type="BLOCK"/>
         <bloc x="23" y="29" type="BLOCK"/>
@@ -1013,7 +1013,7 @@
         <bloc x="17" y="30" type="BLOCK"/>
         <bloc x="18" y="30" type="BLOCK"/>
         <bloc x="19" y="30" type="BLOCK"/>
-        <bloc x="20" y="30" type="BLOCK"/>
+
         <bloc x="21" y="30" type="BLOCK"/>
         <bloc x="22" y="30" type="BLOCK"/>
         <bloc x="23" y="30" type="BLOCK"/>
@@ -1054,7 +1054,7 @@
         <bloc x="17" y="31" type="BLOCK"/>
         <bloc x="18" y="31" type="BLOCK"/>
         <bloc x="19" y="31" type="BLOCK"/>
-        <bloc x="20" y="31" type="BLOCK"/>
+
         <bloc x="21" y="31" type="BLOCK"/>
         <bloc x="22" y="31" type="BLOCK"/>
         <bloc x="23" y="31" type="BLOCK"/>
@@ -1095,7 +1095,7 @@
         <bloc x="17" y="32" type="BLOCK"/>
         <bloc x="18" y="32" type="BLOCK"/>
         <bloc x="19" y="32" type="BLOCK"/>
-        <bloc x="20" y="32" type="BLOCK"/>
+
         <bloc x="21" y="32" type="BLOCK"/>
         <bloc x="22" y="32" type="BLOCK"/>
         <bloc x="23" y="32" type="BLOCK"/>
@@ -1136,7 +1136,7 @@
         <bloc x="17" y="33" type="BLOCK"/>
         <bloc x="18" y="33" type="BLOCK"/>
         <bloc x="19" y="33" type="BLOCK"/>
-        <bloc x="20" y="33" type="BLOCK"/>
+
         <bloc x="21" y="33" type="BLOCK"/>
         <bloc x="22" y="33" type="BLOCK"/>
         <bloc x="23" y="33" type="BLOCK"/>
@@ -1179,7 +1179,7 @@
         <bloc x="17" y="34" type="BLOCK"/>
         <bloc x="18" y="34" type="BLOCK"/>
         <bloc x="19" y="34" type="BLOCK"/>
-        <bloc x="20" y="34" type="BLOCK"/>
+
         <bloc x="21" y="34" type="BLOCK"/>
         <bloc x="22" y="34" type="BLOCK"/>
         <bloc x="23" y="34" type="BLOCK"/>
@@ -1222,7 +1222,7 @@
 		<bloc x="17" y="35" type="BLOCK"/>
 		<bloc x="18" y="35" type="BLOCK"/>
 		<bloc x="19" y="35" type="BLOCK"/>
-		<bloc x="20" y="35" type="BLOCK"/>
+
 		<bloc x="21" y="35" type="BLOCK"/>
 		<bloc x="22" y="35" type="BLOCK"/>
 		<bloc x="23" y="35" type="BLOCK"/>
