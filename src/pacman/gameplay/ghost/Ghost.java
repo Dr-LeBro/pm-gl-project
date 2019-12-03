@@ -28,7 +28,7 @@ public class Ghost extends MovableEntity {
         if(setMovingSprites(sprites)){
             System.out.println("Ghost Sprites loaded");
         }
-        mode = Mode.SCATTER;
+        mode = Mode.CHASE;
         this.behaviour = behaviour;
         this.respawnTime = respawnTime;
     }
@@ -39,6 +39,10 @@ public class Ghost extends MovableEntity {
 
     public double getRespawnTime() {
         return respawnTime;
+    }
+
+    public Point2D getPos() {
+        return pos;
     }
 
     public Mode getMode() {

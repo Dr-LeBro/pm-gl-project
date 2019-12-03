@@ -14,6 +14,7 @@ import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.ghost.Ghost;
+import pacman.gameplay.ghost.IAGhost;
 import pacman.gameplay.pacman.Pacman;
 import pacman.gameplay.scoreManager.Score;
 
@@ -80,7 +81,9 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         pacman.action(lastKeyPressed);
-        ghosts.get(0).move(lastKeyPressed);
+        //ghosts.get(0).move(lastKeyPressed);
+        IAGhost ghost = (IAGhost) ghosts.get(0);
+        ghost.chase();
     }
 
     private void graphicalUpdate(){

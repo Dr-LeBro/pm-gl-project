@@ -1,5 +1,7 @@
 package pacman.gameplay.ghost;
 
+import java.awt.geom.Point2D;
+
 public abstract class IAGhost extends Ghost {
 
     public IAGhost(int behaviour, double respawnTime, int x, int y) {

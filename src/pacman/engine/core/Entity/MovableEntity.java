@@ -71,9 +71,9 @@ public class MovableEntity extends Entity {
             } else if (this.actualDir == UP) {
                 currentSprite = movingSprites[0];
             } else if (this.actualDir == DOWN) {
-                currentSprite = movingSprites[1];
-            } else if (this.actualDir == Direction.RIGHT) {
                 currentSprite = movingSprites[2];
+            } else if (this.actualDir == Direction.RIGHT) {
+                currentSprite = movingSprites[1];
             } else if (this.actualDir == Direction.LEFT) {
                 currentSprite = movingSprites[3];
             }

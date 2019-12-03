@@ -119,8 +119,7 @@ public abstract class Entity {
         return y;
     }
 
-    public double getX()
-    {
+    public double getX() {
         return x;
     }
 

@@ -34,12 +34,12 @@ public class Pacman extends MovableEntity {
         tempSprites = new ArrayList<>();
         tempSprites.add("file:sprites/pacman01_down.png");
         tempSprites.add("file:sprites/pacman02_down.png");
-        sprites[1] = new AnimatedSprite(tempSprites, "pacmanD", animSync);
+        sprites[2] = new AnimatedSprite(tempSprites, "pacmanD", animSync);
 
         tempSprites = new ArrayList<>();
         tempSprites.add("file:sprites/pacman01_right.png");
         tempSprites.add("file:sprites/pacman02_right.png");
-        sprites[2] = new AnimatedSprite(tempSprites, "pacmanR", animSync);
+        sprites[1] = new AnimatedSprite(tempSprites, "pacmanR", animSync);
 
         tempSprites = new ArrayList<>();
         tempSprites.add("file:sprites/pacman01_left.png");
