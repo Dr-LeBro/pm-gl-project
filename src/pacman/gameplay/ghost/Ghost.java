@@ -150,17 +150,16 @@ public class Ghost extends MovableEntity {
         return adjacent;*/
     }
 
-    public KeyCode ghostIA(){
-        //GameState.getInstance().getCurrMap()
+    public KeyCode ghostIA(int targetX, int targetY){
         //System.out.println("startPos :" + startPos + "    endPos :" + endPos + "   Deplacement :"+ deplacement);
         //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + endPos.toString());
         final int LARGEUR = GameState.getInstance().getCurrMap().getMaxX();
         final int LONGUEUR = GameState.getInstance().getCurrMap().getMaxY();
         Position startPos = new Position(((int)Math.floor(this.x) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(this.y) + Map.ArrayUnit/2) / Map.ArrayUnit);
-        System.out.println(startPos.toString() + "  x : " + this.x + "  y : " + this.y + "  actualDir : " + getActualDir() + "  wishedDir : " + this.getWishedDirection());
-        //Position endPos = new Position(38, 2);
-        MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        //System.out.println(startPos.toString() + "  x : " + this.x + "  y : " + this.y + "  actualDir : " + getActualDir() + "  wishedDir : " + this.getWishedDirection());
+        Position endPos = new Position(targetX, targetY);
+        //Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        // TODO RANDOM INPUT
         if (startPos.equals(endPos))
             return null;
         boolean[][] alreadyVisited = new boolean[LARGEUR][LONGUEUR];// In java, the basic value of each cell for an array of boolean is false
@@ -229,6 +228,7 @@ public class Ghost extends MovableEntity {
             }
         }
         else {
+            //TODO RANDOM INPUT
             System.out.println("No path");
             return null;
         }

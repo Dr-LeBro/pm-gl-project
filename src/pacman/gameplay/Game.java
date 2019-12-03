@@ -4,7 +4,6 @@ import javafx.event.Event;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import pacman.Main;
-import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.KeyboardInput;
@@ -12,9 +11,8 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
-import pacman.engine.physic.movement.Direction;
 import pacman.fileManager.LabyrinthFile;
-import pacman.gameplay.ghost.Ghost;
+import pacman.gameplay.ghost.*;
 import pacman.gameplay.pacman.Pacman;
 import pacman.gameplay.scoreManager.Score;
 
@@ -23,7 +21,6 @@ import java.util.ArrayList;
 public class Game {
 
     private Pacman pacman;
-    private Ghost blinky;
     private ArrayList<Ghost> ghosts;
     GameState pGame = GameState.getInstance();
 
@@ -82,14 +79,26 @@ public class Game {
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         KeyCode keyGhost = null;
         pacman.move(lastKeyPressed);
-        if (ghosts.get(0).getWishedDirection() == Direction.STANDING)
-            keyGhost = ghosts.get(0).ghostIA();
-        ghosts.get(0).move(keyGhost);
-        /*if (ghosts.get(0).getWishedDirection() == Direction.STANDING){
-            //ghosts.get(0).move(ghosts.get(0).ghostIA());
-            ghosts.get(0).move(lastKeyPressed);
-            System.out.println("IA : " + ghosts.get(0).getWishedDirection());
-        }*/
+        for (int i = 0; i < ghosts.size(); i++){
+            switch(ghosts.get(i).getBehaviour()){
+                case 0 : // Blinky
+                    keyGhost = ((Blinky) (ghosts.get(i))).chase();
+                    break;
+                case 1 : // Pinky
+                    keyGhost = ((Pinky) (ghosts.get(i))).chase();
+                    break;
+                case 2 : // Inky
+                    keyGhost = ((Inky) (ghosts.get(i))).chase();
+                    break;
+                case 3 : // Clyde
+                    keyGhost = ((Clyde) (ghosts.get(i))).chase();
+                    break;
+                default : // Default
+                    keyGhost = null;
+                    break;
+            }
+            ghosts.get(i).move(keyGhost);
+        }
     }
 
     private void graphicalUpdate(){
