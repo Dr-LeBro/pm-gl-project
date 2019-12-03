@@ -6,4 +6,5 @@ public enum EntityType {
     EMPTY,
     PACMAN,
     GHOST,
+    SUPER_PAC_GOMME
 }
