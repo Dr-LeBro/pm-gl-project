@@ -50,7 +50,7 @@ public class Clyde extends IAGhost {
         Pacman pm = (Pacman) GameState.getInstance().getCurrMap().getPacMan();
         Point2D posPacman = new Point2D(pm.getX(), pm.getY());
         double posX = super.getX(), posY = super.getY();
-        System.out.println("posX = " + posY + " ; previousX = " + previousY);
+        //System.out.println("posX = " + posY + " ; previousX = " + previousY);
 
         if(posPacman.distance(posX-1, posY) < posPacman.distance(posX+1, posY))
             move(KeyCode.LEFT);

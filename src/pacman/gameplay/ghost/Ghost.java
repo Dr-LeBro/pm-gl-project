@@ -235,7 +235,7 @@ public class Ghost extends MovableEntity {
         }
         else {
             //TODO RANDOM INPUT
-            System.out.println("No path");
+            //System.out.println("No path");
             return null;
         }
 
