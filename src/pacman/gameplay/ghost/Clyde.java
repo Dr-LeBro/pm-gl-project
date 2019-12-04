@@ -107,10 +107,10 @@ public class Clyde extends IAGhost {
 
         public static Graph convertToGraph(Map map)
         {
-            System.out.println("============================");
+            //System.out.println("============================");
             Block[][] blockMap = map.getStaticMap();
             for(Block b : blockMap[2])
-                System.out.println(b == null);
+                //System.out.println(b == null);
             return null;
         }
     }
