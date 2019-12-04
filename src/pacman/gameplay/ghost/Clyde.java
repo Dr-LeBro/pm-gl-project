@@ -109,7 +109,7 @@ public class Clyde extends IAGhost {
         {
             //System.out.println("============================");
             Block[][] blockMap = map.getStaticMap();
-            for(Block b : blockMap[2])
+            //for(Block b : blockMap[2])
                 //System.out.println(b == null);
             return null;
         }

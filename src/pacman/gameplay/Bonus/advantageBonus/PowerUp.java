@@ -4,6 +4,9 @@ import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.gameplay.GameEvent;
 
 public class PowerUp {
+    public static final int STATE_READY = 0;
+    public static final int STATE_USING = 1;
+    public static final int STATE_COOLDOWN = 2;
     private long timeStarted = 0; //time in milliS when resize started
     private int state = 0; //0 can be used, 1 currently used and in cooldown, 2 just in cooldown
     private int ended = 1;
@@ -18,9 +21,9 @@ public class PowerUp {
     }
 
     public boolean use(){
-        if(state == 0){
+        if(state == STATE_READY){
             timeStarted = System.currentTimeMillis();
-            state = 1;
+            state = STATE_USING;
             ended = -1;
             String[] eventArgs = new String[1];
             eventArgs[0] = name;
@@ -35,19 +38,19 @@ public class PowerUp {
         long currentTime = System.currentTimeMillis();
         String[] eventArgs = new String[2];
         eventArgs[0] = name;
-        if(state == 1 && currentTime-timeStarted>=duration){
-            state = 2;
+        if(state == STATE_USING && (currentTime-timeStarted>=duration)){
+            state = STATE_COOLDOWN;
             eventArgs[1] = String.valueOf(timeCdLeft());
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_POWERUP_IN_COOLDOWN, eventArgs));
             ended = 0;
-        }else if((state == 1 || state == 2) && currentTime-timeStarted>=cooldown){
-            state = 0;
+        }else if((state == STATE_USING || state == STATE_COOLDOWN) && currentTime-timeStarted>=cooldown){
+            state = STATE_READY;
             eventArgs[1] = "0";
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_POWERUP_READY, eventArgs));
-        }else if(state == 1){
+        }else if(state == STATE_USING){
             eventArgs[1] = String.valueOf(timeUseLeft());
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_POWERUP_USED, eventArgs));
-        }else if(state == 2){
+        }else if(state == STATE_COOLDOWN){
             eventArgs[1] = String.valueOf(timeCdLeft());
             MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_POWERUP_IN_COOLDOWN, eventArgs));
         }
@@ -55,15 +58,20 @@ public class PowerUp {
     }
 
     public boolean canBeUsed(){
-        return state == 0;
+        return state == STATE_READY;
     }
 
     public boolean isEndedTargeted(){
-        if((state == 2 || state == 0) && ended == 0){
+        if((state == STATE_COOLDOWN || state == STATE_READY) && ended == 0){
             ended = 1;
             return false;
         }
         return true;
+    }
+
+    public void setEnded(int end)
+    {
+        ended = end;
     }
 
     public long timeUseLeft(){
