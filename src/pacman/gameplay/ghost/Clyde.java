@@ -1,14 +1,18 @@
 package pacman.gameplay.ghost;
 
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import pacman.engine.core.Block.Block;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
-import javafx.geometry.Point2D;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.gameplay.ghost.mode.Mode;
 import pacman.gameplay.pacman.Pacman;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /* This is the orange ghost */
 public class Clyde extends IAGhost {
@@ -30,18 +34,22 @@ public class Clyde extends IAGhost {
     @Override
     public KeyCode chase()
     {
+        KeyCode kc = null;  //TODO : jté kc
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
-        /*mode = getMode();
+        kc =  ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        mode = Mode.SCATTER;
         switch (mode) {
             case CHASE:
                 aggressiveChase();
                 break;
             case SCATTER:
+                kc = scatterChase();
                 break;
             case FRIGHTENED:
                 break;
-        }*/
+        }
+
+        return kc;
     }
 
     @Override
@@ -68,14 +76,42 @@ public class Clyde extends IAGhost {
     }
 
     @Override
-    public void scatterChase()
+    public KeyCode scatterChase()
     {
-
+        Graph.convertToGraph(GameState.getInstance().getCurrMap());
+        return null;
     }
 
     @Override
     public void frightenedChase()
     {
 
+    }
+
+    class DepthSearch {
+        private ArrayList<Point2D> visited;
+        private LinkedList<Point2D> current;
+        Point2D target;
+
+        public DepthSearch(int x, int y) {
+            visited = new ArrayList<>();
+            current = new LinkedList<>();
+            target = new Point2D(x, y);
+        }
+
+
+    }
+
+    static class Graph {
+
+
+        public static Graph convertToGraph(Map map)
+        {
+            System.out.println("============================");
+            Block[][] blockMap = map.getStaticMap();
+            for(Block b : blockMap[2])
+                System.out.println(b == null);
+            return null;
+        }
     }
 }

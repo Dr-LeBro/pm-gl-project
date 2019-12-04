@@ -35,9 +35,10 @@ public class Inky extends IAGhost {
     }
 
     @Override
-    public void scatterChase()
+    public KeyCode scatterChase()
     {
 
+        return null;
     }
 
     @Override

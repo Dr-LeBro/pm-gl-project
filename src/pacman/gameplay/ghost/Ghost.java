@@ -3,7 +3,6 @@ package pacman.gameplay.ghost;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.Block.Block;
-import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
@@ -240,6 +239,7 @@ public class Ghost extends MovableEntity {
         }
 
     }
+
     protected class QueueMaze {
         LinkedList<Position> fifo = new LinkedList<Position>();
         protected QueueMaze() {
