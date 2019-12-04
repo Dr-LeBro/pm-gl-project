@@ -140,6 +140,27 @@ public class Pacman extends MovableEntity {
                     resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
                     return;
                 }
+                if(HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit - Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit - Map.ArrayUnit,this, 30, 30)) {
+                    respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit - Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit - Map.ArrayUnit);
+                    resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
+                    return;
+                }
+                if(HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit + Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit - Map.ArrayUnit,this, 30, 30)) {
+                    respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit + Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit - Map.ArrayUnit);
+                    resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
+                    return;
+                }
+                if(HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit - Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit + Map.ArrayUnit,this, 30, 30)) {
+                    respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit - Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit + Map.ArrayUnit);
+                    resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
+                    return;
+                }
+                if(HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit + Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit + Map.ArrayUnit,this, 30, 30)) {
+                    respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit + Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit + Map.ArrayUnit);
+                    resize(3 * Map.ArrayUnit, 3 * Map.ArrayUnit);
+                    return;
+                }
+
                 resize.setEnded(0);
             }
         }
