@@ -104,14 +104,18 @@ public class Clyde extends IAGhost {
 
     static class Graph {
 
-
         public static Graph convertToGraph(Map map)
         {
-            //System.out.println("============================");
-            Block[][] blockMap = map.getStaticMap();
-            for(Block b : blockMap[2])
-                //System.out.println(b == null);
+
             return null;
+        }
+    }
+
+    class Edge {
+        Point2D point;
+
+        public Edge(int x, int y) {
+
         }
     }
 }
