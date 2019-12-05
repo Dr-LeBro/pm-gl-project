@@ -24,7 +24,7 @@ public class Pacman extends MovableEntity {
     private boolean ghosting = false;
     private PowerUp resize = new PowerUp(2000, 5000, "resize");
     private PowerUp superpacgomme = new PowerUp(10000, 10000, "superpacgomme");
-    private PowerUp magicalJourney = new PowerUp(1000, 10000, "magicalJourney");
+    private PowerUp ghostingPower = new PowerUp(1000, 10000, "ghosting");
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 3 * Map.ArrayUnit, 1);
@@ -97,7 +97,7 @@ public class Pacman extends MovableEntity {
             resizePowerUp(false);
         }
         superPowerUp(false);
-        magicalJourney.checkState();
+        ghostingPower.checkState();
     }
 
     public void superPowerUp(boolean use) {
@@ -115,9 +115,9 @@ public class Pacman extends MovableEntity {
     }
 
     public void MagicalJourney(boolean use) {
-        magicalJourney.checkState();
-        if(use && magicalJourney.canBeUsed()){
-            magicalJourney.use();
+        ghostingPower.checkState();
+        if(use && ghostingPower.canBeUsed()){
+            ghostingPower.use();
             ghosting = true;
         }
     }
@@ -186,22 +186,26 @@ public class Pacman extends MovableEntity {
         if(ghosting)
         {
             Point2D pointDir;
-            if(wishedDirection != Direction.STANDING)
+            if(wishedDirection != Direction.STANDING) {
+                actualDir = wishedDirection;
                 pointDir = moveManager.move(x, y, wishedDirection);
-            else
+            }
+            else {
                 pointDir = moveManager.move(x, y, actualDir);
+            }
             x = ((pointDir.getX()%(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit))+(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit))%(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit);
             y = ((pointDir.getY()%(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit))+(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit))%(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit);
-            if(!magicalJourney.isEndedTargeted() && HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit,this, getSizeX(), getSizeY())) {
+            if(!ghostingPower.isEndedTargeted() && HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit,this, getSizeX(), getSizeY())) {
                 respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit);
                 ghosting = false;
             }
             else
             {
-                magicalJourney.setEnded(0);
+                ghostingPower.setEnded(0);
             }
             if(isVisible()){
                 getSprite().setPoint(x, y);
+                drawCurrentSprite();
             }
         }
         else {
