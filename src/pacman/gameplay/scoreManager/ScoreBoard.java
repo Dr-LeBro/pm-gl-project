@@ -17,7 +17,18 @@ public class ScoreBoard {
 
         for(int i = 0; i < SCORE_BOARD_SIZE; i++)
         {
-            ranking[i] = prefs.get("pseudo"+i,"empty") + " : " + prefs.getInt("score"+i,0);
+            ranking[i] = i + " - " + prefs.get("pseudo"+i,"empty") + " : " + prefs.getInt("score"+i,0);
+        }
+    }
+
+    public void refresh()
+    {
+        prefs = Preferences.userNodeForPackage(ScoreBoard.class);
+        ranking = new String[SCORE_BOARD_SIZE];
+
+        for(int i = 0; i < SCORE_BOARD_SIZE; i++)
+        {
+            ranking[i] = i + " - " + prefs.get("pseudo"+i,"empty") + " : " + prefs.getInt("score"+i,0);
         }
     }
 
@@ -27,17 +38,28 @@ public class ScoreBoard {
 
     public void saveScore(String pseudo, int score)
     {
+        String tempPseudo;
+        int tempScore;
+        String tempPseudo2;
+        int tempScore2;
         for(int i = 0; i < SCORE_BOARD_SIZE ; i++)
         {
             if(prefs.getInt("score"+i,0) < score)
             {
-                for(int j = i; j < SCORE_BOARD_SIZE-1; j++)
-                {
-                    prefs.put("pseudo"+(j+1),prefs.get("pseudo"+j,"empty"));
-                    prefs.putInt("score"+(j+1),prefs.getInt("score"+j,0));
-                }
+                tempPseudo = prefs.get("pseudo"+i,"empty");
+                tempScore = prefs.getInt("score"+i,0);
                 prefs.put("pseudo"+i, pseudo);
                 prefs.putInt("score"+i, score);
+
+                for(int j = i; j < SCORE_BOARD_SIZE-1; j++)
+                {
+                    tempPseudo2 = prefs.get("pseudo"+(j+1),"empty");
+                    tempScore2 = prefs.getInt("score"+(j+1),0);
+                    prefs.put("pseudo"+(j+1),tempPseudo);
+                    prefs.putInt("score"+(j+1),tempScore);
+                    tempPseudo = tempPseudo2;
+                    tempScore = tempScore2;
+                }
                 return;
             }
         }
