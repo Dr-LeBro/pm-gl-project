@@ -19,8 +19,6 @@ import pacman.gameplay.scoreManager.Score;
 import java.util.ArrayList;
 
 public class Game {
-
-    private Pacman pacman;
     private ArrayList<Ghost> ghosts;
     GameState pGame = GameState.getInstance();
 
@@ -56,8 +54,7 @@ public class Game {
             ghosts.get(i).spawn();
         }
 
-        pacman = (Pacman) pGame.getCurrMap().getPacMan();
-        pacman.spawn();
+        pGame.getCurrMap().getPacMan().spawn();
 
         pGame.setkI(new KeyboardInput(Main.root));
     }
@@ -76,7 +73,7 @@ public class Game {
     private void gameUpdate(){
         KeyCode lastKeyPressed = pGame.getkI().getLastKeyPressed();
         KeyCode keyGhost = null;
-        pacman.action(lastKeyPressed);
+        ((Pacman)pGame.getCurrMap().getPacMan()).action(lastKeyPressed);
         for (int i = 0; i < ghosts.size(); i++){
             switch(ghosts.get(i).getBehaviour()){
                 case 0 : // Blinky
@@ -113,9 +110,7 @@ public class Game {
         return Score.getInstance().getScore();
     }
 
-    public int getPacmanRemainingLifes(){
-        return pacman.getNbLives();
-    }
+    public int getPacmanRemainingLifes(){ return ((Pacman)pGame.getCurrMap().getPacMan()).getNbLives(); }
 
     public ResizableCanvas getCanvas(){
         return GameState.getInstance().getCanvas();
