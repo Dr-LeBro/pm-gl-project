@@ -66,9 +66,7 @@ public class MovableEntity extends Entity {
     public void drawCurrentSprite(){
         GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
         if(isVisible()) {
-            if (this.actualDir == Direction.STANDING) {
-                currentSprite = movingSprites[0];
-            } else if (this.actualDir == UP) {
+            if (this.actualDir == UP) {
                 currentSprite = movingSprites[0];
             } else if (this.actualDir == DOWN) {
                 currentSprite = movingSprites[2];
@@ -76,7 +74,10 @@ public class MovableEntity extends Entity {
                 currentSprite = movingSprites[1];
             } else if (this.actualDir == Direction.LEFT) {
                 currentSprite = movingSprites[3];
+            } else if (this.actualDir == Direction.STANDING) {
+                currentSprite = movingSprites[0];
             }
+            currentSprite.setSize(sizeX, sizeY);
             GameState.getInstance().getCanvas().addDrawingElement(currentSprite);
         }
     }
