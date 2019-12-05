@@ -115,7 +115,6 @@ public class MovableEntity extends Entity {
         tempXDir = pointDir.getX();
         tempYDir = pointDir.getY();
 
-        // TODO if speed > 1 then consider multiple tests at once
         if (this.x > tempXDir) greatestX = this.x;
         else greatestX = tempXDir;
         if (this.y > tempYDir) greatestY = this.y;
@@ -182,6 +181,13 @@ public class MovableEntity extends Entity {
         } else if (!inContactDir) {
             this.x = tempXDir;
             this.y = tempYDir;
+        } else {
+            if (this.actualDir == UP || this.actualDir == DOWN)
+                this.y = Math.floor(this.y /Map.ArrayUnit + 0.5) * Map.ArrayUnit;
+            if (this.actualDir == RIGHT || this.actualDir == LEFT)
+                this.x = Math.floor(this.x / Map.ArrayUnit + 0.5) * Map.ArrayUnit;
+
+            this.actualDir = STANDING;
         }
         if(isVisible()){
             getSprite().setPoint(x, y);

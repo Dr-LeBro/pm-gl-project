@@ -25,7 +25,9 @@ public class Pinky extends IAGhost {
     public KeyCode chase()
     {
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        Position targetPos = posNextIntersection(new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit), pacman.getActualDir());
+        return ghostIA(targetPos.getX(), targetPos.getY());
+        //return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
     }
 
     @Override

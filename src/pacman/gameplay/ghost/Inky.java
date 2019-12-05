@@ -25,7 +25,11 @@ public class Inky extends IAGhost {
     public KeyCode chase()
     {
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        int targetX, targetY;
+        targetX = ((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit;
+        targetY = ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit;
+        targetX = GameState.getInstance().getCurrMap().getMaxX() - targetX;
+        return ghostIA(targetX, targetY);
     }
 
     @Override
