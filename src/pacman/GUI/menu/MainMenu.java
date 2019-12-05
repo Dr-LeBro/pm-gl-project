@@ -33,12 +33,17 @@ public class MainMenu {
         ButtonManager launchGameMulti = new ButtonManager("MultiPlayer", (EventHandler<ActionEvent>) actionEvent -> showMulti());
         launchGameMulti.setStyle1();
 
+        /*button score game multi*/
+        ButtonManager launchViewScore = new ButtonManager("Top Scores", (EventHandler<ActionEvent>) actionEvent -> showScore());
+        launchViewScore.setStyle1();
+
         GridPane buttons = new GridPane(); //Grid of buttons
 
         /* add all buttons to grid*/
         buttons.add(launchGameSingle.getComponent(), 0, 0);
         buttons.add(gotoOpt.getComponent(), 0, 1);
         buttons.add(launchGameMulti.getComponent(), 0, 2);
+        buttons.add(launchViewScore.getComponent(), 0, 3);
 
         //set buttons more longer
         for (Node button: buttons.getChildren()) {
@@ -85,6 +90,15 @@ public class MainMenu {
     private void showMulti(){
         clearSecondaryMenu();
         secondaryMenu = new SecondaryMenuTest(rootOfMenu);
+        rootOfMenu.add(secondaryMenu.getRootOfMenu(), 1, 0);
+    }
+
+    /**
+     * show secondary menu multi
+     */
+    private void showScore(){
+        clearSecondaryMenu();
+        secondaryMenu = new SecondaryMenuScore(rootOfMenu);
         rootOfMenu.add(secondaryMenu.getRootOfMenu(), 1, 0);
     }
 

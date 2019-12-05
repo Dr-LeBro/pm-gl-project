@@ -1,7 +1,6 @@
 package pacman.engine.core;
 
 import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.ResizableCanvas;
 
@@ -12,6 +11,7 @@ public class GameState {
     private KeyboardInput kI = null;
     private ResizableCanvas canvas = null;
     private Node root;
+    private String pseudo = null;
 
     private GameState(){}
     public static GameState getInstance(){
@@ -48,5 +48,13 @@ public class GameState {
 
     public void setRoot(Node root) {
         this.root = root;
+    }
+
+    public void setPseudo(String text) {
+        pseudo = text;
+    }
+    public String getPseudo()
+    {
+        return pseudo;
     }
 }

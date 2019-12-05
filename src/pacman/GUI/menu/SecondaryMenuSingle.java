@@ -8,15 +8,19 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pacman.GUI.inGameGUI.MainGameGUI;
+import pacman.engine.core.GameState;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
 import pacman.gameplay.GameEvent;
+import pacman.gameplay.scoreManager.Score;
+import pacman.gameplay.scoreManager.ScoreBoard;
 
 /**
  * Extends of secondaryMenu
@@ -27,6 +31,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
     private int mapId; //map ID
     private SliderManager mapChooser; //slider to choose id
     private Label mapIdDisplay = new Label(); //display of map ID
+    private TextArea pseudoArea;//pseudo for the score
 
     /**
      * menu single constructor
@@ -45,6 +50,8 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         };
 
         /* set up game option and launch*/
+        pseudoArea = new TextArea("default");
+        pseudoArea.setPrefSize(100,10);
         ButtonManager launchGameSingle = new ButtonManager("Launch", actionEvent -> launchGame());
         mapChooser = new SliderManager(selectMapIdListener, 1, 10, 1); //slider
         mapId = 1; // Default value of the Slider
@@ -55,6 +62,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         rootOfMenu.add(launchGameSingle.getComponent(), 0, 0);
         rootOfMenu.add(mapChooser.getComponent(), 0, 1);
         rootOfMenu.add(mapIdDisplay, 1, 1);
+        rootOfMenu.add(pseudoArea, 0, 2);
 
     }
 
@@ -76,6 +84,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
      * Launch game
      */
     private void launchGame() {
+        GameState.getInstance().setPseudo(pseudoArea.getText());
         menuMemory = FXCollections.observableArrayList(mainRoot.getChildren()); //keep menu in memory
         mainRoot.getChildren().clear(); //clear menu
 
@@ -90,6 +99,9 @@ public class SecondaryMenuSingle extends SecondaryMenu {
             mainRoot.getChildren().clear();
             mainRoot.getChildren().addAll(menuMemory);
             gameGui.getCurrentGame().removeHandlers();
+
+            ScoreBoard.getInstance().saveScore(GameState.getInstance().getPseudo(), Score.getInstance().getScore());
+            Score.getInstance().resetScore();
         });
     }
 }
