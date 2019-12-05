@@ -23,7 +23,7 @@ public class Pacman extends MovableEntity {
     private int nbLives;
     private boolean ghosting = false;
     private PowerUp resize = new PowerUp(2000, 5000, "resize");
-    private PowerUp superpacgomme = new PowerUp(10000, 10000, "superpacgomme");
+    private PowerUp superpacgomme = new PowerUp(10000, 10000, "super");
     private PowerUp ghostingPower = new PowerUp(1000, 10000, "ghosting");
 
     public Pacman(int nbLives, int x, int y) {
