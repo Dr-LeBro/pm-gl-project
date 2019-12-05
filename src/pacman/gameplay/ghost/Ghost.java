@@ -182,6 +182,7 @@ public class Ghost extends MovableEntity {
     public Position posNextIntersection(Position targetPos, Direction targetDir) {
         boolean isValid = false;
         Position tempPos = new Position(targetPos);
+        Position ghostPos = new Position(((int)Math.floor(this.x) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(this.y) + Map.ArrayUnit/2) / Map.ArrayUnit);
         int tempX, tempY;
         while (!isValid){
             switch (targetDir){
@@ -189,9 +190,9 @@ public class Ghost extends MovableEntity {
                     tempPos.setY(tempPos.getY()-1);
                     tempX = tempPos.getX();
                     tempY = tempPos.getY();
-                    if ( !(validPosition(tempX - 1, tempY - 2) && validPosition(tempX, tempY - 2) && validPosition(tempX + 1, tempY - 2))
-                         || (validPosition(tempX - 2, tempY - 1) && validPosition(tempX - 2, tempY) && validPosition(tempX - 2, tempY + 1))
-                         || (validPosition(tempX + 2, tempY - 1) && validPosition(tempX + 2, tempY) && validPosition(tempX + 2, tempY + 1))
+                    if ( !validPosition(tempX, tempY - 1)
+                         || validPosition(tempX - 1, tempY)
+                         || validPosition(tempX + 1, tempY)
                         ) {
                         isValid = true;
                     }
@@ -200,9 +201,9 @@ public class Ghost extends MovableEntity {
                     tempPos.setX(tempPos.getX()+1);
                     tempX = tempPos.getX();
                     tempY = tempPos.getY();
-                    if ( !(validPosition(tempX + 2, tempY - 1) && validPosition(tempX + 2, tempY) && validPosition(tempX + 2, tempY + 1))
-                            || (validPosition(tempX - 1, tempY - 2) && validPosition(tempX, tempY - 2) && validPosition(tempX + 1, tempY - 2))
-                            || (validPosition(tempX - 1, tempY + 2) && validPosition(tempX, tempY + 2) && validPosition(tempX + 1, tempY + 2))
+                    if ( !validPosition(tempX + 1, tempY)
+                            || validPosition(tempX, tempY - 1)
+                            || validPosition(tempX, tempY + 1)
                     ) {
                         isValid = true;
                     }
@@ -211,9 +212,9 @@ public class Ghost extends MovableEntity {
                     tempPos.setY(tempPos.getY()+1);
                     tempX = tempPos.getX();
                     tempY = tempPos.getY();
-                    if ( !(validPosition(tempX - 1, tempY + 2) && validPosition(tempX, tempY + 2) && validPosition(tempX + 1, tempY + 2))
-                            || (validPosition(tempX - 2, tempY - 1) && validPosition(tempX - 2, tempY) && validPosition(tempX - 2, tempY + 1))
-                            || (validPosition(tempX + 2, tempY - 1) && validPosition(tempX + 2, tempY) && validPosition(tempX + 2, tempY + 1))
+                    if ( !validPosition(tempX, tempY + 1)
+                            || validPosition(tempX - 1, tempY)
+                            || validPosition(tempX + 1, tempY)
                     ) {
                         isValid = true;
                     }
@@ -222,9 +223,9 @@ public class Ghost extends MovableEntity {
                     tempPos.setX(tempPos.getX()-1);
                     tempX = tempPos.getX();
                     tempY = tempPos.getY();
-                    if ( !(validPosition(tempX - 2, tempY - 1) && validPosition(tempX - 2, tempY) && validPosition(tempX - 2, tempY + 1))
-                            || (validPosition(tempX - 1, tempY - 2) && validPosition(tempX, tempY - 2) && validPosition(tempX + 1, tempY - 2))
-                            || (validPosition(tempX - 1, tempY + 2) && validPosition(tempX, tempY + 2) && validPosition(tempX + 1, tempY + 2))
+                    if ( !validPosition(tempX - 1, tempY)
+                            || validPosition(tempX, tempY - 1)
+                            || validPosition(tempX, tempY + 1)
                     ) {
                         isValid = true;
                     }
@@ -232,8 +233,35 @@ public class Ghost extends MovableEntity {
                 default:
                     return tempPos;
             }
+            if (ghostPos.getX() == tempX && ghostPos.getY() == tempY){
+                tempPos.setXY(targetPos.getX(), targetPos.getY());
+                isValid = true;
+            }
         }
         return tempPos;
+    }
+
+    public KeyCode randomNonOppositeDirection(Direction dir){
+        int randomNum = new Random().nextInt(4);
+        //System.out.println(randomNum);
+        int count = 0;
+        while (count < 4){
+            if ( (dir == Direction.UP && randomNum != 2) || (dir == Direction.RIGHT && randomNum != 3) || (dir == Direction.DOWN && randomNum != 0) || (dir == Direction.LEFT && randomNum != 1) ){
+                switch (randomNum) {
+                    case 0:
+                        return KeyCode.UP;
+                    case 1:
+                        return KeyCode.RIGHT;
+                    case 2:
+                        return KeyCode.DOWN;
+                    case 3:
+                        return KeyCode.LEFT;
+                }
+            }
+            randomNum = (randomNum + 1) % 4;
+            count++;
+        }
+        return null;
     }
 
     public KeyCode randomValidDirection(Position ghostPos){
@@ -265,10 +293,19 @@ public class Ghost extends MovableEntity {
         return null;
     }
 
-    /*public boolean isIntersection(Position pos){
+    public boolean isIntersection(Position pos){
         boolean isFreeUp = false, isFreeRight = false, isFreeDown = false, isFreeLeft = false;
-        if (pos.getX() - 1 )
-    }*/
+        Position[] tabPos = validAdjacentPosition(pos);
+        if (tabPos[0] != null)
+            isFreeUp = true;
+        if (tabPos[1] != null)
+            isFreeRight = true;
+        if (tabPos[2] != null)
+            isFreeDown = true;
+        if (tabPos[3] != null)
+            isFreeLeft = true;
+        return (isFreeUp && isFreeRight) || (isFreeRight && isFreeDown) || (isFreeDown && isFreeLeft) || (isFreeLeft && isFreeUp);
+    }
 
     public KeyCode ghostIA(int targetX, int targetY){
         //System.out.println("startPos :" + startPos + "    endPos :" + endPos + "   Deplacement :"+ deplacement);
@@ -351,6 +388,8 @@ public class Ghost extends MovableEntity {
             if (this.getActualDir() == STANDING){
                 //System.out.println("X : " + this.x + " Y : " + this.y);
                 return randomValidDirection(startPos);
+            } else if (this.getWishedDirection() == STANDING) {
+                return this.randomNonOppositeDirection(this.getActualDir());
             }
             return null;
         }
