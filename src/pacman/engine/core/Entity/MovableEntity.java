@@ -185,8 +185,6 @@ public class MovableEntity extends Entity {
         if(isVisible()){
             getSprite().setPoint(x, y);
         }
-
-
     }
 
     public Direction getWishedDirection() {

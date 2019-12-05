@@ -99,6 +99,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
             mainRoot.getChildren().clear();
             mainRoot.getChildren().addAll(menuMemory);
             gameGui.getCurrentGame().removeHandlers();
+            gameGui.stop();
 
             ScoreBoard.getInstance().saveScore(GameState.getInstance().getPseudo(), Score.getInstance().getScore());
             Score.getInstance().resetScore();

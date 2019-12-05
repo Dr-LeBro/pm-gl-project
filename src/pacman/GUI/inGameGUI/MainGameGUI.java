@@ -30,6 +30,7 @@ public class MainGameGUI {
     private Text lifeDisplay = new Text();
     private Game currentGame;
     private int mapId;
+    private Timeline gameLoop;
 
     private HashMap<String, PowerUpGUI> powerUpsGUI = new HashMap<>();
 
@@ -99,7 +100,7 @@ public class MainGameGUI {
     }
 
     public void launch(){
-        Timeline gameLoop = new Timeline();
+        gameLoop = new Timeline();
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
         currentGame = new Game(middleElem, Integer.toString(mapId));
@@ -141,6 +142,10 @@ public class MainGameGUI {
         gameLoop.play();
 
 
+    }
+
+    public void stop(){
+        gameLoop.stop();
     }
 
     public AnchorPane getCurrentGUI(){
