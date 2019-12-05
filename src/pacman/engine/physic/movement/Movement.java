@@ -13,20 +13,23 @@ public class Movement {
     }
 
     public Point2D move(double x, double y, Direction direction){
-        switch (direction) {
-            case UP:
-                y -= speed;
-                break;
-            case DOWN:
-                y += speed;
-                break;
-            case LEFT:
-                x -= speed;
-                break;
-            case RIGHT:
-                x += speed;
-                break;
-            default:
+        if (direction != null) {
+            switch (direction) {
+                case UP:
+                    y -= speed;
+                    break;
+                case DOWN:
+                    y += speed;
+                    break;
+                case LEFT:
+                    x -= speed;
+                    break;
+                case RIGHT:
+                    x += speed;
+                    break;
+                default:
+                    break;
+            }
         }
         return new Point2D(x , y);
     }

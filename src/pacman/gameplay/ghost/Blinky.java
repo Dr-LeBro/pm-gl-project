@@ -7,6 +7,7 @@ import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.engine.physic.movement.Direction;
 import pacman.gameplay.ghost.mode.Mode;
 import pacman.gameplay.pacman.Pacman;
 
@@ -31,7 +32,26 @@ public class Blinky extends IAGhost {
     public KeyCode chase()
     {
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        Direction tempDir;
+        switch (pacman.getActualDir()){
+            case UP:
+                tempDir = Direction.DOWN;
+                break;
+            case RIGHT:
+                tempDir = Direction.LEFT;
+                break;
+            case DOWN:
+                tempDir = Direction.UP;
+                break;
+            case LEFT:
+                tempDir = Direction.RIGHT;
+                break;
+            default:
+                tempDir = Direction.STANDING;
+        }
+        Position targetPos = posNextIntersection(new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit), tempDir);
+        return ghostIA(targetPos.getX(), targetPos.getY());
+        //return ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
         //Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
         /*mode = getMode();
         switch (mode) {

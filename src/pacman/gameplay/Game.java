@@ -92,7 +92,9 @@ public class Game {
                     keyGhost = null;
                     break;
             }
+            //if (keyGhost != null) System.out.println("1 : actualDir : " + ghosts.get(i).getActualDir() + "  wishedDir : " + ghosts.get(i).getWishedDirection() + " keyGhost : " + keyGhost);
             ghosts.get(i).move(keyGhost);
+            //if (keyGhost != null) System.out.println("2 : actualDir : " + ghosts.get(i).getActualDir() + "  wishedDir : " + ghosts.get(i).getWishedDirection());
         }
     }
 

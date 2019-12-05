@@ -9,10 +9,14 @@ import pacman.engine.core.GameState;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
+import pacman.engine.physic.movement.Direction;
 import pacman.gameplay.ghost.mode.Mode;
 import pacman.gameplay.scoreManager.Score;
 
 import java.util.LinkedList;
+import java.util.Random;
+
+import static pacman.engine.physic.movement.Direction.STANDING;
 
 public class Ghost extends MovableEntity {
     private int behaviour;
@@ -21,7 +25,7 @@ public class Ghost extends MovableEntity {
     private Mode mode;
 
     public Ghost(int behaviour, double respawnTime, int x, int y) {
-        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.32);
+        super(EntityType.GHOST, new StaticSprite("file:sprites/ghost2_up.png", "ghost"), x*Map.ArrayUnit, y*Map.ArrayUnit, 3*Map.ArrayUnit,0.82);
         pos = new Point2D(x, y);
         Sprite[] sprites = new Sprite[4];
         sprites[0] = new StaticSprite("file:sprites/ghost1_up.png", "ghostU");
@@ -83,6 +87,26 @@ public class Ghost extends MovableEntity {
         else
             return false;
     }
+
+    private boolean validPosition (int x, int y){
+        if (x < 1 || x > GameState.getInstance().getCurrMap().getMaxX() - 2 || y < 1 || y > GameState.getInstance().getCurrMap().getMaxY() - 2) {
+            return false;
+        }
+        Block[][] blocks = GameState.getInstance().getCurrMap().getStaticMap();
+        Position pos = new Position(x, y);
+        if (blocks[pos.getX()-1][pos.getY()-1] == null &&
+                blocks[pos.getX()-1][pos.getY()] == null &&
+                blocks[pos.getX()-1][pos.getY()+1] == null &&
+                blocks[pos.getX()][pos.getY()-1] == null &&
+                blocks[pos.getX()][pos.getY()+1] == null &&
+                blocks[pos.getX()+1][pos.getY()-1] == null &&
+                blocks[pos.getX()+1][pos.getY()] == null &&
+                blocks[pos.getX()+1][pos.getY()+1] == null )
+            return true;
+        else
+            return false;
+    }
+
     private  Position[] validAdjacentPosition(Position pos){
         final int LARGEUR = GameState.getInstance().getCurrMap().getMaxX();
         final int LONGUEUR = GameState.getInstance().getCurrMap().getMaxY();
@@ -95,16 +119,16 @@ public class Ghost extends MovableEntity {
         Block[][] blocks = GameState.getInstance().getCurrMap().getStaticMap();
         Position tempPos;
         tempPos = new Position(pos.getX(), pos.getY()-1);
-        if (pos.getY()-2 > 0 && validPosition(tempPos))
+        if (pos.getY()-1 > 0 && validPosition(tempPos))
             adjacent[0] = tempPos;
         tempPos = new Position(pos.getX()+1, pos.getY());
-        if (pos.getX() + 2  < LARGEUR && validPosition(tempPos))
+        if (pos.getX() + 1  < LARGEUR && validPosition(tempPos))
             adjacent[1] = tempPos;
         tempPos = new Position(pos.getX(), pos.getY()+1);
-        if (pos.getY()+2 < LONGUEUR && validPosition(tempPos))
+        if (pos.getY()+1 < LONGUEUR && validPosition(tempPos))
             adjacent[2] = tempPos;
         tempPos = new Position(pos.getX()-1, pos.getY());
-        if (pos.getX()-2 > 0 && validPosition(tempPos))
+        if (pos.getX()-1 > 0 && validPosition(tempPos))
             adjacent[3] = tempPos;
         return adjacent;
 
@@ -155,6 +179,134 @@ public class Ghost extends MovableEntity {
         return adjacent;*/
     }
 
+    public Position posNextIntersection(Position targetPos, Direction targetDir) {
+        boolean isValid = false;
+        Position tempPos = new Position(targetPos);
+        Position ghostPos = new Position(((int)Math.floor(this.x) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(this.y) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        int tempX, tempY;
+        while (!isValid){
+            switch (targetDir){
+                case UP:
+                    tempPos.setY(tempPos.getY()-1);
+                    tempX = tempPos.getX();
+                    tempY = tempPos.getY();
+                    if ( !validPosition(tempX, tempY - 1)
+                         || validPosition(tempX - 1, tempY)
+                         || validPosition(tempX + 1, tempY)
+                        ) {
+                        isValid = true;
+                    }
+                    break;
+                case RIGHT:
+                    tempPos.setX(tempPos.getX()+1);
+                    tempX = tempPos.getX();
+                    tempY = tempPos.getY();
+                    if ( !validPosition(tempX + 1, tempY)
+                            || validPosition(tempX, tempY - 1)
+                            || validPosition(tempX, tempY + 1)
+                    ) {
+                        isValid = true;
+                    }
+                    break;
+                case DOWN:
+                    tempPos.setY(tempPos.getY()+1);
+                    tempX = tempPos.getX();
+                    tempY = tempPos.getY();
+                    if ( !validPosition(tempX, tempY + 1)
+                            || validPosition(tempX - 1, tempY)
+                            || validPosition(tempX + 1, tempY)
+                    ) {
+                        isValid = true;
+                    }
+                    break;
+                case LEFT:
+                    tempPos.setX(tempPos.getX()-1);
+                    tempX = tempPos.getX();
+                    tempY = tempPos.getY();
+                    if ( !validPosition(tempX - 1, tempY)
+                            || validPosition(tempX, tempY - 1)
+                            || validPosition(tempX, tempY + 1)
+                    ) {
+                        isValid = true;
+                    }
+                    break;
+                default:
+                    return tempPos;
+            }
+            if (ghostPos.getX() == tempX && ghostPos.getY() == tempY){
+                tempPos.setXY(targetPos.getX(), targetPos.getY());
+                isValid = true;
+            }
+        }
+        return tempPos;
+    }
+
+    public KeyCode randomNonOppositeDirection(Direction dir){
+        int randomNum = new Random().nextInt(4);
+        //System.out.println(randomNum);
+        int count = 0;
+        while (count < 4){
+            if ( (dir == Direction.UP && randomNum != 2) || (dir == Direction.RIGHT && randomNum != 3) || (dir == Direction.DOWN && randomNum != 0) || (dir == Direction.LEFT && randomNum != 1) ){
+                switch (randomNum) {
+                    case 0:
+                        return KeyCode.UP;
+                    case 1:
+                        return KeyCode.RIGHT;
+                    case 2:
+                        return KeyCode.DOWN;
+                    case 3:
+                        return KeyCode.LEFT;
+                }
+            }
+            randomNum = (randomNum + 1) % 4;
+            count++;
+        }
+        return null;
+    }
+
+    public KeyCode randomValidDirection(Position ghostPos){
+        int randomNum = new Random().nextInt(4);
+        //System.out.println(randomNum);
+        int count = 0;
+        Position[] adjPos = validAdjacentPosition(ghostPos);
+        /*for (int i = 0; i < 4; i++){
+            if (adjPos[i]!=null){
+                System.out.println("i : " + i);
+            }
+        }*/
+        while (count < 4){
+            if (adjPos[randomNum] != null){
+                switch (randomNum) {
+                    case 0:
+                        return KeyCode.UP;
+                    case 1:
+                        return KeyCode.RIGHT;
+                    case 2:
+                        return KeyCode.DOWN;
+                    case 3:
+                        return KeyCode.LEFT;
+                }
+            }
+            randomNum = (randomNum + 1) % 4;
+            count++;
+        }
+        return null;
+    }
+
+    public boolean isIntersection(Position pos){
+        boolean isFreeUp = false, isFreeRight = false, isFreeDown = false, isFreeLeft = false;
+        Position[] tabPos = validAdjacentPosition(pos);
+        if (tabPos[0] != null)
+            isFreeUp = true;
+        if (tabPos[1] != null)
+            isFreeRight = true;
+        if (tabPos[2] != null)
+            isFreeDown = true;
+        if (tabPos[3] != null)
+            isFreeLeft = true;
+        return (isFreeUp && isFreeRight) || (isFreeRight && isFreeDown) || (isFreeDown && isFreeLeft) || (isFreeLeft && isFreeUp);
+    }
+
     public KeyCode ghostIA(int targetX, int targetY){
         //System.out.println("startPos :" + startPos + "    endPos :" + endPos + "   Deplacement :"+ deplacement);
         //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + endPos.toString());
@@ -164,9 +316,8 @@ public class Ghost extends MovableEntity {
         //System.out.println(startPos.toString() + "  x : " + this.x + "  y : " + this.y + "  actualDir : " + getActualDir() + "  wishedDir : " + this.getWishedDirection());
         Position endPos = new Position(targetX, targetY);
         //Position endPos = new Position(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
-        // TODO RANDOM INPUT
         if (startPos.equals(endPos))
-            return null;
+            return randomValidDirection(startPos);
         boolean[][] alreadyVisited = new boolean[LARGEUR][LONGUEUR];// In java, the basic value of each cell for an array of boolean is false
         Position[][] predecessor = new Position[LARGEUR][LONGUEUR];
         QueueMaze queue = new QueueMaze();
@@ -192,7 +343,7 @@ public class Ghost extends MovableEntity {
         //Position[] searchPath = new Position[50];
         //int lastX = -2, lastY = -2; // We just need the direction we have to take, not the whole path
         //System.out.println("endPos.x = " +  endPos.getX() + "    endPos.y = " +  endPos.getY());
-        /*if(alreadyVisited[endPos.getX()][endPos.getY()]){ // if goal is reached
+        if(endPos.getX() >= 0 && endPos.getY() >= 0 && endPos.getX() < LARGEUR && endPos.getY() < LONGUEUR && alreadyVisited[endPos.getX()][endPos.getY()]){ // if goal is reached
             int xPred = endPos.getX(), yPred = endPos.getY(), i = 0, xTemp;
             //searchPath[i++]=endPos;
             //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + predecessor[xPred][yPred].toString());
@@ -233,10 +384,15 @@ public class Ghost extends MovableEntity {
             }
         }
         else {
-            //TODO RANDOM INPUT
-            //System.out.println("No path");*/
+            //System.out.println("No path " + this.sizeX);
+            if (this.getActualDir() == STANDING){
+                //System.out.println("X : " + this.x + " Y : " + this.y);
+                return randomValidDirection(startPos);
+            } else if (this.getWishedDirection() == STANDING) {
+                return this.randomNonOppositeDirection(this.getActualDir());
+            }
             return null;
-        //}
+        }
 
     }
 

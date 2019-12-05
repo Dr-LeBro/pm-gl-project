@@ -71,8 +71,8 @@ public class Pacman extends MovableEntity {
     @Override
     public void kill()
     {
-        /* If PacMan get hit even though he has at least 1 life, then he dies and respawn */
-        if(nbLives > 1) {
+        /* If PacMan get hit even though he has only 1 life, then he dies and respawn */
+        if(nbLives >= 1) {
             nbLives--;
             super.kill();
             respawn(spawnX, spawnY);
