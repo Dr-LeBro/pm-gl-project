@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import pacman.gameplay.Game;
@@ -35,7 +36,6 @@ public class MainGameGUI {
     public static Node eventHandler = new Node() {};
 
 
-
     public MainGameGUI(int mapId) {
         GridPane.setHgrow(gameRoot, Priority.ALWAYS);
         GridPane.setVgrow(gameRoot, Priority.ALWAYS);
@@ -48,6 +48,8 @@ public class MainGameGUI {
 
         scoreDisplay.setText("Score: 0");
         lifeDisplay.setText("vies: 0");
+        scoreDisplay.setFont(Font.font("Verdana", 30));
+        lifeDisplay.setFont(Font.font("Verdana", 30));
         leftGrid.add(lifeDisplay, 0, 0);
         leftGrid.add(scoreDisplay, 0, 1);
 
@@ -123,7 +125,6 @@ public class MainGameGUI {
             AnchorPane.setTopAnchor(middleElem, sideY);
             AnchorPane.setBottomAnchor(middleElem, sideY);
 
-            System.out.println(middleElem.getHeight());
             currentGame.getCanvas().myResize(size, size);
             middleElem.getChildren().add(currentGame.getCanvas());
         });

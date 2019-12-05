@@ -8,6 +8,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PowerUpGUI {
@@ -53,10 +54,17 @@ public class PowerUpGUI {
         if(display == null) {
             display = new GridPane();
 
-            display.add(new Text(name), 1, 0);
-            display.add(new Text("Duration"), 0, 1);
+            Text temp;
+            temp = new Text(name);
+            temp.setFont(Font.font(30));
+            display.add(temp, 1, 0);
+
+            temp = new Text("Duration");
+            display.add(temp, 0, 1);
             display.add(durationBar, 0, 2);
-            display.add(new Text("Cooldown"), 2, 1);
+
+            temp = new Text("Cooldown");
+            display.add(temp, 2, 1);
             display.add(cooldownBar, 2, 2);
         }
         return display;
