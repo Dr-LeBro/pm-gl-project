@@ -3,6 +3,7 @@ package pacman.gameplay.ghost;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.engine.core.Block.Block;
+import pacman.engine.core.Entity.Entity;
 import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.GameState;
@@ -16,7 +17,7 @@ import pacman.gameplay.scoreManager.Score;
 import java.util.LinkedList;
 import java.util.Random;
 
-import static pacman.engine.physic.movement.Direction.STANDING;
+import static pacman.engine.physic.movement.Direction.*;
 
 public class Ghost extends MovableEntity {
     private int behaviour;
@@ -63,15 +64,6 @@ public class Ghost extends MovableEntity {
         respawn(spawnX, spawnY);
     }
 
-    public void move(KeyCode keyPressed){
-        super.move(keyPressed);
-        if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
-            if(GameState.getInstance().getCurrMap().getPacMan().getInvulnerable())
-                this.kill();
-            else
-                GameState.getInstance().getCurrMap().getPacMan().kill();
-        }
-    }
 
     private boolean validPosition (Position pos){
         Block[][] blocks = GameState.getInstance().getCurrMap().getStaticMap();
@@ -238,6 +230,7 @@ public class Ghost extends MovableEntity {
                 isValid = true;
             }
         }
+
         return tempPos;
     }
 
@@ -394,6 +387,101 @@ public class Ghost extends MovableEntity {
             return null;
         }
 
+
+    }
+
+    @Override
+    public void move(KeyCode keyPressed) {
+        setWishedDirection(keyPressed);
+        boolean inContactWished = false, inContactWishedTurn = false, inContactDir = false;
+        double tempXWished, tempYWished, tempXDir, tempYDir, greatestX, greatestY;
+        double tempXWishedTurn = -1;
+        double tempYWishedTurn = -1;
+        Point2D pointWished = moveManager.move(x, y, this.wishedDirection);
+        Point2D pointDir = moveManager.move(x, y, this.actualDir);
+        tempXWished = pointWished.getX();
+        tempYWished = pointWished.getY();
+        tempXDir = pointDir.getX();
+        tempYDir = pointDir.getY();
+
+        if (this.x > tempXDir) greatestX = this.x;
+        else greatestX = tempXDir;
+        if (this.y > tempYDir) greatestY = this.y;
+        else greatestY = tempYDir;
+        if (Math.floor(tempXDir) != Math.floor(this.x) && Math.floor(tempXDir) != tempXDir){
+            double differenceX = Math.abs(Math.floor(greatestX) - tempXDir);
+            if (this.wishedDirection == UP){
+                tempXWishedTurn = Math.floor(greatestX);
+                tempYWishedTurn = this.y - differenceX;
+            } else if (this.wishedDirection == DOWN){
+                tempXWishedTurn = Math.floor(greatestX);
+                tempYWishedTurn = this.y + differenceX;
+            }
+        }
+        if (Math.floor(tempYDir) != Math.floor(this.y) && Math.floor(tempYDir) != tempYDir){
+            double differenceY = Math.abs(Math.floor(greatestY) - tempYDir);
+            if (this.wishedDirection == RIGHT){
+                tempXWishedTurn = this.x + differenceY;
+                tempYWishedTurn = Math.floor(greatestY);
+            } else if (this.wishedDirection == LEFT){
+                tempXWishedTurn = this.x - differenceY;
+                tempYWishedTurn = Math.floor(greatestY);
+            }
+        }
+
+
+        Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
+        if(walls != null) {
+            for (int i = 0; i < walls.length && !inContactWished && this.wishedDirection != Direction.STANDING; i++) {
+                for (int j = 0; j < walls[i].length && !inContactWished; j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWished, tempYWished, walls[i][j])) {
+                        inContactWished = true; // Can't go in wished direction
+                    }
+                }
+            }
+            for (int i = 0; i < walls.length && !inContactWishedTurn && this.wishedDirection != Direction.STANDING && tempXWishedTurn != -1; i++) {
+                for (int j = 0; j < walls[i].length && !inContactWishedTurn; j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXWishedTurn, tempYWishedTurn, walls[i][j])) {
+                        inContactWishedTurn = true; // Can't go in wished direction
+                    }
+                }
+            }
+            for (int i = 0; i < walls.length && !inContactDir; i++) {
+                for (int j = 0; j < walls[i].length && !inContactDir; j++) {
+                    if (walls[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, tempXDir, tempYDir, walls[i][j])) {
+                        inContactDir = true;
+                    }
+                }
+            }
+        }
+
+        if (!inContactWished && this.wishedDirection != Direction.STANDING) {
+            this.x = tempXWished;
+            this.y = tempYWished;
+            this.actualDir = this.wishedDirection;
+            this.wishedDirection = Direction.STANDING;
+            drawCurrentSprite();
+        } else if (!inContactWishedTurn && tempXWishedTurn != -1 && tempYWishedTurn != -1) {
+            this.x = tempXWishedTurn;
+            this.y = tempYWishedTurn;
+            this.actualDir = this.wishedDirection;
+            this.wishedDirection = Direction.STANDING;
+            drawCurrentSprite();
+        } else if (!inContactDir) {
+            this.x = tempXDir;
+            this.y = tempYDir;
+        } else {
+            this.actualDir = STANDING;
+        }
+        if(isVisible()){
+            getSprite().setPoint(x, y);
+        }
+        if (this.hitBox.isInContact(sizeX, sizeY, x, y, GameState.getInstance().getCurrMap().getPacMan())) {
+            if(GameState.getInstance().getCurrMap().getPacMan().getInvulnerable())
+                this.kill();
+            else
+                GameState.getInstance().getCurrMap().getPacMan().kill();
+        }
     }
 
     protected class QueueMaze {
