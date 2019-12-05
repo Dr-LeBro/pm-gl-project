@@ -34,7 +34,6 @@ public class ScoreBonus {
                     GameState.getInstance().getCurrMap().getStaticEntityMap()[x][y].kill();
                 GameState.getInstance().getCurrMap().setStaticEntity(x,y,toAdd);
                 toAdd.spawn();
-                System.out.println(toAdd.getX()/Map.ArrayUnit + " " + toAdd.getY()/Map.ArrayUnit);
                 return;
             }
         }
