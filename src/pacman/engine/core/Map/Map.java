@@ -19,9 +19,9 @@ public class Map {
     private Block[][] staticMap; //walls
     private StaticEntity[][] staticEntityMap; //pac-gommes, fruits, etc
     private ArrayList<MovableEntity> movableList; //pac-man, ghosts
-    private int maxX = 0;
-    private int maxY = 0;
-    public String id = null;
+    private int maxX = 0; //size X
+    private int maxY = 0; //size Y
+    private String id = null; //map id
 
     public String getId() {
         return id;

@@ -1,5 +1,6 @@
 package pacman.engine.core.Entity;
 
+@SuppressWarnings("ALL")
 public enum EntityType {
     PAC_GOMME,
     BLOCK,
