@@ -187,8 +187,6 @@ public class MovableEntity extends Entity {
                 this.y = Math.floor(this.y /Map.ArrayUnit + 0.5) * Map.ArrayUnit;
             if (this.actualDir == RIGHT || this.actualDir == LEFT)
                 this.x = Math.floor(this.x / Map.ArrayUnit + 0.5) * Map.ArrayUnit;
-
-            this.actualDir = STANDING;
         }
         if(isVisible()){
             getSprite().setPoint(x, y);
