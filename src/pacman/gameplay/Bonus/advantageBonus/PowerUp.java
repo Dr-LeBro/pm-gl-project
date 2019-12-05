@@ -34,6 +34,15 @@ public class PowerUp {
         }
     }
 
+    public void forceUse(){
+        timeStarted = System.currentTimeMillis();
+        state = STATE_USING;
+        ended = -1;
+        String[] eventArgs = new String[1];
+        eventArgs[0] = name;
+        MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_POWERUP_USED, eventArgs));
+    }
+
     public int checkState(){
         long currentTime = System.currentTimeMillis();
         String[] eventArgs = new String[2];

@@ -95,8 +95,8 @@ public class Pacman extends MovableEntity {
     }
 
     public void superPowerUp(boolean use) {
-        if(use && superpacgomme.canBeUsed()){
-            superpacgomme.use();
+        if(use){
+            superpacgomme.forceUse();
             invulnerable = true;
         }
         else

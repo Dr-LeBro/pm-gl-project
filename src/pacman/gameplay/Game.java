@@ -2,9 +2,8 @@ package pacman.gameplay;
 
 import javafx.event.Event;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import pacman.Main;
-import pacman.engine.core.Entity.MovableEntity;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.GameState;
 import pacman.engine.core.KeyboardInput;
@@ -25,15 +24,15 @@ public class Game {
     private ArrayList<Ghost> ghosts;
     GameState pGame = GameState.getInstance();
 
-    public Game(GridPane root, String mapId){
+    public Game(Pane root, String mapId){
         LabyrinthFile.loadMaps();
         pGame.setCurrMap(LabyrinthFile.getMapById(mapId));
 
         pGame.setRoot(root);
         int labX = pGame.getCurrMap().getMaxX()*Map.ArrayUnit;
         int labY = pGame.getCurrMap().getMaxY()*Map.ArrayUnit;
-        pGame.setCanvas(new ResizableCanvas(labX, labY, root.getWidth(), root.getHeight()));
-        root.getChildren().add(pGame.getCanvas());
+        pGame.setCanvas(new ResizableCanvas(labX, labY, 0, 0));
+
 
         System.out.println("Labyrinth");
         ArrayList<Sprite> staticMap = pGame.getCurrMap().getStaticMapVisual();
@@ -61,8 +60,6 @@ public class Game {
         pacman.spawn();
 
         pGame.setkI(new KeyboardInput(Main.root));
-        root.widthProperty().addListener(evtW -> pGame.getCanvas().setWidth(root.getWidth()));
-        root.heightProperty().addListener(evtH -> pGame.getCanvas().setHeight(root.getHeight()));
     }
 
     public void gameLoop(){

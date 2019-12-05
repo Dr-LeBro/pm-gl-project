@@ -1,0 +1,16 @@
+.list-view {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.list-view .list-cell:odd {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.list-view .list-cell:selected:odd,
+.list-view .list-cell:selected:even {
+    -fx-background-color: -fx-background;
+}

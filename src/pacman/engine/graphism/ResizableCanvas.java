@@ -23,20 +23,12 @@ public class ResizableCanvas extends Canvas{
         this.labSizeX = labSizeX;
         fontColor = Color.rgb(1,20,50,1.0); //RGBA
 
-        widthProperty().addListener(evtW ->{
-            resize(super.getWidth(), super.getHeight());
-            draw();
-        });
-        heightProperty().addListener(evtH ->{
-            resize(super.getWidth(), super.getHeight());
-            draw();
-        });
         drawableObjects = new HashMap<>();
-        resize(width, height);
+        myResize(width, height);
     }
 
-    @Override
-    public void resize(double x, double y){
+
+    public void myResize(double x, double y){
         clear();
         super.setHeight(y);
         super.setWidth(x);
