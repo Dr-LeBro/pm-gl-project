@@ -13,9 +13,9 @@ import static pacman.engine.physic.movement.Direction.*;
 
 public class MovableEntity extends Entity {
 
-    private Movement moveManager;
-    private Direction actualDir; // Direction the entity is currently heading toward
-    private Direction wishedDirection; // Direction the entity wishes to go
+    protected Movement moveManager;
+    protected Direction actualDir; // Direction the entity is currently heading toward
+    protected Direction wishedDirection; // Direction the entity wishes to go
     private Sprite movingSprites[];
     protected double spawnX, spawnY;
 
@@ -82,7 +82,7 @@ public class MovableEntity extends Entity {
     }
 
 
-    private void setWishedDirection(KeyCode keyPressed){
+    protected void setWishedDirection(KeyCode keyPressed){
         if(keyPressed == KeyCode.UP){
             if (UP != this.actualDir) this.wishedDirection = UP;
         }else if(keyPressed == KeyCode.DOWN){

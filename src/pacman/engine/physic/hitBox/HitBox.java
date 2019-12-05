@@ -16,29 +16,32 @@ public class HitBox {
     }
 
     public static boolean canBePlaced(double x,double y, Entity e) {
-        System.out.println("x :"+x+" y:"+y);
         Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)x/Map.ArrayUnit, (int)y/Map.ArrayUnit);
-
-        for (int i = 0; i < walls.length; i++) {
-            for (int j = 0; j < walls[i].length; j++) {
-                if (walls[i][j] != null && isInContact(e.getSizeX(), e.getSizeY(), x, y, walls[i][j])) {
-                    return false;
+        if(walls != null) {
+            for (int i = 0; i < walls.length; i++) {
+                for (int j = 0; j < walls[i].length; j++) {
+                    if (walls[i][j] != null && isInContact(e.getSizeX(), e.getSizeY(), x, y, walls[i][j])) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean canBePlaced(double x,double y, Entity e, double sizeX,double sizeY) {
         Entity[][] walls = GameState.getInstance().getCurrMap().getSurroundingStaticMap((int)x/Map.ArrayUnit, (int)y/Map.ArrayUnit);
-
-        for (int i = 0; i < walls.length; i++) {
-            for (int j = 0; j < walls[i].length; j++) {
-                if (walls[i][j] != null && isInContact(sizeX, sizeY, x, y, walls[i][j])) {
-                    return false;
+        if(walls != null) {
+            for (int i = 0; i < walls.length; i++) {
+                for (int j = 0; j < walls[i].length; j++) {
+                    if (walls[i][j] != null && isInContact(sizeX, sizeY, x, y, walls[i][j])) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 }

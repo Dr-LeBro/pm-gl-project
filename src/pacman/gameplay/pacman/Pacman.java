@@ -1,5 +1,6 @@
 package pacman.gameplay.pacman;
 
+import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.engine.core.Entity.Entity;
@@ -12,6 +13,7 @@ import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.engine.physic.hitBox.HitBox;
+import pacman.engine.physic.movement.Direction;
 import pacman.gameplay.Bonus.advantageBonus.PowerUp;
 import pacman.gameplay.GameEvent;
 
@@ -19,8 +21,10 @@ import java.util.ArrayList;
 
 public class Pacman extends MovableEntity {
     private int nbLives;
+    private boolean ghosting = false;
     private PowerUp resize = new PowerUp(2000, 5000, "resize");
     private PowerUp superpacgomme = new PowerUp(10000, 10000, "superpacgomme");
+    private PowerUp magicalJourney = new PowerUp(1000, 10000, "magicalJourney");
 
     public Pacman(int nbLives, int x, int y) {
         super(EntityType.PACMAN, new StaticSprite("file:sprites/pacman02_right.png", "pacmanR"), x * Map.ArrayUnit , y  * Map.ArrayUnit, 3 * Map.ArrayUnit, 1);
@@ -86,10 +90,14 @@ public class Pacman extends MovableEntity {
         move(keyPressed);
         if (keyPressed == KeyCode.A){
             resizePowerUp(true);
-        }else{
+        }else if (keyPressed == KeyCode.Z){
+            MagicalJourney(true);
+        }
+        else{
             resizePowerUp(false);
         }
         superPowerUp(false);
+        magicalJourney.checkState();
     }
 
     public void superPowerUp(boolean use) {
@@ -103,6 +111,14 @@ public class Pacman extends MovableEntity {
             if(!superpacgomme.isEndedTargeted()){
                 invulnerable = false;
             }
+        }
+    }
+
+    public void MagicalJourney(boolean use) {
+        magicalJourney.checkState();
+        if(use && magicalJourney.canBeUsed()){
+            magicalJourney.use();
+            ghosting = true;
         }
     }
 
@@ -167,15 +183,38 @@ public class Pacman extends MovableEntity {
 
     @Override
     public void move(KeyCode keyPressed) {
-        super.move(keyPressed);
-        Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int)(x/ Map.ArrayUnit),(int)(y / Map.ArrayUnit));
-        if(staticEntities != null)
-            for (int i = 0; i < staticEntities.length ; i++){
-                for (int j = 0; j < staticEntities[i].length ; j++){
-                    if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
-                        staticEntities[i][j].kill();
+        if(ghosting)
+        {
+            Point2D pointDir;
+            if(wishedDirection != Direction.STANDING)
+                pointDir = moveManager.move(x, y, wishedDirection);
+            else
+                pointDir = moveManager.move(x, y, actualDir);
+            x = ((pointDir.getX()%(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit))+(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit))%(GameState.getInstance().getCurrMap().getMaxX()*Map.ArrayUnit);
+            y = ((pointDir.getY()%(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit))+(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit))%(GameState.getInstance().getCurrMap().getMaxY()*Map.ArrayUnit);
+            if(!magicalJourney.isEndedTargeted() && HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit,this, getSizeX(), getSizeY())) {
+                respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit);
+                ghosting = false;
+            }
+            else
+            {
+                magicalJourney.setEnded(0);
+            }
+            if(isVisible()){
+                getSprite().setPoint(x, y);
+            }
+        }
+        else {
+            super.move(keyPressed);
+            Entity[][] staticEntities = GameState.getInstance().getCurrMap().getSurroundingStaticEntityMap((int) (x / Map.ArrayUnit), (int) (y / Map.ArrayUnit));
+            if (staticEntities != null)
+                for (int i = 0; i < staticEntities.length; i++) {
+                    for (int j = 0; j < staticEntities[i].length; j++) {
+                        if (staticEntities[i][j] != null && this.hitBox.isInContact(sizeX, sizeY, x, y, staticEntities[i][j])) {
+                            staticEntities[i][j].kill();
+                        }
                     }
                 }
-            }
+        }
     }
 }

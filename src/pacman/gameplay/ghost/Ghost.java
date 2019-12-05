@@ -192,7 +192,7 @@ public class Ghost extends MovableEntity {
         //Position[] searchPath = new Position[50];
         //int lastX = -2, lastY = -2; // We just need the direction we have to take, not the whole path
         //System.out.println("endPos.x = " +  endPos.getX() + "    endPos.y = " +  endPos.getY());
-        if(alreadyVisited[endPos.getX()][endPos.getY()]){ // if goal is reached
+        /*if(alreadyVisited[endPos.getX()][endPos.getY()]){ // if goal is reached
             int xPred = endPos.getX(), yPred = endPos.getY(), i = 0, xTemp;
             //searchPath[i++]=endPos;
             //System.out.println("StartPos = " + startPos.toString() + "  EndPos = " + predecessor[xPred][yPred].toString());
@@ -234,9 +234,9 @@ public class Ghost extends MovableEntity {
         }
         else {
             //TODO RANDOM INPUT
-            //System.out.println("No path");
+            //System.out.println("No path");*/
             return null;
-        }
+        //}
 
     }
 
