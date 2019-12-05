@@ -36,7 +36,8 @@ public class Clyde extends IAGhost {
     {
         KeyCode kc = null;  //TODO : jté kc
         MovableEntity pacman = GameState.getInstance().getCurrMap().getPacMan();
-        kc =  ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
+        return ghostIA(0, 0);
+        /* kc =  ghostIA(((int)Math.floor(pacman.getX()) + Map.ArrayUnit/2)/ Map.ArrayUnit, ((int)Math.floor(pacman.getY()) + Map.ArrayUnit/2) / Map.ArrayUnit);
         mode = Mode.SCATTER;
         switch (mode) {
             case CHASE:
@@ -49,7 +50,7 @@ public class Clyde extends IAGhost {
                 break;
         }
 
-        return kc;
+        return kc;*/
     }
 
     @Override
