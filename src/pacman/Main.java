@@ -7,21 +7,28 @@ import javafx.stage.Stage;
 
 import pacman.GUI.menu.MainMenu;
 
-
+/**
+ * Main of program
+ * Launch graphical interface
+ */
 public class Main extends Application {
 
     static public GridPane root;
     static public Stage primaryStage;
 
+    /**
+     * launch graphical interface
+     * @param primaryStage main stage
+     */
     @Override
     public void start(Stage primaryStage){
-        this.primaryStage = primaryStage;
-        primaryStage.resizableProperty().setValue(false);
-        root = new GridPane();
-        primaryStage.setTitle("DARK PACMAN");
-        primaryStage.setScene(new Scene(root, 848, 480));
+        Main.primaryStage = primaryStage;
+        primaryStage.resizableProperty().setValue(false); //block resize
+        root = new GridPane(); //set root
+        primaryStage.setTitle("DARK PACMAN"); //Title of primary stage
+        primaryStage.setScene(new Scene(root, 848, 480)); //set scene with values
 
-        MainMenu menu = new MainMenu(root);
+        new MainMenu(root);
         primaryStage.show();
 
     }

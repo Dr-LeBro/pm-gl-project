@@ -40,17 +40,6 @@ public class Map {
         maxY = y;
     }
 
-    // TODO A RETIRER
-    public void afficheContenuMap(){
-        for (int i = 0; i < maxX; i++){
-            for (int j = 0; j < maxY; j++){
-                if (staticMap[i][j] != null) System.out.println("Bloc en " + i + " " + j);
-                if (staticEntityMap[i][j] != null) System.out.println("Static entity en " + i + " " + j);
-            }
-        }
-    }
-    // A RETIRER
-
     public void addMovableToList(MovableEntity e)
     {
         movableList.add(e);

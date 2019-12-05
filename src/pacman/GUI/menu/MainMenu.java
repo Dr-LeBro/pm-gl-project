@@ -3,42 +3,57 @@ package pacman.GUI.menu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 
+/**
+ * Main menu of game, show firsts categories of menu
+ */
 public class MainMenu {
-    private GridPane mainRoot;
     private GridPane rootOfMenu;
-    private GridPane buttons;
     private SecondaryMenu secondaryMenu;
 
-    public MainMenu(GridPane root){
-        mainRoot = root;
-        rootOfMenu = new GridPane();
+    /**
+     * Construc the main menu
+     * @param mainRoot parent root
+     */
+    public MainMenu(GridPane mainRoot){
+        rootOfMenu = new GridPane(); //root of menu
+        /*button launch game single*/
         ButtonManager launchGameSingle = new ButtonManager("SinglePlayer", (EventHandler<ActionEvent>) actionEvent -> showSingle());
         launchGameSingle.setStyle1();
+
+        /*button options*/
         ButtonManager gotoOpt = new ButtonManager("Options", (EventHandler<ActionEvent>) actionEvent -> showOpt());
         gotoOpt.setStyle1();
+
+        /*button launch game multi*/
         ButtonManager launchGameMulti = new ButtonManager("MultiPlayer", (EventHandler<ActionEvent>) actionEvent -> showMulti());
         launchGameMulti.setStyle1();
 
-        buttons = new GridPane();
+        GridPane buttons = new GridPane(); //Grid of buttons
+
+        /* add all buttons to grid*/
         buttons.add(launchGameSingle.getComponent(), 0, 0);
         buttons.add(gotoOpt.getComponent(), 0, 1);
         buttons.add(launchGameMulti.getComponent(), 0, 2);
-        for (Node button:buttons.getChildren()) {
+
+        //set buttons more longer
+        for (Node button: buttons.getChildren()) {
             GridPane.setHgrow(button, Priority.ALWAYS);
         }
 
 
-        rootOfMenu.add(buttons,0,0);
+        rootOfMenu.add(buttons,0,0);//add buttons grid to root of menu
+
+        /*make menu and grid expandable*/
         GridPane.setHgrow(rootOfMenu, Priority.ALWAYS);
         GridPane.setVgrow(rootOfMenu, Priority.ALWAYS);
         GridPane.setHgrow(buttons, Priority.ALWAYS);
         GridPane.setVgrow(buttons, Priority.ALWAYS);
+
         rootOfMenu.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         mainRoot.getChildren().add(rootOfMenu);
@@ -46,27 +61,37 @@ public class MainMenu {
 
     }
 
-
-    public void showSingle(){
+    /**
+     * show secondary menu single
+     */
+    private void showSingle(){
         clearSecondaryMenu();
         secondaryMenu = new SecondaryMenuSingle(rootOfMenu);
         rootOfMenu.add(secondaryMenu.getRootOfMenu(), 1, 0);
     }
 
-
-    public void showOpt(){
+    /**
+     * show secondary menu option
+     */
+    private void showOpt(){
         clearSecondaryMenu();
         secondaryMenu = new SecondaryMenuOpt(rootOfMenu);
         rootOfMenu.add(secondaryMenu.getRootOfMenu(), 1, 0);
     }
 
-    public void showMulti(){
+    /**
+     * show secondary menu multi
+     */
+    private void showMulti(){
         clearSecondaryMenu();
         secondaryMenu = new SecondaryMenuTest(rootOfMenu);
         rootOfMenu.add(secondaryMenu.getRootOfMenu(), 1, 0);
     }
 
-    public void clearSecondaryMenu(){
+    /**
+     * clear secondary menu
+     */
+    private void clearSecondaryMenu(){
         try{
             rootOfMenu.getChildren().remove(secondaryMenu.getRootOfMenu());
             secondaryMenu = null;

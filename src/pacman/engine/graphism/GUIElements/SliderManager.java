@@ -4,10 +4,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Slider;
 
 public class SliderManager {
-    Slider slider;
-    int min;
-    int max;
-    int step;
+    private Slider slider;
+    private int min;
+    private int max;
+    private int step;
 
 
     public SliderManager(ChangeListener<Number> listener, int min, int max, int step) {

@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class Pacman extends MovableEntity {
     private int nbLives;
-    private int displayedPoints;    //points displayed on screen
-    private int nbPoints;           //points used to get lives
     private PowerUp resize = new PowerUp(2000, 5000, "resize");
     private PowerUp superpacgomme = new PowerUp(10000, 10000, "superpacgomme");
 
@@ -101,7 +99,7 @@ public class Pacman extends MovableEntity {
         }
         else
         {
-            int currentState = superpacgomme.checkState();
+            superpacgomme.checkState();
             if(!superpacgomme.isEndedTargeted()){
                 invulnerable = false;
             }
@@ -113,7 +111,7 @@ public class Pacman extends MovableEntity {
             resize.use();
             resize(Map.ArrayUnit, Map.ArrayUnit);
         }else{
-            int currentState = resize.checkState();
+            resize.checkState();
             if(!resize.isEndedTargeted()){
                 if(HitBox.canBePlaced(((int)getX()/Map.ArrayUnit)*Map.ArrayUnit, ((int)getY()/Map.ArrayUnit)*Map.ArrayUnit,this, 30, 30)) {
                     respawn(((int) getX() / Map.ArrayUnit) * Map.ArrayUnit, ((int) getY() / Map.ArrayUnit) * Map.ArrayUnit);
@@ -180,8 +178,4 @@ public class Pacman extends MovableEntity {
                 }
             }
     }
-
-
-    /* TODO : From 100 to 5.000 points for fruits, and 200-400-800-1600 points for ghosts */
-    public void eat() {}
 }

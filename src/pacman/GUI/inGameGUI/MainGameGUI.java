@@ -79,7 +79,6 @@ public class MainGameGUI {
         PowerUpGUI currentPowerUp = powerUpsGUI.get(args[0]);
         switch (event){
             case "PR":
-                System.out.println("PR: " + args[0]);
                 currentPowerUp.setCooldown(-1);
                 currentPowerUp.setDuration(-1);
                 powerUpsList.getItems().remove(powerUpsGUI.get(args[0]).getPowerUpDisplay());
@@ -99,7 +98,6 @@ public class MainGameGUI {
 
     public void launch(){
         Timeline gameLoop = new Timeline();
-        //TODO verifier le moyen d'arreter la boucle
         gameLoop.setCycleCount( Timeline.INDEFINITE );
 
         currentGame = new Game(middleElem, Integer.toString(mapId));

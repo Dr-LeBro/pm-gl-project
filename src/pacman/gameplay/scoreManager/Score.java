@@ -15,7 +15,6 @@ public class Score {
 
     public void add(int points){
         score = score + points;
-        System.out.println(score);
 
         //call GUI
         MainGameGUI.eventHandler.fireEvent(new GameEvent(this, MainGameGUI.eventHandler, GameEvent.GAME_SCORE_UPDATED));

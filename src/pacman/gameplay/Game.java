@@ -106,8 +106,6 @@ public class Game {
     }
 
     public void removeHandlers(){
-        //root.widthProperty().removeListener();
-        //root.heightProperty().addListener();
         pGame.getkI().removeListener();
     }
 
