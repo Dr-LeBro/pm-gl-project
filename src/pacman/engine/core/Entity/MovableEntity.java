@@ -97,6 +97,7 @@ public class MovableEntity extends Entity {
     @Override
     public void kill()
     {
+        actualDir = Direction.STANDING;
         super.kill();
     }
 
