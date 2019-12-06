@@ -14,7 +14,7 @@ public class AnimationSyncrhonizer {
         currentFrame ++;
     }
 
-    public int getImageIdTodraw(int size){
+    public int getImageIdToDraw(int size){
         double ratio = size/animDuration;
         double time = currentFrame*timeRatio;
         double id = time*ratio;

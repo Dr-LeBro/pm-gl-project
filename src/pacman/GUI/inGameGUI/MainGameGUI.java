@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import pacman.Main;
 import pacman.gameplay.Game;
 import pacman.gameplay.GameEvent;
 
@@ -56,9 +57,6 @@ public class MainGameGUI {
 
         powerUpsList.getStylesheets().add("file:css/listView.css");
         leftGrid.add(powerUpsList, 0, 2);
-
-        System.out.println(powerUpsList.getCssMetaData());
-
 
         this.mapId = mapId;
 
@@ -107,16 +105,17 @@ public class MainGameGUI {
         updateLifesDisplay();
 
         Platform.runLater(() -> {
-            double size = Math.min(gameRoot.getHeight(), gameRoot.getWidth());
-            double sideX = (gameRoot.getWidth()-size)/2;
-            double sideY = (gameRoot.getHeight()-size)/2;
+            double size = Math.min(Main.root.getHeight(), Main.root.getWidth());
+            double sideX = (Main.root.getWidth()-size)/2;
+            double sideY = (Main.root.getHeight()-size)/2;
+            System.out.println(size);
 
             AnchorPane.setLeftAnchor(leftGrid, 0.0);
-            AnchorPane.setRightAnchor(leftGrid, gameRoot.getWidth()-sideX);
+            AnchorPane.setRightAnchor(leftGrid, Main.root.getWidth()-sideX);
             AnchorPane.setTopAnchor(leftGrid, 0.0);
             AnchorPane.setBottomAnchor(leftGrid, 0.0);
 
-            AnchorPane.setLeftAnchor(rightGrid, gameRoot.getWidth()-sideX);
+            AnchorPane.setLeftAnchor(rightGrid, Main.root.getWidth()-sideX);
             AnchorPane.setRightAnchor(rightGrid, 0.0);
             AnchorPane.setTopAnchor(rightGrid, 0.0);
             AnchorPane.setBottomAnchor(rightGrid, 0.0);

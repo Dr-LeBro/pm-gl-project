@@ -34,7 +34,7 @@ public class AnimatedSprite extends Sprite{
 
         double xCenter = point.getX()*ratioX - width*ratioX/2 + xPadding;
         double yCenter = point.getY()*ratioY - height*ratioY/2 + yPadding;
-        gc.drawImage(images.get(animSync.getImageIdTodraw(images.size())).getImage(), xCenter, yCenter);
+        gc.drawImage(images.get(animSync.getImageIdToDraw(images.size())).getImage(), xCenter, yCenter);
 
         /*
         gc.setFill(Color.RED);
