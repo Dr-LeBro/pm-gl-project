@@ -34,7 +34,6 @@ public class Sound {
             Music.getInstance().getSounds().get(1).setStartTime((Music.getInstance().getSounds().get(1).getMedia().getDuration().divide(4.0)));
             Music.getInstance().getSounds().get(1).setStopTime(Music.getInstance().getSounds().get(1).getMedia().getDuration().divide(2.0));
         }
-        System.out.println(bool);
         bool = !bool;
         Music.getInstance().playSound(1);
     }
