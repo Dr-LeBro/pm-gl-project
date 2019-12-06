@@ -5,8 +5,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import pacman.engine.graphism.GUIElements.ButtonManager;
+import pacman.engine.sound.Music;
+import pacman.gameplay.sound.Sound;
 
 /**
  * Main menu of game, show firsts categories of menu
@@ -20,6 +23,9 @@ public class MainMenu {
      * @param mainRoot parent root
      */
     public MainMenu(GridPane mainRoot){
+        Sound.instantiate();                                //instantitate musics
+        Music.getInstance().playUnlimitedSound(0);   //play beginning sound
+
         rootOfMenu = new GridPane(); //root of menu
         /*button launch game single*/
         ButtonManager launchGameSingle = new ButtonManager("SinglePlayer", (EventHandler<ActionEvent>) actionEvent -> showSingle());
@@ -62,8 +68,6 @@ public class MainMenu {
         rootOfMenu.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
         mainRoot.getChildren().add(rootOfMenu);
-
-
     }
 
     /**
@@ -111,7 +115,4 @@ public class MainMenu {
             secondaryMenu = null;
         }catch (Exception e){ }
     }
-
-
-
 }

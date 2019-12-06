@@ -18,6 +18,7 @@ import pacman.GUI.inGameGUI.MainGameGUI;
 import pacman.engine.core.GameState;
 import pacman.engine.graphism.GUIElements.ButtonManager;
 import pacman.engine.graphism.GUIElements.SliderManager;
+import pacman.engine.sound.Music;
 import pacman.gameplay.GameEvent;
 import pacman.gameplay.scoreManager.Score;
 import pacman.gameplay.scoreManager.ScoreBoard;
@@ -52,6 +53,7 @@ public class SecondaryMenuSingle extends SecondaryMenu {
         /* set up game option and launch*/
         pseudoArea = new TextArea("default");
         pseudoArea.setPrefSize(100,10);
+
         ButtonManager launchGameSingle = new ButtonManager("Launch", actionEvent -> launchGame());
         mapChooser = new SliderManager(selectMapIdListener, 1, 10, 1); //slider
         mapId = 1; // Default value of the Slider
@@ -84,6 +86,8 @@ public class SecondaryMenuSingle extends SecondaryMenu {
      * Launch game
      */
     private void launchGame() {
+        Music.getInstance().stopSound(0);   //stop the beginning music
+
         GameState.getInstance().setPseudo(pseudoArea.getText());
         menuMemory = FXCollections.observableArrayList(mainRoot.getChildren()); //keep menu in memory
         mainRoot.getChildren().clear(); //clear menu

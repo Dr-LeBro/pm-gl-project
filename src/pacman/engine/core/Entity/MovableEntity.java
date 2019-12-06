@@ -7,6 +7,7 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.physic.movement.Direction;
 import pacman.engine.physic.movement.Movement;
+import pacman.engine.sound.Music;
 
 import static pacman.engine.physic.movement.Direction.*;
 
@@ -98,6 +99,7 @@ public class MovableEntity extends Entity {
     @Override
     public void kill()
     {
+        Music.getInstance().playSound(2);   //plays the death song
         actualDir = Direction.STANDING;
         super.kill();
     }

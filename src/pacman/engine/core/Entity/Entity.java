@@ -108,6 +108,7 @@ public abstract class Entity {
         type = EMPTY;
         visible = false;
         GameState.getInstance().getCanvas().removeDrawingElement(currentSprite);
+        System.out.println("");
     }
 
     public void move(){

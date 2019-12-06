@@ -14,6 +14,7 @@ import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.engine.physic.hitBox.HitBox;
 import pacman.engine.physic.movement.Direction;
+import pacman.engine.sound.Music;
 import pacman.gameplay.Bonus.advantageBonus.PowerUp;
 import pacman.gameplay.GameEvent;
 
@@ -87,6 +88,7 @@ public class Pacman extends MovableEntity {
     }
 
     public void action(KeyCode keyPressed){
+        //Music.getInstance().getSounds().get(1).play();
         move(keyPressed);
         if (keyPressed == KeyCode.A){
             resizePowerUp(true);

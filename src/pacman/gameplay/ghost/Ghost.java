@@ -11,6 +11,7 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.Sprite;
 import pacman.engine.graphism.StaticSprite;
 import pacman.engine.physic.movement.Direction;
+import pacman.engine.sound.Music;
 import pacman.gameplay.ghost.mode.Mode;
 import pacman.gameplay.scoreManager.Score;
 
@@ -59,6 +60,7 @@ public class Ghost extends MovableEntity {
 
     @Override
     public void kill() {
+        Music.getInstance().playSound(4);   //plays a sound when PacMan eat a ghost
         Score.getInstance().add(100);
         super.kill();
         respawn(spawnX, spawnY);

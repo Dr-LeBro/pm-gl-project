@@ -11,6 +11,7 @@ import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.AnimationSyncrhonizer;
 import pacman.engine.graphism.ResizableCanvas;
 import pacman.engine.graphism.Sprite;
+import pacman.engine.sound.Music;
 import pacman.fileManager.LabyrinthFile;
 import pacman.gameplay.ghost.*;
 import pacman.gameplay.pacman.Pacman;
@@ -64,10 +65,10 @@ public class Game {
         graphicalUpdate();
 
         if(GameState.getInstance().getCurrMap().isWon() || getPacmanRemainingLifes() < 1){
+            Music.getInstance().playSound(2);
             Event myEvent = new GameEvent(this, pGame.getRoot(), GameEvent.GAME_END);
             this.pGame.getRoot().fireEvent(myEvent);
         }
-
     }
 
     private void gameUpdate(){

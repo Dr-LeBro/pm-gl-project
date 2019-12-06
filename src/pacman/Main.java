@@ -30,10 +30,8 @@ public class Main extends Application {
 
         new MainMenu(root);
         primaryStage.show();
-
     }
     public static void main(String[] args) {
         launch(args);
-
     }
 }
