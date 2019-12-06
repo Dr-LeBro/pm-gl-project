@@ -4,10 +4,8 @@ import pacman.engine.core.Entity.EntityType;
 import pacman.engine.core.Entity.StaticEntity;
 import pacman.engine.core.Map.Map;
 import pacman.engine.graphism.StaticSprite;
-import pacman.engine.sound.Music;
 import pacman.gameplay.Bonus.scoreBonus.ScoreBonus;
 import pacman.gameplay.scoreManager.Score;
-import pacman.gameplay.sound.Sound;
 
 import java.util.Random;
 
@@ -17,7 +15,7 @@ public class PacGomme extends StaticEntity {
     }
     public void kill()
     {
-        Sound.chomp();
+        //Sound.chomp();
         //Music.getInstance().playSound(1);
         super.kill();
         Score.getInstance().add(10);
