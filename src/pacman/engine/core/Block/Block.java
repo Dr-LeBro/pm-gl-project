@@ -9,4 +9,6 @@ public class Block extends StaticEntity {
     public Block(int posX, int posY) {
         super(EntityType.BLOCK, new StaticSprite("file:sprites/wall.png", "wall"), (double) posX * Map.ArrayUnit, (double) posY * Map.ArrayUnit, Map.ArrayUnit);
     }
+    @Override
+    public void kill(){}//block can't be killed
 }
