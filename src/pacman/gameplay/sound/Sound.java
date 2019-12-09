@@ -4,7 +4,7 @@ import javafx.util.Duration;
 import pacman.engine.sound.Music;
 
 public class Sound {
-    private static String beginning = "./sounds/pacman_beginning.wav";
+    private static String beginning = "sounds/pacman_beginning.wav";
     private static String chomp = "sounds/pacman_chomp.wav";
     private static String death = "sounds/pacman_death.wav";
     private static String eatfruit = "sounds/pacman_eatfruit.wav";
